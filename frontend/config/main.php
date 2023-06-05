@@ -41,6 +41,7 @@ return [
             'showScriptName' => false,
             'rules' => [
                 '<slug:[\w\-]+>' => 'site/category',
+                '<slug:[\w\-]+>/page-<page:\d+>/per-page-<per_page:\d+>' => 'site/category',
                 '<slug:[\w\-]+>,<id:\w+>' => 'site/detail',    
                 ''=>'site/index',
             ], 
