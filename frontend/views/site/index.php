@@ -180,7 +180,7 @@ function create_slug3($string)
                                     <div class="text-box">
                                         <span class="jl_f_cat"><a class="post-category-color-text" style="background: #eba845" href="#"><?= $news[count($news) - 1 ]->category ?></a></span>
                                         <h3>
-                                            <a href="<?= Yii::$app->urlManager->createAbsoluteUrl(['site/detail','id'=>(string)$news[count($news) - 1 ]->_id, 'slug'=>create_slug3($news[count($news) - 1 ]->title)]) ?>"><?= $news[count($news) - 1 ]->title ?></a>
+                                            <a href="<?= Yii::$app->urlManager->createAbsoluteUrl(['site/detail', 'slug'=>create_slug3($news[count($news) - 1 ]->title)]) ?>"><?= substr($news[count($news) - 1 ]->title.'...', 0, 60).'...' ?></a>
                                         </h3>
                                         <span class="jl_post_meta">
                                             <span class="jl_author_img_w"><i class="jli-user"></i><a href="#" title="Posts by Spraya" rel="author"></a></span><span class="post-date"><i class="jli-pen"></i><?= DateTime::createFromFormat('Y-m-d H:i:s',$news[count($news)-1]->created_at)->format('d/m/Y') ?></span><span class="post-read-time"><i class="jli-watch-2"></i>2 Mins read</span></span>
@@ -195,12 +195,12 @@ function create_slug3($string)
                                     <div class="jl_m_right">
                                 <div class="jl_m_right_w">
                                     <div class="jl_m_right_img jl_radus_e">
-                                        <a href="<?= Yii::$app->urlManager->createAbsoluteUrl(['site/detail','id'=>(string)$value->_id, 'slug'=>create_slug3($value->title)]) ?>"><img width="120" height="120" src="<?= $value->image ?>" class="attachment-sprasa_small_feature size-sprasa_small_feature wp-post-image" alt="" loading="lazy" /></a>
+                                        <a href="<?= Yii::$app->urlManager->createAbsoluteUrl(['site/detail','slug'=>create_slug3($value->title)]) ?>"><img width="120" height="120" src="<?= $value->image ?>" class="attachment-sprasa_small_feature size-sprasa_small_feature wp-post-image" alt="" loading="lazy" /></a>
                                     </div>
                                     <div class="jl_m_right_content">
                                         <span class="jl_f_cat"><a class="post-category-color-text" style="background: #91bd3a" href="#"><?= $value->category?></a></span>
                                         <h3 class="entry-title">
-                                            <a href="<?= Yii::$app->urlManager->createAbsoluteUrl(['site/detail','id'=>(string)$value->_id, 'slug'=>create_slug3($value->title)]) ?>"><?= substr($value->title.'...', 0, 200). '...'?></a>
+                                            <a href="<?= Yii::$app->urlManager->createAbsoluteUrl(['site/detail','slug'=>create_slug3($value->title)]) ?>"><?= substr($value->title.'...', 0, 200). '...'?></a>
                                         </h3>
                                         <span class="jl_post_meta">
                                             <span class="jl_author_img_w"><i class="jli-user"></i><a href="#" title="Posts by Spraya" rel="author"></a></span><span class="post-date"><i class="jli-pen"></i><?= DateTime::createFromFormat('Y-m-d H:i:s',$news[count($news)-1]->created_at)->format('d/m/Y') ?></span></span>
@@ -233,18 +233,18 @@ function create_slug3($string)
                                     <div class="p-wraper post-2959">
                                         <div class="jl_grid_w">
                                             <div class="jl_img_box jl_radus_e">
-                                                <a href="<?= Yii::$app->urlManager->createAbsoluteUrl(['site/detail','id'=>(string)$value->_id, 'slug'=>create_slug3($value->title)]) ?>">
+                                                <a href="<?= Yii::$app->urlManager->createAbsoluteUrl(['site/detail','slug'=>create_slug3($value->title)]) ?>">
                                                     <span class="jl_post_type_icon"><i class="jli-gallery"></i></span><img style="width: 550px; height: 358px; object-fit: cover;" width="500" height="350" src="<?= $value->image ?>" class="attachment-sprasa_slider_grid_small size-sprasa_slider_grid_small wp-post-image" alt="" loading="lazy" /></a>
                                             </div>
                                             <div class="text-box">
                                                 <h3>
-                                                    <a href="<?= Yii::$app->urlManager->createAbsoluteUrl(['site/detail','id'=>(string)$value->_id, 'slug'=>create_slug3($value->title)]) ?>"><?= $value->title ?></a>
+                                                    <a href="<?= Yii::$app->urlManager->createAbsoluteUrl(['site/detail','slug'=>create_slug3($value->title)]) ?>"><?= $value->title ?></a>
                                                 </h3>
                                                 <span class="jl_post_meta">
                                                     <span class="jl_author_img_w"><i class="jli-user"></i><a href="#" title="Posts by Spraya" rel="author"></a></span><span class="post-date"><i class="jli-pen"></i><?= DateTime::createFromFormat('Y-m-d H:i:s',$value->created_at)->format('d/m/Y') ?></span><span class="post-read-time"><i class="jli-watch-2"></i>2 Mins
                                                         read</span></span>
                                                 <p>
-                                                     <?= substr($value->content.'...', 0, 150). '...' ?>
+                                                     <?= substr($value->content.'...', 0, 150) ?>
                                                 </p>
                                             </div>
                                         </div>
@@ -272,11 +272,11 @@ function create_slug3($string)
                             <div class="jl_mg_main">
                                 <div class="jl_mg_main_w">
                                     <div class="jl_img_box jl_radus_e">
-                                        <a href="<?= Yii::$app->urlManager->createAbsoluteUrl(['site/detail','id'=>(string)$entertainment[0]->_id, 'slug'=>create_slug3($entertainment[0]->title)]) ?>"><img style="width: 550px; height: 358px; object-fit: cover;"width="1000" height="500" src="<?= $entertainment[0]->image ?>" class="attachment-sprasa_feature_large size-sprasa_feature_large wp-post-image" alt="" loading="lazy" /></a>
+                                        <a href="<?= Yii::$app->urlManager->createAbsoluteUrl(['site/detail','slug'=>create_slug3($entertainment[0]->title)]) ?>"><img style="width: 550px; height: 358px; object-fit: cover;"width="1000" height="500" src="<?= $entertainment[0]->image ?>" class="attachment-sprasa_feature_large size-sprasa_feature_large wp-post-image" alt="" loading="lazy" /></a>
                                     </div>
                                     <div class="text-box">
                                         <h3 class="entry-title">
-                                            <a href="<?= Yii::$app->urlManager->createAbsoluteUrl(['site/detail','id'=>(string)$entertainment[0]->_id, 'slug'=>create_slug3($entertainment[0]->title)]) ?>" tabindex="-1"><?= $entertainment[0]->title ?></a>
+                                            <a href="<?= Yii::$app->urlManager->createAbsoluteUrl(['site/detail','slug'=>create_slug3($entertainment[0]->title)]) ?>" tabindex="-1"><?= $entertainment[0]->title ?></a>
                                         </h3>
                                         <span class="jl_post_meta">
                                             <span class="jl_author_img_w"><i class="jli-user"></i><a href="#" title="Posts by Spraya" rel="author">Spraya</a></span><span class="post-date"><i class="jli-pen"></i><?= DateTime::createFromFormat('Y-m-d H:i:s',$entertainment[0]->created_at)->format('d/m/Y') ?></span><span class="post-read-time"><i class="jli-watch-2"></i>2 Mins read</span></span>
@@ -291,11 +291,11 @@ function create_slug3($string)
                                 <div class="jl_mg_sm">
                                     <div class="jl_mg_sm_w">
                                         <div class="jl_f_img jl_radus_e">
-                                            <a href="<?= Yii::$app->urlManager->createAbsoluteUrl(['site/detail','id'=>(string)$item->_id, 'slug'=>create_slug3($item->title)]) ?>"><img style="width: 255px; height: 166px; object-fit: cover;" width="1000" height="169" src="<?= $item->image ?>" class="attachment-sprasa_feature_large size-sprasa_feature_large wp-post-image" alt="" loading="lazy" /></a>
+                                            <a href="<?= Yii::$app->urlManager->createAbsoluteUrl(['site/detail', 'slug'=>create_slug3($item->title)]) ?>"><img style="width: 255px; height: 166px; object-fit: cover;" width="1000" height="169" src="<?= $item->image ?>" class="attachment-sprasa_feature_large size-sprasa_feature_large wp-post-image" alt="" loading="lazy" /></a>
                                         </div>
                                         <div class="jl_mg_content">
                                             <h3 class="entry-title">
-                                                <a href="<?= Yii::$app->urlManager->createAbsoluteUrl(['site/detail','id'=>(string)$item->_id, 'slug'=>create_slug3($item->title)]) ?>"><?= $item->title?></a>
+                                                <a href="<?= Yii::$app->urlManager->createAbsoluteUrl(['site/detail', 'slug'=>create_slug3($item->title)]) ?>"><?= $item->title?></a>
                                             </h3>
                                             <span class="jl_post_meta">
                                                 <span class="jl_author_img_w"><i class="jli-user"></i><a href="#" title="Posts by Spraya" rel="author">Spraya</a></span><span class="post-date"><i class="jli-pen"></i><?= DateTime::createFromFormat('Y-m-d H:i:s',$item->created_at)->format('d/m/Y') ?></span></span>
@@ -328,11 +328,11 @@ function create_slug3($string)
                                             <div class="p-wraper post-2691">
                                                 <div class="jl_grid_w">
                                                     <div class="jl_img_box jl_radus_e">
-                                                        <a href="<?= Yii::$app->urlManager->createAbsoluteUrl(['site/detail','id'=>(string)$item->_id, 'slug'=>create_slug3($item->title)]) ?>"><img style="width: 255px; height: 179px; object-fit: cover;" width="500" height="350" src="<?= $item->image ?>" class="attachment-sprasa_slider_grid_small size-sprasa_slider_grid_small wp-post-image" alt="" loading="lazy" /></a>
+                                                        <a href="<?= Yii::$app->urlManager->createAbsoluteUrl(['site/detail', 'slug'=>create_slug3($item->title)]) ?>"><img style="width: 255px; height: 179px; object-fit: cover;" width="500" height="350" src="<?= $item->image ?>" class="attachment-sprasa_slider_grid_small size-sprasa_slider_grid_small wp-post-image" alt="" loading="lazy" /></a>
                                                     </div>
                                                     <div class="text-box">
                                                         <h3>
-                                                            <a href="<?= Yii::$app->urlManager->createAbsoluteUrl(['site/detail','id'=>(string)$item->_id, 'slug'=>create_slug3($item->title)]) ?>"><?= $item->title ?></a>
+                                                            <a href="<?= Yii::$app->urlManager->createAbsoluteUrl(['site/detail', 'slug'=>create_slug3($item->title)]) ?>"><?= $item->title ?></a>
                                                         </h3>
                                                         <span class="jl_post_meta">
                                                             <span class="jl_author_img_w"><i class="jli-user"></i><a href="#" title="Posts by Spraya" rel="author">Spraya</a></span><span class="post-date"><i class="jli-pen"></i><?= DateTime::createFromFormat('Y-m-d H:i:s',$item->created_at)->format('d/m/Y') ?></span><span class="post-read-time"><i class="jli-watch-2"></i>2 Mins
@@ -376,7 +376,7 @@ function create_slug3($string)
                                                         <div class="jl_f_postbox">
                                                             <span class="jl_f_cat"><a class="post-category-color-text" style="background: #4dcf8f" href="#"><?= $view->category?></a></span>
                                                             <h3 class="jl_f_title">
-                                                                <a href="<?= Yii::$app->urlManager->createAbsoluteUrl(['site/detail','id'=>(string)$view->_id, 'slug'=>create_slug3($view->title)]) ?>" tabindex="-1"><?= $view->title?></a>
+                                                                <a href="<?= Yii::$app->urlManager->createAbsoluteUrl(['site/detail', 'slug'=>create_slug3($view->title)]) ?>" tabindex="-1"><?= $view->title?></a>
                                                             </h3>
                                                             <span class="jl_post_meta"><span class="jl_author_img_w"><i class="jli-user"></i><a href="#" title="Posts by Spraya" rel="author"></a></span><span class="post-date"><i class="jli-pen"></i><?= DateTime::createFromFormat('Y-m-d H:i:s',$view->created_at)->format('d/m/Y') ?></span><span class="post-read-time"><i class="jli-watch-2"></i>2 Mins
                                                                     read</span></span>
@@ -415,12 +415,12 @@ function create_slug3($string)
                                     <div class="p-wraper post-2959">
                                         <div class="jl_grid_w">
                                             <div class="jl_img_box jl_radus_e">
-                                                <a href="<?= Yii::$app->urlManager->createAbsoluteUrl(['site/detail','id'=>(string)$value->_id, 'slug'=>create_slug3($value->title)]) ?>">
+                                                <a href="<?= Yii::$app->urlManager->createAbsoluteUrl(['site/detail','slug'=>create_slug3($value->title)]) ?>">
                                                     <span class="jl_post_type_icon"><i class="jli-gallery"></i></span><img style="width: 550px; height: 358px; object-fit: cover;" width="500" height="350" src="<?= $value->image ?>" class="attachment-sprasa_slider_grid_small size-sprasa_slider_grid_small wp-post-image" alt="" loading="lazy" /></a>
                                             </div>
                                             <div class="text-box">
                                                 <h3>
-                                                    <a href="<?= Yii::$app->urlManager->createAbsoluteUrl(['site/detail','id'=>(string)$value->_id, 'slug'=>create_slug3($value->title)]) ?>"><?= $value->title ?></a>
+                                                    <a href="<?= Yii::$app->urlManager->createAbsoluteUrl(['site/detail','slug'=>create_slug3($value->title)]) ?>"><?= $value->title ?></a>
                                                 </h3>
                                                 <span class="jl_post_meta">
                                                     <span class="jl_author_img_w"><i class="jli-user"></i><a href="#" title="Posts by Spraya" rel="author"></a></span><span class="post-date"><i class="jli-pen"></i><?= DateTime::createFromFormat('Y-m-d H:i:s',$value->created_at)->format('d/m/Y') ?></span><span class="post-read-time"><i class="jli-watch-2"></i>2 Mins
@@ -458,12 +458,12 @@ function create_slug3($string)
                                             <div class="jl_m_right jl_sm_list jl_ml jl_clear_at">
                                                 <div class="jl_m_right_w">
                                                     <div class="jl_m_right_img jl_radus_e">
-                                                        <a href="<?= Yii::$app->urlManager->createAbsoluteUrl(['site/detail','id'=>(string)$item->_id, 'slug'=>create_slug3($item->title)]) ?>"><img width="450" height="450" src="<?= $item->image ?>" class="attachment-sprasa_feature_small size-sprasa_feature_small wp-post-image" alt="" loading="lazy" /></a>
+                                                        <a href="<?= Yii::$app->urlManager->createAbsoluteUrl(['site/detail', 'slug'=>create_slug3($item->title)]) ?>"><img width="450" height="450" src="<?= $item->image ?>" class="attachment-sprasa_feature_small size-sprasa_feature_small wp-post-image" alt="" loading="lazy" /></a>
                                                     </div>
                                                     <div class="jl_m_right_content">
                                                         <span class="jl_f_cat"><a class="post-category-color-text" style="background: #eba845" href="#"><?= $item->category ?></a></span>
                                                         <h2 class="entry-title">
-                                                            <a href="<?= Yii::$app->urlManager->createAbsoluteUrl(['site/detail','id'=>(string)$item->_id, 'slug'=>create_slug3($item->title)]) ?>"><?= $item->title?></a>
+                                                            <a href="<?= Yii::$app->urlManager->createAbsoluteUrl(['site/detail', 'slug'=>create_slug3($item->title)]) ?>"><?= $item->title?></a>
                                                         </h2>
                                                         <span class="jl_post_meta">
                                                             <span class="jl_author_img_w"><i class="jli-user"></i><a href="#" title="Posts by Spraya" rel="author"></a></span><span class="post-date"><i class="jli-pen"></i><?= DateTime::createFromFormat('Y-m-d H:i:s',$item->created_at)->format('d/m/Y') ?></span><span class="post-read-time"><i class="jli-watch-2"></i>3 Mins

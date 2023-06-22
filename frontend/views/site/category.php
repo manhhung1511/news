@@ -65,7 +65,7 @@ function create_slug2($string)
                                         <div class="text-box">
                                             <span class="jl_f_cat"><a class="post-category-color-text" style="background: #4dcf8f" href="#">Active</a></span>
                                             <h3 class="entry-title">
-                                                <a href="<?= Yii::$app->urlManager->createAbsoluteUrl(['site/detail', 'id' => (string)$news[count($news) - 1]->_id, 'slug' => create_slug2($news[count($news) - 1]->title)]) ?>" tabindex="-1"><?= $news[count($news) - 1]->title ?></a>
+                                                <a href="<?= Yii::$app->urlManager->createAbsoluteUrl(['site/detail','slug' => create_slug2($news[count($news) - 1]->title)]) ?>" tabindex="-1"><?= $news[count($news) - 1]->title ?></a>
                                             </h3>
                                             <span class="jl_post_meta"><span class="jl_author_img_w"><i class="jli-user"></i><a href="#" title="Posts by Spraya" rel="author">...</a></span><span class="post-date"><i class="jli-pen"></i><?= DateTime::createFromFormat('Y-m-d H:i:s', $news[count($news) - 1]->created_at)->format('d/m/Y') ?></span><span class="post-read-time"><i class="jli-watch-2"></i>2 Mins read</span></span>
                                             <p><?= substr($news[count($news) - 1]->content . '...', 0, 250) . '...' ?></p>
@@ -95,12 +95,12 @@ function create_slug2($string)
                                             <div class="p-wraper post-2959">
                                                 <div class="jl_grid_w">
                                                     <div class="jl_img_box jl_radus_e">
-                                                        <a href="<?= Yii::$app->urlManager->createAbsoluteUrl(['site/detail', 'id' => (string)$value->_id, 'slug' => create_slug2($value->title)]) ?>">
+                                                        <a href="<?= Yii::$app->urlManager->createAbsoluteUrl(['site/detail','slug' => create_slug2($value->title)]) ?>">
                                                             <span class="jl_post_type_icon"><i class="jli-gallery"></i></span><img style="width: 550px; height: 358px; object-fit: cover;" width="500" height="350" src="<?= $value->image ?>" class="attachment-sprasa_slider_grid_small size-sprasa_slider_grid_small wp-post-image" alt="" loading="lazy" /></a>
                                                     </div>
                                                     <div class="text-box">
                                                         <h3>
-                                                            <a href="<?= Yii::$app->urlManager->createAbsoluteUrl(['site/detail', 'id' => (string)$value->_id, 'slug' => create_slug2($value->title)]) ?>"><?= $value->title ?></a>
+                                                            <a href="<?= Yii::$app->urlManager->createAbsoluteUrl(['site/detail','slug' => create_slug2($value->title)]) ?>"><?= $value->title ?></a>
                                                         </h3>
                                                         <span class="jl_post_meta">
                                                             <span class="jl_author_img_w"><i class="jli-user"></i><a href="#" title="Posts by Spraya" rel="author"></a></span><span class="post-date"><i class="jli-pen"></i><?= DateTime::createFromFormat('Y-m-d H:i:s', $value->created_at)->format('d/m/Y') ?></span><span class="post-read-time"><i class="jli-watch-2"></i>2 Mins

@@ -141,8 +141,9 @@ class SiteController extends Controller
 
     public function actionDetail()
     {
-        $id = Yii::$app->request->get('id');
-        $detail = News::findOne(['_id' => new ObjectId($id)]);
+        $slug = Yii::$app->request->get('slug');
+        $detail = News::findOne(['slug' => $slug]);
+
         $category = $detail->category;
         $relate = News::find()->where(['status' => 1, 'category' => $category])->orderBy(['created_at' => SORT_ASC])->limit(5)->all();
         $view = 0;

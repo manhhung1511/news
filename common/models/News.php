@@ -38,6 +38,7 @@ class News extends \yii\mongodb\ActiveRecord
             'image',
             'view',
             'status',
+            'slug',
             'created_at',
             'updated_at'
         ];

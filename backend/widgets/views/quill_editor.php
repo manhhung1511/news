@@ -11,8 +11,8 @@ $this->registerJsFile('@web/app-assets/vendors/js/editors/quill/quill.min.js');
 ?>
 <style type="text/css">
     .editor {
-        height: 200px;
-        background-color: #dbdbdb;
+        height: 500px;
+        background-color: white;
     }
 
     .ql-snow .ql-picker.ql-expanded .ql-picker-options {
@@ -122,6 +122,20 @@ $this->registerJsFile('@web/app-assets/vendors/js/editors/quill/quill.min.js');
     .ql-background .ql-picker-options [data-value=custom-color]:hover {
         border-color: transparent !important;
     }
+
+
+    .ql-snow .ql-picker-options .ql-picker-item[data-value] {
+        font-family: attr(data-value);
+    }
+
+    .ql-snow .ql-picker-options .ql-picker-item[data-value]::before {
+        content: attr(data-value) !important;
+    }
+
+    .ql-snow .ql-picker.ql-font .ql-picker-label::before,
+    .ql-snow .ql-picker.ql-font .ql-picker-item::before {
+        content: attr(data-value) !important;
+    }
 </style>
 
 <div class="form-group">
@@ -168,6 +182,17 @@ $this->registerJsFile('@web/app-assets/vendors/js/editors/quill/quill.min.js');
         var AlignClass = Quill.import('attributors/style/align');
         Quill.register(AlignClass, true);
 
+        const FontAttributor = Quill.import('attributors/class/font');
+        FontAttributor.whitelist = [
+            'IRANSans',
+            'roboto',
+            'cursive',
+            'fantasy',
+            'monospace',
+            'arial'
+        ];
+        Quill.register(FontAttributor, true);
+
         var list_color = ["#000000", "#e60000", "#ff9900", "#ffff00", "#008a00", "#0066cc", "#9933ff", "#ffffff", "#facccc", "#ffebcc", "#ffffcc", "#cce8cc", "#cce0f5", "#ebd6ff", "#bbbbbb", "#f06666", "#ffc266", "#ffff66", "#66b966", "#66a3e0", "#c285ff", "#888888", "#a10000", "#b26b00", "#b2b200", "#006100", "#0047b2", "#6b24b2", "#444444", "#5c0000", "#663d00", "#666600", "#003700", "#002966", "#3d1466", 'custom-color'];
 
         var quillEditor = new Quill('#<?= isset($editor_id) ? $editor_id : 'editor' ?>', {
@@ -178,6 +203,12 @@ $this->registerJsFile('@web/app-assets/vendors/js/editors/quill/quill.min.js');
                 toolbar: [
                     [{
                         size: fontSizeArr
+                    }],
+                    [{
+                        'header': [1, 2, 3, 4, 5, 6, false]
+                    }],
+                    [{
+                        font: ['IRANSans', 'roboto', 'cursive', 'fantasy', 'monospace','arial']
                     }],
                     ['bold', 'italic', 'underline', 'strike'],
                     [{
@@ -248,5 +279,8 @@ $this->registerJsFile('@web/app-assets/vendors/js/editors/quill/quill.min.js');
         $('#<?= isset($editor_id) ? $editor_id : 'editor' ?>').focusin(function() {
             addClassTextShake('.<?= isset($class_box_change) ? $class_box_change : '' ?>');
         });
+
+        // let html = quillEditor.root.innerHTML;
+        // console.log(html);
     });
 </script>
