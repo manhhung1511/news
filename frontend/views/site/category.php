@@ -56,10 +56,8 @@ function create_slug2($string)
                                 <div class="jl_m_below">
                                     <div class="jl_m_below_c">
                                         <div class="jl_m_below_img">
-                                            <div class="jl_f_img_bg jl_radus_e" style="
-                                background-image: url(<?= $news[count($news) - 1]->image ?>);
-                              "></div>
-                                            <a href="#" class="jl_f_img_link"></a>
+                                            <div class="jl_f_img_bg jl_radus_e" style="background-image: url(<?= $news[count($news) - 1]->image ?>);" title="<?= $news[count($news) - 1]->title?>" alt="<?= $news[count($news) - 1]->title?>"></div>
+                                            <a href="<?= Yii::$app->urlManager->createAbsoluteUrl(['site/detail','slug' => create_slug2($news[count($news) - 1]->title)]) ?>" class="jl_f_img_link"></a>
                                             <span class="jl_post_type_icon"><i class="jli-quote-2"></i></span>
                                         </div>
                                         <div class="text-box">
@@ -96,7 +94,7 @@ function create_slug2($string)
                                                 <div class="jl_grid_w">
                                                     <div class="jl_img_box jl_radus_e">
                                                         <a href="<?= Yii::$app->urlManager->createAbsoluteUrl(['site/detail','slug' => create_slug2($value->title)]) ?>">
-                                                            <span class="jl_post_type_icon"><i class="jli-gallery"></i></span><img style="width: 550px; height: 358px; object-fit: cover;" width="500" height="350" src="<?= $value->image ?>" class="attachment-sprasa_slider_grid_small size-sprasa_slider_grid_small wp-post-image" alt="" loading="lazy" /></a>
+                                                            <span class="jl_post_type_icon"><i class="jli-gallery"></i></span><img style="width: 550px; height: 358px; object-fit: cover;" width="500" height="350" src="<?= $value->image ?>" class="attachment-sprasa_slider_grid_small size-sprasa_slider_grid_small wp-post-image" alt="<?= $value->title ?>" title="<?= $value->title ?>" loading="lazy" /></a>
                                                     </div>
                                                     <div class="text-box">
                                                         <h3>

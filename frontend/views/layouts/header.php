@@ -40,28 +40,25 @@ function create_slug($string)
     $string = strtolower($string);
     return $string;
     }
+
+    $current_time = date("l, j/n/Y");
 ?>
+ <div
+      class="options_layout_wrapper jl_clear_at jl_radius jl_none_box_styles jl_border_radiuss jl_en_day_night"
+    >
+    <div class="options_layout_container full_layout_enable_front">
 
 <header class="header-wraper jl_header_magazine_style two_header_top_style header_layout_style3_custom jl_cus_top_share">
-    <div class="header_top_bar_wrapper">
+    <div class="header_top_bar_wrapper" style="background: white";>
         <div class="container">
             <div class="row">
-                <div class="col-md-12">
+                <div class="col-md-4">
+                    <span style="margin-top: 17px;margin-left: 12px; display: flex;"><?= $current_time ?> </span>
+                </div>
+                <div class="col-md-8">
                     <div class="jl_top_cus_social">
                         <div class="menu_mobile_share_wrapper">
                             <ul class="social_icon_header_top jl_socialcolor">
-                                <li>
-                                    <a class="facebook" href="#" target="_blank"><i class="jli-facebook"></i></a>
-                                </li>
-                                <li>
-                                    <a class="vk" href="#" target="_blank"><i class="jli-vk"></i></a>
-                                </li>
-                                <li>
-                                    <a class="telegram" href="#" target="_blank"><i class="jli-telegram"></i></a>
-                                </li>
-                                <li>
-                                    <a class="behance" href="#" target="_blank"><i class="jli-behance"></i></a>
-                                </li>
                             </ul>
                         </div>
                     </div>
@@ -77,9 +74,23 @@ function create_slug($string)
                 <div class="main_menu col-md-12">
                     <div class="logo_small_wrapper_table">
                         <div class="logo_small_wrapper">
-                            <!-- begin logo --><a class="logo_link" href="<?= Yii::$app->urlManager->createAbsoluteUrl(['site/index'])?>"><img class="jl_logo_n" src="img/logo_n.png" alt="sprasa" /><img class="jl_logo_w" src="img/logo_w.png" alt="sprasa" /></a><!-- end logo -->
+                            <!-- begin logo --><a class="logo_link" href="<?= Yii::$app->urlManager->createAbsoluteUrl(['site/index'])?>"><img class="jl_logo_n" src="https://imgtr.ee/images/2023/06/24/dJL13.png" alt="songxanh24h"/><img class="jl_logo_w" src="https://imgtr.ee/images/2023/06/24/dJL13.png" alt="songxanh24h" /></a><!-- end logo -->
                         </div>
                     </div>
+                    <div class="search_header_menu jl_nav_mobile">
+                    <div class="menu_mobile_icons">
+                      <div class="jlm_w">
+                        <span class="jlma"></span><span class="jlmb"></span
+                        ><span class="jlmc"></span>
+                      </div>
+                    </div>
+                    <div class="jl_day_night jl_day_en">
+                      <span class="jl-night-toggle-icon">
+                        <span class="jl_moon"> <i class="jli-moon"></i> </span
+                        ><span class="jl_sun"> <i class="jli-sun"></i> </span
+                      ></span>
+                    </div>
+                  </div>
                     <div class="menu-primary-container navigation_wrapper jl_cus_share_mnu">
                         <ul id="mainmenu" class="jl_main_menu">
                             <?php if (isset($this->params['paramName']) && $this->params['paramName']) : ?>
@@ -115,3 +126,4 @@ function create_slug($string)
         </div>
     </div>
 </header>
+

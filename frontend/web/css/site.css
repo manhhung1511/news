@@ -23633,7 +23633,7 @@ footer .recent_post_large_widget {
 .jl_header_magazine_style.header_layout_style3_custom #mainmenu>li {
     margin-right: 0;
     margin-left: 0;
-    padding: 0 15px
+    padding: 0 10px
 }
 
 .jl_header_magazine_style.header_layout_style3_custom #jl_top_menu>li>a {
@@ -23679,7 +23679,7 @@ footer .recent_post_large_widget {
     height: 80px;
     float: left;
     width: auto;
-    margin-right: 20px;
+    margin-right: 0px;
     position: relative;
     z-index: 1
 }
@@ -23706,7 +23706,7 @@ footer .recent_post_large_widget {
     -ms-transition: all .2s ease 0s;
     -o-transition: all .2s ease 0s;
     transition: all .2s ease 0s;
-    max-height: 30px
+    max-height: 63px
 }
 
 .jl_header_magazine_style.header_layout_style3_custom .logo_small_wrapper_table .logo_small_wrapper a .jl_logo_w {

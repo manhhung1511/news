@@ -55,7 +55,7 @@ class SiteController extends Controller
 
     public function init() {
         parent::init();
-        $category = Category::find()->all();
+        $category = Category::find()->limit(8)->all();
         Yii::$app->view->params['paramName'] = $category;
     }
 
@@ -63,21 +63,23 @@ class SiteController extends Controller
     {
         $news = News::findAll(['status' => 1]);
         $new4 = News::find()->where(['status' => 1])->orderBy(['created_at' => SORT_DESC])->limit(5)->all();
-        $business = News::find()->where(['status' => 1, 'category' => 'Kinh doanh'])->orderBy(['created_at' => SORT_DESC])->limit(3)->all();
-        $entertainment = News::find()->where(['status' => 1, 'category' => 'Giải trí'])->orderBy(['created_at' => SORT_DESC])->limit(5)->all();
-        $land = News::find()->where(['status' => 1, 'category' => 'Bất động sản'])->orderBy(['created_at' => SORT_DESC])->limit(4)->all();
+        $category = Category::find()->all();
+        $news_category3 = News::find()->where(['status' => 1, 'category' => $category[3]->name ])->orderBy(['created_at' => SORT_DESC])->limit(3)->all();
+        $news_category5 = News::find()->where(['status' => 1, 'category' => $category[5]->name])->orderBy(['created_at' => SORT_DESC])->limit(5)->all();
+        $news_category2 = News::find()->where(['status' => 1, 'category' => $category[2]->name])->orderBy(['created_at' => SORT_DESC])->limit(4)->all();
         $views = News::find()->where(['status' => 1])->andWhere(['>=','view', 1])->orderBy(['created_at' => SORT_ASC])->limit(3)->all();
         $new8 = News::find()->where(['status' => 1])->orderBy(['created_at' => SORT_DESC])->limit(7)->all();
         $today = News::find()->where(['status' => 1])->andWhere(['>=','created_at',date('Y-m-d').' 00:00:00'])->andWhere(['<=','created_at',date('Y-m-d').'23:59:59'])->orderBy(['created_at' => SORT_DESC])->limit(8)->all();
         return $this->render('index',[
             'news' => $news,
             'new4' => $new4,
-            'business' => $business,
-            'entertainment' => $entertainment,
-            'land' => $land,
+            'news_category3' => $news_category3,
+            'news_category5' => $news_category5,
+            'news_category2' => $news_category2,
             'views' => $views,
             'new8' => $new8,
-            'today' => $today
+            'today' => $today,
+            'category' => $category
         ]);
     }
 
@@ -142,7 +144,8 @@ class SiteController extends Controller
     public function actionDetail()
     {
         $slug = Yii::$app->request->get('slug');
-        $detail = News::findOne(['slug' => $slug]);
+        $id = Yii::$app->request->get('id');
+        $detail = News::findOne(['_id' => new ObjectId($id)]);
 
         $category = $detail->category;
         $relate = News::find()->where(['status' => 1, 'category' => $category])->orderBy(['created_at' => SORT_ASC])->limit(5)->all();

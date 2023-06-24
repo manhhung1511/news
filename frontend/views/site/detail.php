@@ -49,6 +49,7 @@ function create_slug4($string)
     padding: 10px;
     border: 1px solid #ccc;
     border-radius: 5px;
+    margin: 0 100px;
   }
 
   /* Style the links in the menu */
@@ -180,7 +181,7 @@ function create_slug4($string)
                       <div class="jl_m_right jl_m_list jl_m_img">
                         <div class="jl_m_right_w">
                           <div class="jl_m_right_img jl_radus_e">
-                            <span class="jl_post_type_icon"><i class="jli-gallery"></i></span><a href="<?= Yii::$app->urlManager->createAbsoluteUrl(['site/detail', 'id' => (string)$item->_id, 'slug' => create_slug4($item->title)]) ?>"><img width="500" height="350" src="<?= $item->image ?>" class="attachment-sprasa_slider_grid_small size-sprasa_slider_grid_small wp-post-image" alt="" loading="lazy" /></a>
+                            <span class="jl_post_type_icon"><i class="jli-gallery"></i></span><a href="<?= Yii::$app->urlManager->createAbsoluteUrl(['site/detail', 'id' => (string)$item->_id, 'slug' => create_slug4($item->title)]) ?>"><img width="500" height="350" src="<?= $item->image ?>" class="attachment-sprasa_slider_grid_small size-sprasa_slider_grid_small wp-post-image" alt="<?= $item->title ?>" title="<?= $item->title ?>" loading="lazy" /></a>
                           </div>
                           <div class="jl_m_right_content">
                             <span class="jl_f_cat"><a class="post-category-color-text" style="background: #62ce5c" href="#"><?= $item->category ?></a></span>
@@ -190,9 +191,7 @@ function create_slug4($string)
                             <span class="jl_post_meta"><span class="jl_author_img_w"><i class="jli-user"></i><a href="#" title="Posts by Spraya" rel="author"></a></span><span class="post-date"><i class="jli-pen"></i><?= DateTime::createFromFormat('Y-m-d H:i:s', $item->created_at)->format('d/m/Y') ?></span><span class="post-read-time"><i class="jli-watch-2"></i>2 Mins
                                 read</span></span>
                             <p>
-                              Mauris mattis auctor cursus. Phasellus tellus
-                              tellus, imperdiet ut imperdiet eu, iaculis a
-                              sem Donec vehicula luctus nunc...
+                              <?= substr($item->content . '...', 0, 150) . '...' ?>
                             </p>
                           </div>
                         </div>
@@ -255,14 +254,12 @@ function create_slug4($string)
 
         // Scroll to the section
         var section = document.querySelector(event.target.hash);
-        section.style.scrollMarginTop = '100px';
+        section.style.scrollMarginTop = '180px';
         section.scrollIntoView({
           behavior: 'smooth'
         });
       });
       
-      // section.style.marginTop = '50px';
-      // Append the link element to the list item element
       li.appendChild(a);
 
       // Append the list item element to the menu
@@ -270,7 +267,6 @@ function create_slug4($string)
     }
 
     let content = document.querySelector('.single_content_header');
-    let container = document.querySelector('.container');
     // // Append the menu to the body element
     content.insertBefore(menu, content.firstChild);
   });
