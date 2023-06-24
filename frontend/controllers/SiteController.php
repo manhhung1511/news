@@ -55,7 +55,7 @@ class SiteController extends Controller
 
     public function init() {
         parent::init();
-        $category = Category::find()->limit(8)->all();
+        $category = Category::find()->limit(6)->all();
         Yii::$app->view->params['paramName'] = $category;
     }
 
