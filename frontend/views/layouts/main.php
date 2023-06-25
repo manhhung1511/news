@@ -3,6 +3,7 @@
 /** @var \yii\web\View $this */
 /** @var string $content */
 
+use yii\helpers\Html;
 use frontend\assets\AppAsset;
 
 AppAsset::register($this);
@@ -16,6 +17,7 @@ AppAsset::register($this);
   <meta charset="<?= Yii::$app->charset ?>">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <?php $this->registerCsrfMetaTags() ?>
+  <title><?= Html::encode($this->title) ?></title>
   <link rel="icon" type="image/png" href="/img/logo2.png">
   <?php $this->head() ?>
 </head>

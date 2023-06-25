@@ -1,5 +1,4 @@
 <?php
-$this->title = 'Tin Tức';
 function create_slug3($string)
 {
     $search = array(
@@ -41,6 +40,7 @@ function create_slug3($string)
     $string = strtolower($string);
     return $string;
     }
+    $this->title = 'SongXanh24h';
 ?>
 <div class="jl_home_bw">
     <section class="home_section1">
