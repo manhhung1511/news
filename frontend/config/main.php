@@ -42,8 +42,9 @@ return [
             'rules' => [
                 ''=>'site/index',
                 '<slug:[\w\-]+>' => 'site/category',   
+                '<slug:[\w\-]+>/child' => 'site/category-child',   
                 '<slug:[\w\-]+>/<id:\w+>' => 'site/detail', 
-                '<slug:[\w\-]+>/page-<page:\d+>/per-page-<per_page:\d+>' => 'site/category',
+                '<slug:[\w\-]+>/page-<page:\d+>/per-page-<per_page:\d+>/' => 'site/category',
             ], 
         ],
     

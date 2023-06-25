@@ -55,7 +55,7 @@ class SiteController extends Controller
 
     public function init() {
         parent::init();
-        $category = Category::find()->limit(6)->all();
+        $category = Category::find()->limit(10)->all();
         Yii::$app->view->params['paramName'] = $category;
     }
 
@@ -128,12 +128,25 @@ class SiteController extends Controller
         $slug = Yii::$app->request->get('slug');
         $category = Category::findOne(['slug' => $slug]);
         $id = (string) $category->_id;
-
         $model = News::find()->where(['category_id' => $id, 'status' => 1]);
-     
+    
         $pages= new Pagination(['totalCount' => $model->count(),'pageSize' => '2']);
 
-        $news = News::find()->where(['category_id' => $id, 'status'=> 1])->orderBy(['created_at' => SORT_ASC])->offset($pages->offset)->limit($pages->limit)->all();;
+        $news = News::find()->where(['category_id' => $id, 'status'=> 1])->orderBy(['created_at' => SORT_ASC])->offset($pages->offset)->limit($pages->limit)->all();
+    
+        return $this->render('category', [
+            'news' => $news,
+            'pages' => $pages
+        ]);
+    }
+
+    public function actionCategoryChild() {
+        $slug = Yii::$app->request->get('slug');
+        $model = News::find()->where(['category_child' => $slug, 'status' => 1]);
+        
+        $pages= new Pagination(['totalCount' => $model->count(),'pageSize' => '2']);
+
+        $news = News::find()->where(['category_child' => $slug, 'status'=> 1])->orderBy(['created_at' => SORT_ASC])->offset($pages->offset)->limit($pages->limit)->all();
     
         return $this->render('category', [
             'news' => $news,
@@ -145,10 +158,14 @@ class SiteController extends Controller
     {
         $slug = Yii::$app->request->get('slug');
         $id = Yii::$app->request->get('id');
-        $detail = News::findOne(['_id' => new ObjectId($id)]);
-
-        $category = $detail->category;
-        $relate = News::find()->where(['status' => 1, 'category' => $category])->orderBy(['created_at' => SORT_ASC])->limit(5)->all();
+        $detail = News::findOne(['slug' => $slug]);
+        if(empty($detail->category_child)) {
+            $category = $detail->category;
+            $relate = News::find()->where(['status' => 1, 'category' => $category])->orderBy(['created_at' => SORT_ASC])->limit(5)->all();
+        } else {
+            $category_child = $detail->category_child;
+            $relate = News::find()->where(['status' => 1, 'category_child' => $category_child])->orderBy(['created_at' => SORT_ASC])->limit(5)->all();
+        }
         $view = 0;
         $detail->view = $detail->view ? $detail->view + 1 : $view + 1;
         $detail->save();

@@ -42,6 +42,7 @@ $this->params['breadcrumbs'][] = $this->title;
                             <tr>
                                 <td>Tiêu đề</td>
                                 <td>Danh mục</td>
+                                <td>Danh mục con</td>
                                 <td>Hình ảnh</td>
                                 <td>Nội dung</td>
                                 <td>Trạng thái</td>
@@ -59,6 +60,9 @@ $this->params['breadcrumbs'][] = $this->title;
                                         </td>
                                         <td>
                                             <?= $data['category'] ?  $data['category'] : '' ?>
+                                        </td>
+                                        <td>
+                                            <?= $data['category_child'] ?  $data['category_child'] : '' ?>
                                         </td>
                                         <td>
                                             <div class="d-md-flex d-block">

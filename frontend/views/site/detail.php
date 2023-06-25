@@ -1,6 +1,7 @@
 <?php
+$this->title = $detail->title;
 function create_slug4($string)
-{
+{ 
   $search = array(
     '#(à|á|ạ|ả|ã|â|ầ|ấ|ậ|ẩ|ẫ|ă|ằ|ắ|ặ|ẳ|ẵ)#',
     '#(è|é|ẹ|ẻ|ẽ|ê|ề|ế|ệ|ể|ễ)#',

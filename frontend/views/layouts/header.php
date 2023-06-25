@@ -40,8 +40,24 @@ function create_slug($string)
     $string = strtolower($string);
     return $string;
     }
-
+    //get time current
     $current_time = date("l, j/n/Y");
+    
+    //get weather
+    $api_key = "22fd9064d39c2c9295f9e81c1eaccb73";
+$city = "Hanoi";
+$country_code = "vn";
+$url = "https://api.openweathermap.org/data/2.5/weather?q=$city,$country_code&appid=$api_key";
+
+$ch = curl_init();
+curl_setopt($ch, CURLOPT_URL, $url);
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+$response = curl_exec($ch);
+curl_close($ch);
+
+$data = json_decode($response);
+$temperature_kelvin = $data->main->temp;
+$temperature_celsius = $temperature_kelvin - 273.15;
 ?>
  <div
       class="options_layout_wrapper jl_clear_at jl_radius jl_none_box_styles jl_border_radiuss jl_en_day_night"
@@ -53,12 +69,21 @@ function create_slug($string)
         <div class="container">
             <div class="row">
                 <div class="col-md-4">
-                    <span style="margin-top: 17px;margin-left: 12px; display: flex;"><?= $current_time ?> </span>
+                    <span style="line-height: 40px;margin-left: 12px; display: flex;"><?= $current_time ?> </span>
                 </div>
                 <div class="col-md-8">
                     <div class="jl_top_cus_social">
                         <div class="menu_mobile_share_wrapper">
                             <ul class="social_icon_header_top jl_socialcolor">
+                                <li style="line-height: 40px;">
+                                    <span>Hà Nội</span>
+                                </li>
+                                <li style="line-height: 40px;">
+                                    <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" width="35" height="35"><path d="M60.156 68.75c18.985 0 34.375-15.39 34.375-34.375S79.141 0 60.156 0C41.172 0 25.781 15.39 25.781 34.375S41.171 68.75 60.156 68.75Z" fill="#5A6164"></path><path d="M34.375 25.781C15.391 25.781 0 41.171 0 60.156a8.569 8.569 0 0 0 8.594 8.594h51.562a8.569 8.569 0 0 0 8.594-8.594c0-18.984-15.39-34.375-34.375-34.375Z" fill="#374043"></path><path d="M75 100c13.807 0 25-11.193 25-25S88.807 50 75 50 50 61.193 50 75s11.193 25 25 25Z" fill="#CFFFFF" fill-opacity="0.8"></path><path d="M56.25 68.75c-13.828 0-25 11.172-25 25 0 3.438 2.813 6.25 6.25 6.25H75c3.438 0 6.25-2.813 6.25-6.25 0-13.828-11.172-25-25-25Z" fill="#CDFAFA"></path></svg>
+                                </li>
+                                <li style="line-height: 40px;">
+                                    <span style="font-weight:600;"><?= $temperature_celsius .'°C'?></span>
+                                </li>
                             </ul>
                         </div>
                     </div>
@@ -74,7 +99,7 @@ function create_slug($string)
                 <div class="main_menu col-md-12">
                     <div class="logo_small_wrapper_table">
                         <div class="logo_small_wrapper">
-                            <!-- begin logo --><a class="logo_link" href="<?= Yii::$app->urlManager->createAbsoluteUrl(['site/index'])?>"><img class="jl_logo_n" src="https://imgtr.ee/images/2023/06/24/dJL13.png" alt="songxanh24h"/><img class="jl_logo_w" src="https://imgtr.ee/images/2023/06/24/dJL13.png" alt="songxanh24h" /></a><!-- end logo -->
+                            <!-- begin logo --><a class="logo_link" href="<?= Yii::$app->urlManager->createAbsoluteUrl(['site/index'])?>"><img class="jl_logo_n" src="https://scontent.fhan5-8.fna.fbcdn.net/v/t39.30808-6/355885609_701555968445484_4538355155203947406_n.jpg?_nc_cat=108&ccb=1-7&_nc_sid=730e14&_nc_ohc=vb4dcznMADIAX_7JKVL&_nc_ht=scontent.fhan5-8.fna&oh=00_AfD5KSxp1VVtyCYRpRBdf_xPtVXm3NomDtmuN0FkyTmbZw&oe=649C1216" alt="songxanh24h"/><img class="jl_logo_w" src="https://scontent.fhan5-8.fna.fbcdn.net/v/t39.30808-6/355885609_701555968445484_4538355155203947406_n.jpg?_nc_cat=108&ccb=1-7&_nc_sid=730e14&_nc_ohc=vb4dcznMADIAX_7JKVL&_nc_ht=scontent.fhan5-8.fna&oh=00_AfD5KSxp1VVtyCYRpRBdf_xPtVXm3NomDtmuN0FkyTmbZw&oe=649C1216" alt="songxanh24h" /></a><!-- end logo -->
                         </div>
                     </div>
                     <div class="search_header_menu jl_nav_mobile">
@@ -97,7 +122,7 @@ function create_slug($string)
                                 <?php foreach ($this->params['paramName'] as $item) : ?>
                                     <?php if (isset($item->category_child[0]) && $item->category_child[0]) : ?>
                                         <li class="menu-item menu-item-has-children">
-                                            <a href="shop.html">
+                                            <a href="<?= Yii::$app->urlManager->createAbsoluteUrl(['site/category','slug'=>create_slug($item['name'])]) ?>">
                                                 <?= $item->name?> <span class="border-menu"></span>
                                                 <span class="jl_menu_lb" style="
                               background: #ffe500 !important;
@@ -107,7 +132,7 @@ function create_slug($string)
                                             <ul class="sub-menu">
                                             <?php foreach ($item->category_child as $item) : ?>
                                                 <li class="menu-item">
-                                                    <a href="cart.html"><?= $item ?><span class="border-menu"></span></a>
+                                                    <a href="<?= Yii::$app->urlManager->createAbsoluteUrl(['site/category-child','slug'=>create_slug($item)]) ?>"><?= $item ?><span class="border-menu"></span></a>
                                                 </li>
                                             <?php endforeach; ?>
                                             </ul>

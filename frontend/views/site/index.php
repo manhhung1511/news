@@ -1,4 +1,5 @@
 <?php
+$this->title = 'Tin Tức';
 function create_slug3($string)
 {
     $search = array(

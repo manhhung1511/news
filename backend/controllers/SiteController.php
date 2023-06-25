@@ -33,7 +33,7 @@ class SiteController extends Controller
                         'allow' => true,
                     ],
                     [
-                        'actions' => ['logout', 'index','create','update-status','update','delete'],
+                        'actions' => ['logout', 'index','create','update-status','update','delete','category-child'],
                         'allow' => true,
                         'roles' => ['@'],
                     ],
@@ -58,6 +58,11 @@ class SiteController extends Controller
                 'class' => \yii\web\ErrorAction::class,
             ],
         ];
+    }
+
+    public function beforeAction($action) {
+        $this->enableCsrfValidation = false;
+        return parent::beforeAction($action);
     }
 
     /**
@@ -117,6 +122,7 @@ class SiteController extends Controller
             $model->category = $category->name;
             $model->image = Yii::$app->request->post()['News']['image'];
             $model->content = Yii::$app->request->post()['News']['content'];
+            $model->category_child = self::Slug(Yii::$app->request->post()['category-child']);
             $model->status = 1;
             $model->created_at = date('Y-m-d H:i:s');
             $model->updated_at = date('Y-m-d H:i:s');
@@ -156,14 +162,16 @@ class SiteController extends Controller
     public function actionUpdate($id)
     {
         $model = News::findOne($id);
-        $category_name =  $model->category_id;
+        $category_name = $model->category;
         $list_category  = Category::find()->all();
+
         if ($model->load(Yii::$app->request->post()) && $model->validate()) {
                 $model->title = Yii::$app->request->post()['News']['title'];
                 $model->slug = self::Slug(Yii::$app->request->post()['News']['title']);
                 $model->category_id = Yii::$app->request->post()['News']['category'];
                 $category = Category::findOne(['_id' => new ObjectId(Yii::$app->request->post()['News']['category'])]);
                 $model->category = $category->name;
+                $model->category_child = self::Slug(Yii::$app->request->post()['category-child']);
                 $model->image = Yii::$app->request->post()['News']['image'];
                 $model->content = Yii::$app->request->post()['News']['content'];
                 $model->updated_at = date('Y-m-d H:i:s');
@@ -187,6 +195,15 @@ class SiteController extends Controller
     
         Yii::$app->session->setFlash('success', Yii::t('app', 'Deleted successfully'));
         return $this->redirect(Yii::$app->urlManager->createAbsoluteUrl(['site/index']));
+    }
+
+    public function actionCategoryChild() {
+        if(Yii::$app->request->isAjax && Yii::$app->request->post()) {
+            $category_id = Yii::$app->request->post()['category_id'];
+            $category = Category::findOne(['_id' => new ObjectId($category_id)]);
+            $category_child = $category->category_child;
+            return json_encode($category_child, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES |JSON_NUMERIC_CHECK|JSON_PRETTY_PRINT);
+        }
     }
 
     /**

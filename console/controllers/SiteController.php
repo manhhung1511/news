@@ -41,13 +41,11 @@ echo "Your current location is $city, $country.";
 // curl_close($ch);
 
 // $data = json_decode($response);
-// var_dump($data);
-
-// die;
-// $temperature = $data->main->temp;
+// $temperature_kelvin = $data->main->temp;
+// $temperature_celsius = $temperature_kelvin - 273.15;
 // $description = $data->weather[0]->description;
 
-// echo "The current temperature in $city is $temperature degrees Kelvin with $description.";
+// echo "The current temperature in $city is $temperature_celsius degrees Celsius with $description.";
 //     }
 // }
 ?>

@@ -34,6 +34,7 @@ class News extends \yii\mongodb\ActiveRecord
             'category',
             'title',
             'category_id',
+            'category_child',
             'content',
             'image',
             'view',
