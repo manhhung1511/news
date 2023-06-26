@@ -18,6 +18,7 @@ use yii\helpers\ArrayHelper;
 
 // die;
 
+$a = 10;
 ?>
 
 <style>
@@ -42,8 +43,7 @@ use yii\helpers\ArrayHelper;
 
             <?= $form->field($model, 'category')->dropDownList(ArrayHelper::map($list_category, function($app) {return (string)$app->_id;}, 'name'), [
                 'prompt' => 'Chọn danh mục',
-                'class' => 'form-control',
-                'value' => isset($category_name) && $category_name ? $category_name: ''
+                'class' => 'form-control'
             ])->label('Chọn danh mục <span class="color-required">(*)</span>') ?>
             <div class="form-group category_child hidden">
                 <label class="w-50">Chọn danh mục con: </label>

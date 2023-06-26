@@ -122,6 +122,9 @@ function create_slug4($string)
   .ql-font-arial {
     font-family: arial !important;
   }
+  .options_dark_skin #menu {
+    background-color: #121416 !important;
+  }
 </style>
 
 <section id="content_main" class="clearfix jl_spost">
