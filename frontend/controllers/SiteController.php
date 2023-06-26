@@ -55,7 +55,7 @@ class SiteController extends Controller
 
     public function init() {
         parent::init();
-        $category = Category::find()->limit(7)->all();
+        $category = Category::find()->limit(10)->all();
         Yii::$app->view->params['paramName'] = $category;
     }
 
@@ -127,6 +127,9 @@ class SiteController extends Controller
     {
         $slug = Yii::$app->request->get('slug');
         $category = Category::findOne(['slug' => $slug]);
+        if(isset($category->category_child) && count($category->category_child) > 1 ) {
+            return $this->render('empty');
+        }
         $id = (string) $category->_id;
         $model = News::find()->where(['category_id' => $id, 'status' => 1]);
     

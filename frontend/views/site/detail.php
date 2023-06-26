@@ -135,7 +135,7 @@ function create_slug4($string)
               <div class="jl_single_style2">
                 <div class="single_post_entry_content single_bellow_left_align jl_top_single_title jl_top_title_feature">
                   <span class="meta-category-small single_meta_category"><a class="post-category-color-text" style="background: #62ce5c" href="#">
-                      <?= $detail->category ?>
+                      <?= $detail->category_child ? $detail->category_child : $detail->category ?>
                     </a></span>
                   <h1 class="single_post_title_main">
                     <?= $detail->title ?>

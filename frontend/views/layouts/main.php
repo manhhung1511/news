@@ -41,7 +41,7 @@ AppAsset::register($this);
           <?php foreach ($this->params['paramName'] as $item) : ?>
             <?php if (isset($item->category_child[0]) && $item->category_child[0]) : ?>
               <li class="menu-item menu-item-has-children">
-                <a href="shop.html">
+                <a href="<?= Yii::$app->urlManager->createAbsoluteUrl(['site/category','slug'=>create_slug($item['name'])]) ?>">
                   <?= $item->name ?> <span class="border-menu"></span>
                   <span class="jl_menu_lb" style="
                               background: #ffe500 !important;
@@ -51,7 +51,7 @@ AppAsset::register($this);
                 <ul class="sub-menu">
                   <?php foreach ($item->category_child as $item) : ?>
                     <li class="menu-item">
-                      <a href="cart.html"><?= $item ?><span class="border-menu"></span></a>
+                      <a href="<?= Yii::$app->urlManager->createAbsoluteUrl(['site/category-child','slug'=>create_slug($item)]) ?>"><?= $item ?><span class="border-menu"></span></a>
                     </li>
                   <?php endforeach; ?>
                 </ul>

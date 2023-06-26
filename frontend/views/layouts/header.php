@@ -68,10 +68,10 @@ $temperature_celsius = $temperature_kelvin - 273.15;
     <div class="header_top_bar_wrapper" style="background: white";>
         <div class="container">
             <div class="row">
-                <div class="col-md-4">
+                <div class="col-md-4 col-6">
                     <span style="line-height: 40px;margin-left: 12px; display: flex;"><?= $current_time ?> </span>
                 </div>
-                <div class="col-md-8">
+                <div class="col-md-8 col-6">
                     <div class="jl_top_cus_social">
                         <div class="menu_mobile_share_wrapper">
                             <ul class="social_icon_header_top jl_socialcolor">
