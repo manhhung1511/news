@@ -19161,8 +19161,8 @@ footer .jl_sm_list .entry-title a {
     color: #cacaca !important;
 }
 
-.options_dark_skin #main {
-    background-color: #121416;
+.options_dark_skin #menu {
+    background-color: #121416 !important;
 }
 
 .options_dark_skin h2 strong {
