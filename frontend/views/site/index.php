@@ -305,7 +305,7 @@ function create_slug3($string)
                                                     <span class="jl_author_img_w"><i class="jli-user"></i><a href="#" title="<?= $value->author ?>" rel="author"><?= $value->author ?></a></span><span class="post-date"><i class="jli-pen"></i><?= DateTime::createFromFormat('Y-m-d H:i:s',$value->created_at)->format('d/m/Y') ?></span><span class="post-read-time"><i class="jli-watch-2"></i>2 Mins
                                                         read</span></span>
                                                 <p>
-                                                     <?= strip_tags(substr($value->content.'...', 0, 110). '...') ?>
+                                                     <?= strip_tags(substr($value->content.'...', 0, 150). '...') ?>
                                                 </p>
                                             </div>
                                         </div>
