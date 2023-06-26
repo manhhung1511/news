@@ -19154,43 +19154,27 @@ footer .jl_sm_list .entry-title a {
 }
 
 .options_dark_skin a, .options_dark_skin h1, .options_dark_skin h2, .options_dark_skin h3, .options_dark_skin h4, .options_dark_skin h5, .options_dark_skin h6 {
-    color: #fff
+    color: #fff !important;
 }
 
-.options_dark_skin p {
-    color: #cacaca
-}
-
-.options_dark_skin em {
-    color: #cacaca
-}
-
-.options_dark_skin p em {
-    color: #cacaca
-}
-
-.options_dark_skin p span {
-    color: #cacaca
-}
-
-.options_dark_skin p strong {
-    color: #cacaca
+.options_dark_skin p, .options_dark_skin em, .options_dark_skin p em, .options_dark_skin p span, .options_dark_skin p strong {
+    color: #cacaca !important;
 }
 
 .options_dark_skin h2 strong {
-    color: #cacaca
+    color: #cacaca !important;
 }
 
 .options_dark_skin h3 span {
-    color: #cacaca
+    color: #cacaca !important;
 }
 
 .options_dark_skin ul li strong {
-    color: #cacaca
+    color: #cacaca !important;
 }
 
 .options_dark_skin ul li span {
-    color: #cacaca
+    color: #cacaca !important;
 }
 
 
