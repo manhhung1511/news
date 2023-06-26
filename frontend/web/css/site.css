@@ -19161,6 +19161,39 @@ footer .jl_sm_list .entry-title a {
     color: #cacaca
 }
 
+.options_dark_skin em {
+    color: #cacaca
+}
+
+.options_dark_skin p em {
+    color: #cacaca
+}
+
+.options_dark_skin p span {
+    color: #cacaca
+}
+
+.options_dark_skin p strong {
+    color: #cacaca
+}
+
+.options_dark_skin h2 strong {
+    color: #cacaca
+}
+
+.options_dark_skin h3 span {
+    color: #cacaca
+}
+
+.options_dark_skin ul li strong {
+    color: #cacaca
+}
+
+.options_dark_skin ul li span {
+    color: #cacaca
+}
+
+
 .options_dark_skin .jl_post_meta, .options_dark_skin .jl_post_meta .post-date, .options_dark_skin .jl_post_meta .post-read-time, .options_dark_skin .jl_post_meta a {
     color: #8b8b8b !important
 }
