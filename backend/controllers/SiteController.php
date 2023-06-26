@@ -122,6 +122,7 @@ class SiteController extends Controller
             $model->category = $category->name;
             $model->image = Yii::$app->request->post()['News']['image'];
             $model->content = Yii::$app->request->post()['News']['content'];
+            $model->author = Yii::$app->request->post()['News']['author'];
             $model->category_child = self::Slug(Yii::$app->request->post()['category-child']);
             $model->status = 1;
             $model->created_at = date('Y-m-d H:i:s');
@@ -174,6 +175,7 @@ class SiteController extends Controller
                 $model->category_child = self::Slug(Yii::$app->request->post()['category-child']);
                 $model->image = Yii::$app->request->post()['News']['image'];
                 $model->content = Yii::$app->request->post()['News']['content'];
+                $model->author = Yii::$app->request->post()['News']['author'];
                 $model->updated_at = date('Y-m-d H:i:s');
 
             if ($model->save()) {

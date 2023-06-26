@@ -33,8 +33,11 @@ use yii\helpers\ArrayHelper;
 <div class="card card-company-table">
     <div class="card-body p-0 m-2">
         <div class="col-8">
-            <?php $form = ActiveForm::begin(['options' => ['enctype' => 'multipart/form-data'], 'id' => 'news-form']); ?>
 
+            <?php $form = ActiveForm::begin(['options' => ['enctype' => 'multipart/form-data'], 'id' => 'news-form']); ?>
+            
+            <?= $form->field($model, 'author', ['template' => '{label}<div class="input-group input-group-merge"><div class="input-group-prepend"><span class="input-group-text"><i data-feather="home"></i></span></div>{input}</div>{error}', 'options' => ['class' => 'form-group']])->textInput(['autocomplete' => 'off', 'placeholder' => 'Tác giả'])->label(Yii::t('app', 'Tác giả')) ?>
+            
             <?= $form->field($model, 'title', ['template' => '{label}<div class="input-group input-group-merge"><div class="input-group-prepend"><span class="input-group-text"><i data-feather="home"></i></span></div>{input}</div>{error}', 'options' => ['class' => 'form-group']])->textInput(['autocomplete' => 'off', 'placeholder' => 'Tiêu đề'])->label(Yii::t('app', 'Tiêu đề') . ' <span class="color-required">(*)</span>') ?>
 
             <?= $form->field($model, 'category')->dropDownList(ArrayHelper::map($list_category, function($app) {return (string)$app->_id;}, 'name'), [
@@ -59,7 +62,7 @@ use yii\helpers\ArrayHelper;
                                 'editor_id' => 'editor-desc',
                                 'class_box_change' => 'viteex-form__group__description-id'
                             ]) ?>
-                            
+            
             <?= Html::submitButton('<i data-feather="save" class="mr-50"></i>' . 'Save', ['class' => 'btn btn-primary btn-submit-form']) ?>
            
             <?php ActiveForm::end(); ?>

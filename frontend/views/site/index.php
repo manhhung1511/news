@@ -62,7 +62,7 @@ function create_slug3($string)
                                             <a href="<?= Yii::$app->urlManager->createAbsoluteUrl(['site/detail', 'slug'=>create_slug3($news[count($news) - 1 ]->title), 'id' => (string)$news[count($news) - 1 ]->_id]) ?>"><?= substr($news[count($news) - 1 ]->title.'...', 0, 60).'...' ?></a>
                                         </h3>
                                         <span class="jl_post_meta">
-                                            <span class="jl_author_img_w"><i class="jli-user"></i><a href="#" title="Posts by Spraya" rel="author"></a></span><span class="post-date"><i class="jli-pen"></i><?= DateTime::createFromFormat('Y-m-d H:i:s',$news[count($news)-1]->created_at)->format('d/m/Y') ?></span><span class="post-read-time"><i class="jli-watch-2"></i>2 Mins read</span></span>
+                                            <span class="jl_author_img_w"><i class="jli-user"></i><a href="#" title="<?= $news[count($news) - 1 ]->author ?>" rel="author"><?= $news[count($news) - 1 ]->author ?></a></span><span class="post-date"><i class="jli-pen"></i><?= DateTime::createFromFormat('Y-m-d H:i:s',$news[count($news)-1]->created_at)->format('d/m/Y') ?></span><span class="post-read-time"><i class="jli-watch-2"></i>2 Mins read</span></span>
                                     </div>
                                 </div>
                             </div>
@@ -82,7 +82,7 @@ function create_slug3($string)
                                             <a href="<?= Yii::$app->urlManager->createAbsoluteUrl(['site/detail','slug'=>create_slug3($value->title),'id' => (string)$value->_id]) ?>"><?= substr($value->title.'...', 0, 200) ?></a>
                                         </h3>
                                         <span class="jl_post_meta">
-                                            <span class="jl_author_img_w"><i class="jli-user"></i><a href="#" title="Posts by Spraya" rel="author"></a></span><span class="post-date"><i class="jli-pen"></i><?= DateTime::createFromFormat('Y-m-d H:i:s',$news[count($news)-1]->created_at)->format('d/m/Y') ?></span></span>
+                                            <span class="jl_author_img_w"><i class="jli-user"></i><a href="#" title="<?= $value->author?>" rel="author"><?= $value->author?></a></span><span class="post-date"><i class="jli-pen"></i><?= DateTime::createFromFormat('Y-m-d H:i:s',$news[count($news)-1]->created_at)->format('d/m/Y') ?></span></span>
                                     </div>
                                 </div>
                             </div>
@@ -120,10 +120,10 @@ function create_slug3($string)
                                                     <a href="<?= Yii::$app->urlManager->createAbsoluteUrl(['site/detail','slug'=>create_slug3($value->title),'id' => (string)$value->_id]) ?>"><?= $value->title ?></a>
                                                 </h3>
                                                 <span class="jl_post_meta">
-                                                    <span class="jl_author_img_w"><i class="jli-user"></i><a href="#" title="Posts by Spraya" rel="author"></a></span><span class="post-date"><i class="jli-pen"></i><?= DateTime::createFromFormat('Y-m-d H:i:s',$value->created_at)->format('d/m/Y') ?></span><span class="post-read-time"><i class="jli-watch-2"></i>2 Mins
+                                                    <span class="jl_author_img_w"><i class="jli-user"></i><a href="#" title="<?= $value->author ?>" rel="author"><?= $value->author ?></a></span><span class="post-date"><i class="jli-pen"></i><?= DateTime::createFromFormat('Y-m-d H:i:s',$value->created_at)->format('d/m/Y') ?></span><span class="post-read-time"><i class="jli-watch-2"></i>2 Mins
                                                         read</span></span>
                                                 <p>
-                                                    <?= substr ($value->content.'...', 0, 150).'...' ?>
+                                                    <?= strip_tags(substr ($value->content.'...', 0, 150).'...') ?>
                                                 </p>
                                             </div>
                                         </div>
@@ -158,9 +158,9 @@ function create_slug3($string)
                                             <a href="<?= Yii::$app->urlManager->createAbsoluteUrl(['site/detail','slug'=>create_slug3($news_category5[0]->title),'id' => (string)$news_category5[0]->_id]) ?>" tabindex="-1"><?= $news_category5[0]->title ?></a>
                                         </h3>
                                         <span class="jl_post_meta">
-                                            <span class="jl_author_img_w"><i class="jli-user"></i><a href="#" title="Posts by Spraya" rel="author">Spraya</a></span><span class="post-date"><i class="jli-pen"></i><?= DateTime::createFromFormat('Y-m-d H:i:s',$news_category5[0]->created_at)->format('d/m/Y') ?></span><span class="post-read-time"><i class="jli-watch-2"></i>2 Mins read</span></span>
+                                            <span class="jl_author_img_w"><i class="jli-user"></i><a href="#" title="<?= $news_category5[0]->author?>" rel="author"><?= $news_category5[0]->author?></a></span><span class="post-date"><i class="jli-pen"></i><?= DateTime::createFromFormat('Y-m-d H:i:s',$news_category5[0]->created_at)->format('d/m/Y') ?></span><span class="post-read-time"><i class="jli-watch-2"></i>2 Mins read</span></span>
                                         <p>
-                                             <?= substr($news_category5[0]->title .'...', 0, 150). '...' ?>
+                                             <?= substr($news_category5[0]->content .'...', 0, 150). '...' ?>
                                         </p>
                                     </div>
                                 </div>
@@ -177,7 +177,7 @@ function create_slug3($string)
                                                 <a href="<?= Yii::$app->urlManager->createAbsoluteUrl(['site/detail', 'slug'=>create_slug3($item->title),'id' => (string)$item->_id]) ?>"><?= $item->title?></a>
                                             </h3>
                                             <span class="jl_post_meta">
-                                                <span class="jl_author_img_w"><i class="jli-user"></i><a href="#" title="Posts by Spraya" rel="author"></a></span><span class="post-date"><i class="jli-pen"></i><?= DateTime::createFromFormat('Y-m-d H:i:s',$item->created_at)->format('d/m/Y') ?></span></span>
+                                                <span class="jl_author_img_w"><i class="jli-user"></i><a href="#" title="<?= $item->author?>" rel="author"><?= $item->author?></a></span><span class="post-date"><i class="jli-pen"></i><?= DateTime::createFromFormat('Y-m-d H:i:s',$item->created_at)->format('d/m/Y') ?></span></span>
                                         </div>
                                     </div>
                                 </div>
@@ -214,7 +214,7 @@ function create_slug3($string)
                                                             <a href="<?= Yii::$app->urlManager->createAbsoluteUrl(['site/detail', 'slug'=>create_slug3($item->title),'id' => (string)$item->_id]) ?>"><?= $item->title ?></a>
                                                         </h3>
                                                         <span class="jl_post_meta">
-                                                            <span class="jl_author_img_w"><i class="jli-user"></i><a href="#" title="Posts by Spraya" rel="author">Spraya</a></span><span class="post-date"><i class="jli-pen"></i><?= DateTime::createFromFormat('Y-m-d H:i:s',$item->created_at)->format('d/m/Y') ?></span><span class="post-read-time"><i class="jli-watch-2"></i>2 Mins
+                                                            <span class="jl_author_img_w"><i class="jli-user"></i><a href="#" title="<?= $item->author ?>" rel="author"><?= $item->author ?></a></span><span class="post-date"><i class="jli-pen"></i><?= DateTime::createFromFormat('Y-m-d H:i:s',$item->created_at)->format('d/m/Y') ?></span><span class="post-read-time"><i class="jli-watch-2"></i>2 Mins
                                                                 read</span></span>
                                                     </div>
                                                 </div>
@@ -257,7 +257,7 @@ function create_slug3($string)
                                                             <h3 class="jl_f_title">
                                                                 <a href="<?= Yii::$app->urlManager->createAbsoluteUrl(['site/detail', 'slug'=>create_slug3($view->title),'id' => (string)$view->_id]) ?>" tabindex="-1"><?= $view->title?></a>
                                                             </h3>
-                                                            <span class="jl_post_meta"><span class="jl_author_img_w"><i class="jli-user"></i><a href="#" title="Posts by Spraya" rel="author"></a></span><span class="post-date"><i class="jli-pen"></i><?= DateTime::createFromFormat('Y-m-d H:i:s',$view->created_at)->format('d/m/Y') ?></span><span class="post-read-time"><i class="jli-watch-2"></i>2 Mins
+                                                            <span class="jl_post_meta"><span class="jl_author_img_w"><i class="jli-user"></i><a href="#" title="<?= $view->author?>" rel="author"><?= $view->author?></a></span><span class="post-date"><i class="jli-pen"></i><?= DateTime::createFromFormat('Y-m-d H:i:s',$view->created_at)->format('d/m/Y') ?></span><span class="post-read-time"><i class="jli-watch-2"></i>2 Mins
                                                                     read</span></span>
                                                         </div>
                                                     </div>
@@ -302,10 +302,10 @@ function create_slug3($string)
                                                     <a href="<?= Yii::$app->urlManager->createAbsoluteUrl(['site/detail','slug'=>create_slug3($value->title),'id' => (string)$value->_id]) ?>"><?= $value->title ?></a>
                                                 </h3>
                                                 <span class="jl_post_meta">
-                                                    <span class="jl_author_img_w"><i class="jli-user"></i><a href="#" title="Posts by Spraya" rel="author"></a></span><span class="post-date"><i class="jli-pen"></i><?= DateTime::createFromFormat('Y-m-d H:i:s',$value->created_at)->format('d/m/Y') ?></span><span class="post-read-time"><i class="jli-watch-2"></i>2 Mins
+                                                    <span class="jl_author_img_w"><i class="jli-user"></i><a href="#" title="<?= $value->author ?>" rel="author"><?= $value->author ?></a></span><span class="post-date"><i class="jli-pen"></i><?= DateTime::createFromFormat('Y-m-d H:i:s',$value->created_at)->format('d/m/Y') ?></span><span class="post-read-time"><i class="jli-watch-2"></i>2 Mins
                                                         read</span></span>
                                                 <p>
-                                                     <?= substr($value->content.'...', 0, 110). '...' ?>
+                                                     <?= strip_tags(substr($value->content.'...', 0, 110). '...') ?>
                                                 </p>
                                             </div>
                                         </div>

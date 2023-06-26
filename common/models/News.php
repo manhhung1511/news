@@ -40,6 +40,7 @@ class News extends \yii\mongodb\ActiveRecord
             'view',
             'status',
             'slug',
+            'author',
             'created_at',
             'updated_at'
         ];
@@ -51,7 +52,7 @@ class News extends \yii\mongodb\ActiveRecord
     {
         return [
             ['category', 'required', 'message' => 'Vui lòng chọn danh mục'],
-            [['category','title','description','image','status'], 'safe']
+            [['category','title','description','image','status', 'author'], 'safe']
         ];
     }
 
