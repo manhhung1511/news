@@ -99,7 +99,7 @@ $temperature_celsius = $temperature_kelvin - 273.15;
                 <div class="main_menu col-md-12">
                     <div class="logo_small_wrapper_table">
                         <div class="logo_small_wrapper">
-                            <!-- begin logo --><a class="logo_link" href="<?= Yii::$app->urlManager->createAbsoluteUrl(['site/index'])?>"><img class="jl_logo_n" src="https://scontent.fhan5-8.fna.fbcdn.net/v/t39.30808-6/355885609_701555968445484_4538355155203947406_n.jpg?_nc_cat=108&ccb=1-7&_nc_sid=730e14&_nc_ohc=vb4dcznMADIAX_7JKVL&_nc_ht=scontent.fhan5-8.fna&oh=00_AfD5KSxp1VVtyCYRpRBdf_xPtVXm3NomDtmuN0FkyTmbZw&oe=649C1216" alt="songxanh24h"/><img class="jl_logo_w" src="https://scontent.fhan5-8.fna.fbcdn.net/v/t39.30808-6/355885609_701555968445484_4538355155203947406_n.jpg?_nc_cat=108&ccb=1-7&_nc_sid=730e14&_nc_ohc=vb4dcznMADIAX_7JKVL&_nc_ht=scontent.fhan5-8.fna&oh=00_AfD5KSxp1VVtyCYRpRBdf_xPtVXm3NomDtmuN0FkyTmbZw&oe=649C1216" alt="songxanh24h" /></a><!-- end logo -->
+                            <!-- begin logo --><a class="logo_link" href="<?= Yii::$app->urlManager->createAbsoluteUrl(['site/index'])?>"><img class="jl_logo_n" src="/img/logo1.png" alt="songxanh24h"/><img class="jl_logo_w" src="/img/logo1.png" alt="songxanh24h" /></a><!-- end logo -->
                         </div>
                     </div>
                     <div class="search_header_menu jl_nav_mobile">
