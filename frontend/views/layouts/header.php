@@ -130,9 +130,9 @@ $temperature_celsius = $temperature_kelvin - 273.15;
                             "><span class="jl_lb_ar" style="border-top: 3px solid #ffe500 !important"></span>Hot</span>
                                             </a>
                                             <ul class="sub-menu">
-                                            <?php foreach ($item->category_child as $item) : ?>
+                                            <?php foreach ($item->category_child as $item_child) : ?>
                                                 <li class="menu-item">
-                                                    <a href="<?= Yii::$app->urlManager->createAbsoluteUrl(['site/category-child','slug'=>create_slug($item)]) ?>"><?= $item ?><span class="border-menu"></span></a>
+                                                    <a href="<?= Yii::$app->urlManager->createAbsoluteUrl(['site/category-child','parent'=>create_slug($item['name']) ,'slug'=>create_slug($item_child)]) ?>"><?= $item_child ?><span class="border-menu"></span></a>
                                                 </li>
                                             <?php endforeach; ?>
                                             </ul>

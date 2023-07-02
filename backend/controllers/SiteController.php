@@ -13,7 +13,6 @@ use yii\web\Controller;
 use yii\web\Response;
 use yii\data\ActiveDataProvider;
 use MongoDb\BSON\ObjectId;
-
 /**
  * Site controller
  */
@@ -39,7 +38,7 @@ class SiteController extends Controller
                     ],
                 ],
             ],
-            'verbs' => [
+            'verbs' => [  
                 'class' => VerbFilter::class,
                 'actions' => [
                     'logout' => ['post'],
@@ -112,15 +111,23 @@ class SiteController extends Controller
     public function actionCreate()
     {
         $model = new News();
-        $list_category  = Category::find()->all();
+        $list_category  = Category::find()->where(['status' => 1])->all();
 
+       
         if($model->load(Yii::$app->request->post()) && $model->validate()) {
+
+            $file = $_FILES['News'];
+
             $model->title = Yii::$app->request->post()['News']['title'];
             $model->slug = self::Slug(Yii::$app->request->post()['News']['title']);
             $model->category_id = Yii::$app->request->post()['News']['category'];
             $category = Category::findOne(['_id' => new ObjectId(Yii::$app->request->post()['News']['category'])]);
             $model->category = $category->name;
-            $model->image = Yii::$app->request->post()['News']['image'];
+
+            $destination = Yii::getAlias('@app/web/img/') . $file['name']['image'];
+            move_uploaded_file($file['tmp_name']['image'], $destination);
+
+            $model->image = $file['name']['image'];
             $model->content = Yii::$app->request->post()['News']['content'];
             $model->author = Yii::$app->request->post()['News']['author'];
             $model->category_child = self::Slug(Yii::$app->request->post()['category-child']);
@@ -163,8 +170,8 @@ class SiteController extends Controller
     public function actionUpdate($id)
     {
         $model = News::findOne($id);
-        $category_name = $model->category;
-        $list_category  = Category::find()->all();
+        $category_id = $model->category_id;
+        $list_category  = Category::find()->where(['status' => 1])->all();
 
         if ($model->load(Yii::$app->request->post()) && $model->validate()) {
                 $model->title = Yii::$app->request->post()['News']['title'];
@@ -173,7 +180,12 @@ class SiteController extends Controller
                 $category = Category::findOne(['_id' => new ObjectId(Yii::$app->request->post()['News']['category'])]);
                 $model->category = $category->name;
                 $model->category_child = self::Slug(Yii::$app->request->post()['category-child']);
-                $model->image = Yii::$app->request->post()['News']['image'];
+                $file = $_FILES['News'];
+            
+                $destination = Yii::getAlias('@app/web/img/') . $file['name']['image'];
+                move_uploaded_file($file['tmp_name']['image'], $destination);
+
+                $model->image = $file['name']['image'];
                 $model->content = Yii::$app->request->post()['News']['content'];
                 $model->author = Yii::$app->request->post()['News']['author'];
                 $model->updated_at = date('Y-m-d H:i:s');
@@ -186,7 +198,7 @@ class SiteController extends Controller
         return $this->render('update', [
             'model' => $model,
             'list_category' => $list_category,
-            'category_name' => $category_name
+            'category_id' => $category_id
         ]);
     }
 

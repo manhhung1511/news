@@ -14,6 +14,7 @@ use Yii;
 class Category extends \yii\mongodb\ActiveRecord
 {
     const STATUS_ACTIVE = 1;
+    const STATUS_CATEGORY_CHILD = 2;
     const STATUS_INACTIVE = 0;
     /**
      * {@inheritdoc}
@@ -33,6 +34,7 @@ class Category extends \yii\mongodb\ActiveRecord
             'name',
             'slug',
             'category_child',
+            'status',
             'created_at',
             'updated_at'
         ];

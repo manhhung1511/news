@@ -55,17 +55,19 @@ class SiteController extends Controller
 
     public function init() {
         parent::init();
-        $category = Category::find()->limit(5)->all();
+        $category = Category::find()->where(['status' => 1])->limit(5)->all();
         Yii::$app->view->params['paramName'] = $category;
     }
 
     public function actionIndex()
     {
+        $news_category3 = '';
+        $news_category5 = '';
         $news = News::findAll(['status' => 1]);
         $new4 = News::find()->where(['status' => 1])->orderBy(['created_at' => SORT_DESC])->limit(5)->all();
         $category = Category::find()->all();
         $news_category3 = News::find()->where(['status' => 1, 'category' => $category[3]->name ])->orderBy(['created_at' => SORT_DESC])->limit(3)->all();
-        $news_category5 = News::find()->where(['status' => 1, 'category' => $category[5]->name])->orderBy(['created_at' => SORT_DESC])->limit(5)->all();
+        // $news_category5 = News::find()->where(['status' => 1, 'category' => $category[5]->name])->orderBy(['created_at' => SORT_DESC])->limit(5)->all();
         $news_category2 = News::find()->where(['status' => 1, 'category' => $category[2]->name])->orderBy(['created_at' => SORT_DESC])->limit(4)->all();
         $views = News::find()->where(['status' => 1])->andWhere(['>=','view', 1])->orderBy(['created_at' => SORT_ASC])->limit(3)->all();
         $new8 = News::find()->where(['status' => 1])->orderBy(['created_at' => SORT_DESC])->limit(7)->all();
@@ -127,15 +129,15 @@ class SiteController extends Controller
     {
         $slug = Yii::$app->request->get('slug');
         $category = Category::findOne(['slug' => $slug]);
-        if(isset($category->category_child) && count($category->category_child) > 1 ) {
+        $id = (string) $category->_id;
+        $model = News::find()->where(['category_id' => $id, 'status' => 1, 'category_child' => '']);
+    
+        if(isset($model->category_child[0]) && $model->category_child[0]) {
             return $this->render('empty');
         }
-        $id = (string) $category->_id;
-        $model = News::find()->where(['category_id' => $id, 'status' => 1]);
-    
-        $pages= new Pagination(['totalCount' => $model->count(),'pageSize' => '2']);
+        $pages= new Pagination(['totalCount' => $model->count(),'pageSize' => '6']);
 
-        $news = News::find()->where(['category_id' => $id, 'status'=> 1])->orderBy(['created_at' => SORT_ASC])->offset($pages->offset)->limit($pages->limit)->all();
+        $news = News::find()->where(['category_id' => $id, 'status'=> 1, 'category_child' => ''])->orderBy(['created_at' => SORT_ASC])->offset($pages->offset)->limit($pages->limit)->all();
     
         return $this->render('category', [
             'news' => $news,
@@ -145,9 +147,10 @@ class SiteController extends Controller
 
     public function actionCategoryChild() {
         $slug = Yii::$app->request->get('slug');
+
         $model = News::find()->where(['category_child' => $slug, 'status' => 1]);
         
-        $pages= new Pagination(['totalCount' => $model->count(),'pageSize' => '2']);
+        $pages= new Pagination(['totalCount' => $model->count(),'pageSize' => '6']);
 
         $news = News::find()->where(['category_child' => $slug, 'status'=> 1])->orderBy(['created_at' => SORT_ASC])->offset($pages->offset)->limit($pages->limit)->all();
     

@@ -1,6 +1,5 @@
 <?php
-$this->title = 'Create'
-
+$this->title = 'Update';
 ?>
 
 <div class="content-body">
@@ -11,7 +10,7 @@ $this->title = 'Create'
   echo $this->render('_form',[
     'model' => $model,
     'list_category' => $list_category,
-    'category_name' => $category_name
+    'category_id' => $category_id
   ]);
 
 ?>

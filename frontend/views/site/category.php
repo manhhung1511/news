@@ -56,17 +56,17 @@ function create_slug2($string)
                                 <div class="jl_m_below">
                                     <div class="jl_m_below_c">
                                         <div class="jl_m_below_img">
-                                            <div class="jl_f_img_bg jl_radus_e" style="background-image: url(<?= $news[count($news) - 1]->image ?>);" title="<?= $news[count($news) - 1]->title?>" alt="<?= $news[count($news) - 1]->title?>"></div>
-                                            <a href="<?= Yii::$app->urlManager->createAbsoluteUrl(['site/detail','slug' => create_slug2($news[count($news) - 1]->title),'id' => (string)$news[count($news) - 1]->_id]) ?>" class="jl_f_img_link"></a>
+                                            <div class="jl_f_img_bg jl_radus_e" style="background-image: url(<?= str_contains($news[count($news) - 1]->image, 'http') ? $news[count($news) - 1]->image : Yii::$app->urlManagerBackend->baseUrl .'/'.$news[count($news) - 1]->image ?>);" title="<?= $news[count($news) - 1]->title?>" alt="<?= $news[count($news) - 1]->title?>"></div>
+                                            <a href="<?= Yii::$app->urlManager->createAbsoluteUrl(['site/detail','slug' => create_slug2($news[count($news) - 1]->title)]) ?>" class="jl_f_img_link"></a>
                                             <span class="jl_post_type_icon"><i class="jli-quote-2"></i></span>
                                         </div>
                                         <div class="text-box">
                                             <span class="jl_f_cat"><a class="post-category-color-text" style="background: #4dcf8f" href="#">Active</a></span>
-                                            <h3 class="entry-title">
-                                                <a href="<?= Yii::$app->urlManager->createAbsoluteUrl(['site/detail','slug' => create_slug2($news[count($news) - 1]->title), 'id' => (string)$news[count($news) - 1]->_id]) ?>" tabindex="-1"><?= $news[count($news) - 1]->title ?></a>
+                                            <h3 class="entry-title short_text">
+                                                <a href="<?= Yii::$app->urlManager->createAbsoluteUrl(['site/detail','slug' => create_slug2($news[count($news) - 1]->title)]) ?>" tabindex="-1"><?= $news[count($news) - 1]->title ?></a>
                                             </h3>
                                             <span class="jl_post_meta"><span class="jl_author_img_w"><i class="jli-user"></i><a href="#" title="Posts by Spraya" rel="author">...</a></span><span class="post-date"><i class="jli-pen"></i><?= DateTime::createFromFormat('Y-m-d H:i:s', $news[count($news) - 1]->created_at)->format('d/m/Y') ?></span><span class="post-read-time"><i class="jli-watch-2"></i>2 Mins read</span></span>
-                                            <p><?= substr($news[count($news) - 1]->content . '...', 0, 250) . '...' ?></p>
+                                            <p class="short_text"><?=strip_tags($news[count($news) - 1]->content) ?></p>
                                         </div>
                                     </div>
                                 </div>
@@ -93,18 +93,18 @@ function create_slug2($string)
                                             <div class="p-wraper post-2959">
                                                 <div class="jl_grid_w">
                                                     <div class="jl_img_box jl_radus_e">
-                                                        <a href="<?= Yii::$app->urlManager->createAbsoluteUrl(['site/detail','slug' => create_slug2($value->title),'id' => (string)$value ->_id]) ?>">
-                                                            <span class="jl_post_type_icon"><i class="jli-gallery"></i></span><img style="width: 550px; height: 358px; object-fit: cover;" width="500" height="350" src="<?= $value->image ?>" class="attachment-sprasa_slider_grid_small size-sprasa_slider_grid_small wp-post-image" alt="<?= $value->title ?>" title="<?= $value->title ?>" loading="lazy" /></a>
+                                                        <a href="<?= Yii::$app->urlManager->createAbsoluteUrl(['site/detail','slug' => create_slug2($value->title)]) ?>">
+                                                            <span class="jl_post_type_icon"><i class="jli-gallery"></i></span><img style="width: 550px; height: 358px; object-fit: cover;" width="500" height="350" src="<?= str_contains($value->image, 'http') ? $value->image : Yii::$app->urlManagerBackend->baseUrl .'/'.$value->image ?>" class="attachment-sprasa_slider_grid_small size-sprasa_slider_grid_small wp-post-image" alt="<?= $value->title ?>" title="<?= $value->title ?>" loading="lazy" /></a>
                                                     </div>
                                                     <div class="text-box">
-                                                        <h3>
-                                                            <a href="<?= Yii::$app->urlManager->createAbsoluteUrl(['site/detail','slug' => create_slug2($value->title),'id' => (string)$value ->_id]) ?>"><?= $value->title ?></a>
+                                                        <h3 class="short_text">
+                                                            <a href="<?= Yii::$app->urlManager->createAbsoluteUrl(['site/detail','slug' => create_slug2($value->title)]) ?>"><?= $value->title ?></a>
                                                         </h3>
                                                         <span class="jl_post_meta">
                                                             <span class="jl_author_img_w"><i class="jli-user"></i><a href="#" title="Posts by Spraya" rel="author"></a></span><span class="post-date"><i class="jli-pen"></i><?= DateTime::createFromFormat('Y-m-d H:i:s', $value->created_at)->format('d/m/Y') ?></span><span class="post-read-time"><i class="jli-watch-2"></i>2 Mins
                                                                 read</span></span>
-                                                        <p>
-                                                            <?= substr($value->content . '...', 0, 110) . '...' ?>
+                                                        <p class="short_text">
+                                                            <?= strip_tags($value->content) ?>
                                                         </p>
                                                     </div>
                                                 </div>

@@ -17,10 +17,11 @@ $this->title = Yii::t('app', 'All Category');
         <input type="text" class="form-control input-search-category" value="<?= Yii::$app->request->get('text_search') ? str_replace('"', '', strip_tags(Yii::$app->request->get('text_search'))) : '' ?>" placeholder="<?= Yii::t('app', 'Enter keyword') ?>...">
       </div>
       <div class="form-group breadcrumb-right">
-        <button type="button" class="btn btn-primary new-app" data-toggle="modal" data-target="#viteexModal">
-          <i data-feather='plus-circle' class="font-medium-1"></i>
-          <span>Tạo danh mục</span>
-        </button>
+      <div class="breadcrumb-right" style="margin-left:400px;">
+           <button type="button" class="btn btn-primary new-app">
+              <?= Html::a("<i data-feather='plus-circle' style='color:white;'></i> <span style='color:white;'>Tạo danh mục</span>", Yii::$app->urlManager->createAbsoluteUrl(['category/create'])); ?>
+           </button>
+       </div>
     </div>
     </div>
     <div class="card-body p-0">
@@ -54,7 +55,7 @@ $this->title = Yii::t('app', 'All Category');
                   
                     </td>
                     <td class="w-120">
-                      <?= Html::a('<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-edit-2 icon-hover hover-success font-medium-2" data-toggle="tooltip" title="" data-original-title="'.Yii::t('app', 'Update').'"><path d="M17 3a2.828 2.828 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z"></path></svg>', 'javascript:void(0)', ['class' => 'edit-app', 'data-id' => $data->_id, 'data-name' => $data->name ,'data-toggle' => 'modal', 'data-target' => '#viteexModal']) ?>
+                    <?= Html::a('<i data-feather="edit-2" class="icon-hover hover-success font-medium-2"></i> ', Yii::$app->urlManager->createAbsoluteUrl(['category/update', 'id' => (string) $data->_id]), ['data-toggle' => 'tooltip', 'title' => Yii::t('app', 'Update')]); ?>
   
                      <?= Html::a('<i data-feather="trash-2" class="icon-hover hover-danger font-medium-2"></i> ', Yii::$app->urlManager->createAbsoluteUrl(['category/delete', 'id' => (string) $data->_id]), ['data-toggle' => 'tooltip', 'title' => Yii::t('app', 'Delete'), 'data-method' => 'POST', 'data-confirm' => Yii::t('app', 'Are you sure you want to delete this item?')]);?>
                     </td>
@@ -83,23 +84,6 @@ $this->title = Yii::t('app', 'All Category');
     </div>
   </div>
 </div>
-
-<!-- Modal Setting -->
-<div class="scrolling-inside-modal">
-  <div class="modal fade" id="viteexModalSettings" tabindex="-1" role="dialog" aria-labelledby="viteexModalLabel2" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
-      <div class="modal-content">
-      </div>
-    </div>
-  </div>
-</div>
-
-<?php
-$this->registerJsFile('@web/app-assets/js/paginate.js');
-$this->registerCssFile('@web/app-assets/vendors/css/forms/wizard/bs-stepper.min.css');
-$this->registerCssFile('@web/app-assets/css/plugins/forms/form-wizard.min.css');
-$this->registerJsFile('@web/app-assets/vendors/js/forms/wizard/bs-stepper.min.js');
-?>
 
 <script>
         const debounce = (func, wait, immediate)=> {
@@ -150,36 +134,36 @@ $this->registerJsFile('@web/app-assets/vendors/js/forms/wizard/bs-stepper.min.js
         url = window.location.href;
     }
     $('.input-search-category').on('input', debounce(searchApplication, 1000));
-    $(function () {
-        // new event
-    $('.new-app').click(function () {
-        $.ajax({
-            url: '/index.php?r=category%2Fcreate',
-            success: function (result) {
-                $("#viteexModal .modal-content").html(result);
-            }
-        });
-    });
+    // $(function () {
+    //     // new event
+    // $('.new-app').click(function () {
+    //     $.ajax({
+    //         url: '/index.php?r=category%2Fcreate',
+    //         success: function (result) {
+    //             $("#viteexModal .modal-content").html(result);
+    //         }
+    //     });
+    // });
 
-     // edit event
-     $(document).on('click', '.edit-app', function () {
-        let id = $(this).attr('data-id');
-        let name = $(this).attr('data-name');
-        $.ajax({
-            url: '/index.php?r=category%2Fcreate',
-            type: 'GET',
-            dataType: 'html',
-            data: {
-                id,
-                name
-            },
-            success: function (result) {
-                if (result) {
-                    $("#viteexModal .modal-content").html(result);
-                }
-            }
-        });
-    });
+    //  // edit event
+    //  $(document).on('click', '.edit-app', function () {
+    //     let id = $(this).attr('data-id');
+    //     let name = $(this).attr('data-name');
+    //     $.ajax({
+    //         url: '/index.php?r=category%2Fupdate',
+    //         type: 'GET',
+    //         dataType: 'html',
+    //         data: {
+    //             id,
+    //             name
+    //         },
+    //         success: function (result) {
+    //             if (result) {
+    //                 $("#viteexModal .modal-content").html(result);
+    //             }
+    //         }
+    //     });
+    // });
 
         $('.btn-delete-app').click(function () {
             let app_id = $(this).data('app-id')
@@ -241,5 +225,4 @@ $this->registerJsFile('@web/app-assets/vendors/js/forms/wizard/bs-stepper.min.js
                 }
             });
         })
-    });
 </script>

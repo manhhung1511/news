@@ -3,11 +3,13 @@
 namespace backend\controllers;
 
 use common\models\Category;
+use common\models\News;
 use Yii;
 use yii\filters\AccessControl;
 use yii\web\Controller;
 use yii\data\ActiveDataProvider;
 use MongoDb\BSON\ObjectId;
+
 /**
  * Category controller
  */
@@ -27,7 +29,7 @@ class CategoryController extends Controller
                         'allow' => true,
                     ],
                     [
-                        'actions' => ['index','create'],
+                        'actions' => ['index','create','update'],
                         'allow' => true,
                         'roles' => ['@'],
                     ],
@@ -63,45 +65,90 @@ class CategoryController extends Controller
         ]);
     }
     
-    public function actionCreate($id = false, $name = false, $category_child = false)
+    public function actionCreate()
     {
         $model = new Category();
-        if (Yii::$app->request->isAjax && Yii::$app->request->post()) {
-            Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
-        
-            if(!$id) {
-                $model->name = Yii::$app->request->post()['Category']['name'];
-                $model->category_child= explode(",",Yii::$app->request->post()['Category']['category_child']);
-                $model->slug = self::Slug(Yii::$app->request->post()['Category']['name']);
-                $model->created_at = date('Y-m-d H:i:s');
-                $model->updated_at = date('Y-m-d H:i:s');
-                $done = $model->save();
-            } else {
-                $category = Category::findOne(['_id' => new ObjectId($id)]);
-                $category->name = Yii::$app->request->post()['Category']['name'];
-                $model->slug = self::Slug(Yii::$app->request->post()['Category']['name']);
-                $category->category_child= explode(",",Yii::$app->request->post()['Category']['category_child']);
-                $category->updated_at = date('Y-m-d H:i:s');
-                $done = $category->save();
-            }
-            if (!$model->validate()) {
-                return [
-                    'error_code' => 1,
-                    'message' => $model->getErrors()
-                ];
-            }
-    
-            if ($done) {
-                return [
-                    'error_code' => 0
-                ];
+        $list_category  = Category::find()->all();
+        if ($model->load(Yii::$app->request->post()) && $model->validate()) {
+            $model->name = Yii::$app->request->post()['Category']['name'];
+            $model->category_child = Yii::$app->request->post()['Category']['category_child'];
+            $model->slug = self::Slug(Yii::$app->request->post()['Category']['name']);
+            $model->status = $model::STATUS_ACTIVE;
+            $model->created_at = date('Y-m-d H:i:s');
+            $model->updated_at = date('Y-m-d H:i:s');
+
+            $model->save();
+                if((isset($model->category_child[0]) && $model->category_child[0])) {
+                    foreach($model->category_child as $name) {
+                        $category_convert = Category::findOne(['name' => $name]);
+                        //update news
+                        $news = News::findAll(['category' => $name]);
+                        foreach($news as $new) {
+                            $new->category_child = self::Slug($name);
+                            $new->save();
+                        }
+                        $category_convert->status = $model::STATUS_CATEGORY_CHILD;
+                        $category_convert->save();
+                    }
+                }
+            return $this->redirect(Yii::$app->urlManager->createAbsoluteUrl(['category/index']));
+        }
+        return $this->render('create', [
+            'model' => $model,
+            'list_category' => $list_category
+        ]);
+    }
+
+    public function actionUpdate($id) {
+        $list_category  = Category::find()->all();
+        $category = Category::findOne($id);
+
+        if((isset($category->category_child[0]) && $category->category_child[0])) {
+            foreach($category->category_child as $name) {
+
+                $category_convert = Category::findOne(['name' => $name]);
+                if($category_convert->status == $category::STATUS_CATEGORY_CHILD) {
+                    $category_convert->status = $category::STATUS_ACTIVE;
+                    $category_convert->save();
+                }
+
+                $news = News::findAll(['category' => $name]);
+                foreach($news as $new) {
+                    $new->category_child = '';
+                    $new->save();
+                }
             }
         }
-        return $this->renderAjax('create', [
-            'model' => $model,
-            'name' => $name,
-            'id' => $id,
-            'category_child' => $category_child
+
+        if ($category->load(Yii::$app->request->post()) && $category->validate()) {
+        $category->name = Yii::$app->request->post()['Category']['name'];
+        $category->slug = self::Slug(Yii::$app->request->post()['Category']['name']);
+        $category->category_child = Yii::$app->request->post()['Category']['category_child'];
+        $category->updated_at = date('Y-m-d H:i:s');
+        $category->save();
+
+        if((isset($category->category_child[0]) && $category->category_child[0])) {
+            foreach($category->category_child as $name) {
+
+                $category_convert = Category::findOne(['name' => $name]);
+                if($category_convert->status == $category::STATUS_ACTIVE) {
+                    $category_convert->status = $category::STATUS_CATEGORY_CHILD;
+                    $category_convert->save();
+                }
+
+                $news = News::findAll(['category' => $name]);
+                foreach($news as $new) {
+                    $new->category_child = self::Slug($name);
+                    $new->save();
+                }
+            }
+        }
+
+        return $this->redirect(Yii::$app->urlManager->createAbsoluteUrl(['category/index']));
+    }
+        return $this->render('update', [
+            'list_category' => $list_category,
+            'category' => $category,
         ]);
     }
 

@@ -4,21 +4,6 @@ use yii\widgets\ActiveForm;
 use yii\helpers\Html;
 use yii\helpers\ArrayHelper;
 
-// $category_child = [];
-// foreach($list_category as $key => $child) {
-//     if(isset($child->category_child) && $child->category_child[0] != '') {
-//         $category_child[] = $child->category_child;
-//     }
-// } 
-
-// $merged_array = array_values(array_merge($category_child[0], $category_child[1]));
-// echo "<pre>";
-// var_dump($merged_array);
-// echo "</pre>";
-
-// die;
-
-$a = 10;
 ?>
 
 <style>
@@ -43,16 +28,19 @@ $a = 10;
 
             <?= $form->field($model, 'category')->dropDownList(ArrayHelper::map($list_category, function($app) {return (string)$app->_id;}, 'name'), [
                 'prompt' => 'Chọn danh mục',
-                'class' => 'form-control'
+                'class' => 'form-control',
+                'value' => isset($category_id) ? $category_id : ''
             ])->label('Chọn danh mục <span class="color-required">(*)</span>') ?>
             <div class="form-group category_child hidden">
                 <label class="w-50">Chọn danh mục con: </label>
                 <select id="category_child" class="form-control select2" name="category-child">
                     <option value="">Chọn danh mục con</option>
                  </select>
+                </div>
+            <hr class="mt-2 mb-2">
 
-            <?= $form->field($model, 'image', ['template' => '{label}<div class="input-group input-group-merge"><div class="input-group-prepend"><span class="input-group-text btn btn-warning btn-choose-file"><i data-feather="upload"></i>&nbsp;' . Yii::t('app', 'Choose image') . '</span><input class="img-upload-notif" type="file" accept="image/*" id="inputImageBanner"/></div>{input}</div>{error}', 'options' => ['class' => 'form-group']])->textInput(['class' => 'form-control pl-50', 'autocomplete' => 'off', 'placeholder' => Yii::t('app', 'Enter image link here')])->label(Yii::t('app', 'Ảnh')) ?>
-            </div>
+            <?= $form->field($model, 'image')->fileInput() ?>
+            <hr class="mt-2 mb-2">
             <?= $form->field($model, 'content')->hiddenInput(['autocomplete' => 'off', 'class' => 'form-control pt-50 pb-50'])->label(false) ?>
             <!-- quill editor -->
                             <?= backend\widgets\QuillEditorWidget::widget([
@@ -77,14 +65,25 @@ $a = 10;
 </div>
 
 
-
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 <script>
 	$('#news-category').select2();
     $('.btn-submit-form').click(function() {
         $('#news-form').submit();
     });
 
+    const fileInput = document.querySelector('input[type="file"]');
+    const value = document.querySelector('input[type="file"]').getAttribute("value");
 
+    const myFile = new File([value],value, {
+        type: 'text/plain',
+        lastModified: new Date(),
+    });
+
+    const dataTransfer = new DataTransfer();
+    dataTransfer.items.add(myFile);
+    fileInput.files = dataTransfer.files;
+    
     $("#news-category").on('change', function(e) {
         let category_id = $("#news-category option:selected").val();
         $.ajax({
@@ -98,7 +97,7 @@ $a = 10;
                         if(response != '') {
                             let data = JSON.parse(JSON.stringify(response));
                             for (const key in data) {
-                                $('#category_child').append(`<option class="sku_sales" value=${data[key]}>${data[key]}</option>`);
+                                $('#category_child').append(`<option class="sku_sales" value='${data[key]}'>${data[key]}</option>`);
                                 $('.category_child').removeClass('hidden').addClass('show');
                             }
                         }

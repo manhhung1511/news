@@ -19,6 +19,7 @@ class News extends \yii\mongodb\ActiveRecord
     /**
      * {@inheritdoc}
      */
+
     public static function collectionName()
     {
         return ['news', 'news'];

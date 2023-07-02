@@ -36,15 +36,21 @@ return [
         'errorHandler' => [
             'errorAction' => 'site/error',
         ],
+        'urlManagerBackend' => [
+            'class' => 'yii\web\urlManager',
+            'baseUrl' => 'https://cms.songxanh24h.vn/img/',
+            'enablePrettyUrl' => true,
+            'showScriptName' => false,
+        ],
         'urlManager' => [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
             'rules' => [
                 ''=>'site/index',
-                '<slug:[\w\-]+>' => 'site/category',   
-                '<slug:[\w\-]+>/child' => 'site/category-child',   
-                '<slug:[\w\-]+>/<id:\w+>' => 'site/detail', 
-                '<slug:[\w\-]+>/page-<page:\d+>/per-page-<per_page:\d+>/' => 'site/category',
+                'category/<slug:[\w\-]+>' => 'site/category',   
+                'category/<parent:[\w\-]+>/<slug:[\w\-]+>/' => 'site/category-child',   
+                '<slug:[\w\-]+>' => 'site/detail', 
+                '<slug:[\w\-]+>/page-<page:\w+>/per-page-<per_page:\w+>/' => 'site/category',
             ], 
         ],
     
