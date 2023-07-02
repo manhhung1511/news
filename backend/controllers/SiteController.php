@@ -125,6 +125,7 @@ class SiteController extends Controller
             $model->category = $category->name;
 
             $destination = Yii::getAlias('@app/web/img/') . $file['name']['image'];
+
             move_uploaded_file($file['tmp_name']['image'], $destination);
 
             $model->image = $file['name']['image'];
