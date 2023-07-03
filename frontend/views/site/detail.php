@@ -53,6 +53,12 @@ function create_slug4($string)
     margin: 0 100px;
   }
 
+  @media only screen and (max-width: 600px) {
+    #menu {
+      margin: 0 0;
+    }
+  }
+
   /* Style the links in the menu */
   #menu a {
     display: inline-block;
