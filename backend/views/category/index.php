@@ -3,6 +3,7 @@
 use yii\helpers\Html;
 
 $this->title = Yii::t('app', 'All Category');
+
 ?>
 <div class="content-body">
   <h2 style="margin-top: 20px; margin-left: 20px;">Danh Mục</h2>
