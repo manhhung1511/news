@@ -89,7 +89,7 @@ class SiteController extends Controller
                 ]),
             'sort' => ['defaultOrder' => ['_id' => SORT_DESC]],
             'pagination' => [
-                'pageSize' => 30
+                'pageSize' => 50
             ]
         ]);
 
