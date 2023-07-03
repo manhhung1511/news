@@ -46,7 +46,7 @@ $this->params['breadcrumbs'][] = $this->title;
                                 <td>Hình ảnh</td>
                                 <td>Nội dung</td>
                                 <td>Trạng thái</td>
-                                <td>Created_at</td>
+                                <td>Người biên tập</td>
                                 <td>Updated_at</td>
                                 <td>Hành động</td>
                             </tr>
@@ -79,7 +79,7 @@ $this->params['breadcrumbs'][] = $this->title;
                                             </div>
                                         </td>
                                         <td>
-                                            <?= $data['created_at'] ?  $data['created_at'] : '' ?>
+                                            <?= $data['author'] ?  $data['author'] : '' ?>
                                         </td>
                                         <td>
                                             <?= $data['updated_at'] ?  $data['updated_at'] : '' ?>
