@@ -66,7 +66,7 @@ $this->params['breadcrumbs'][] = $this->title;
                                         </td>
                                         <td>
                                             <div class="d-md-flex d-block">
-                                                <img class="w-120 h-100 mr-1" src="https://storage.songxanh24h.vn/images<?= $data['image'] ?  $data['image'] : '' ?>">
+                                                <img class="w-120 h-100 mr-1" src=" <?= str_contains($data['image'], 'http') ? $data['image'] : 'https://storage.songxanh24h.vn/images'. $data['image'] ?>">
                                             </div>
                                         </td>
                                         <td>
