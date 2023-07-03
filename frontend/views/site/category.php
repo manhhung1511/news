@@ -1,6 +1,7 @@
 <?php
 $this->title = 'Danh Mục';
 use yii\widgets\LinkPager;
+use common\helper\Tools;
 
 function create_slug2($string)
 {
@@ -66,7 +67,7 @@ function create_slug2($string)
                                                 <a href="<?= Yii::$app->urlManager->createAbsoluteUrl(['site/detail','slug' => create_slug2($news[count($news) - 1]->title)]) ?>" tabindex="-1"><?= $news[count($news) - 1]->title ?></a>
                                             </h3>
                                             <span class="jl_post_meta"><span class="jl_author_img_w"><i class="jli-user"></i><a href="#" title="Posts by Spraya" rel="author">...</a></span><span class="post-date"><i class="jli-pen"></i><?= DateTime::createFromFormat('Y-m-d H:i:s', $news[count($news) - 1]->created_at)->format('d/m/Y') ?></span><span class="post-read-time"><i class="jli-watch-2"></i>2 Mins read</span></span>
-                                            <p class="short_text"><?=strip_tags($news[count($news) - 1]->content) ?></p>
+                                            <p class="short_text"><?=Tools::subWord(strip_tags($news[count($news) - 1]->content)) ?></p>
                                         </div>
                                     </div>
                                 </div>
@@ -94,7 +95,7 @@ function create_slug2($string)
                                                 <div class="jl_grid_w">
                                                     <div class="jl_img_box jl_radus_e">
                                                         <a href="<?= Yii::$app->urlManager->createAbsoluteUrl(['site/detail','slug' => create_slug2($value->title)]) ?>">
-                                                            <span class="jl_post_type_icon"><i class="jli-gallery"></i></span><img style="width: 550px; height: 358px; object-fit: cover;" width="500" height="350" src="<?= str_contains($value->image, 'http') ? $value->image : 'https://storage.songxanh24h.vn/images/'.$value->image ?>" class="attachment-sprasa_slider_grid_small size-sprasa_slider_grid_small wp-post-image" alt="<?= $value->title ?>" title="<?= $value->title ?>" loading="lazy" /></a>
+                                                            <span class="jl_post_type_icon"><i class="jli-gallery"></i></span><img style="width: 550px; height: 358px; object-fit: cover;" width="500" height="350" src="<?= str_contains($value->image, 'http') ? $value->image : 'https://storage.songxanh24h.vn/images'.$value->image ?>" class="attachment-sprasa_slider_grid_small size-sprasa_slider_grid_small wp-post-image" alt="<?= $value->title ?>" title="<?= $value->title ?>" loading="lazy" /></a>
                                                     </div>
                                                     <div class="text-box">
                                                         <h3 class="short_text">
@@ -104,7 +105,7 @@ function create_slug2($string)
                                                             <span class="jl_author_img_w"><i class="jli-user"></i><a href="#" title="Posts by Spraya" rel="author"></a></span><span class="post-date"><i class="jli-pen"></i><?= DateTime::createFromFormat('Y-m-d H:i:s', $value->created_at)->format('d/m/Y') ?></span><span class="post-read-time"><i class="jli-watch-2"></i>2 Mins
                                                                 read</span></span>
                                                         <p class="short_text">
-                                                            <?= strip_tags($value->content) ?>
+                                                            <?= Tools::subWord(strip_tags($value->content)) ?>
                                                         </p>
                                                     </div>
                                                 </div>

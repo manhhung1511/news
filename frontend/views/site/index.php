@@ -59,7 +59,7 @@ function create_slug3($string)
                             <div class="jl_m_center blog-style-one blog-small-grid">
                                 <div class="jl_m_center_w jl_radus_e">
                                     <div class="jl_f_img_bg" style="
-                              background-image: url('<?= str_contains($news[count($news) - 1 ]->image, 'http') ? $news[count($news) - 1 ]->image : 'https://storage.songxanh24h.vn/images/'.$news[count($news) - 1 ]->image ?>');
+                              background-image: url('<?= str_contains($news[count($news) - 1 ]->image, 'http') ? $news[count($news) - 1 ]->image : 'https://storage.songxanh24h.vn/images'.$news[count($news) - 1 ]->image ?>');
                             " title="<?= $news[count($news) - 1 ]->title ?>" alt="<?= $news[count($news) - 1 ]->title ?>"></div>
                                     <a href="<?= Yii::$app->urlManager->createAbsoluteUrl(['site/detail', 'slug'=>create_slug3($news[count($news) - 1 ]->title)]) ?>" class="jl_f_img_link"></a>
                                     <span class="jl_post_type_icon"><i class="jli-gallery"></i></span>
@@ -81,7 +81,7 @@ function create_slug3($string)
                                     <div class="jl_m_right">
                                 <div class="jl_m_right_w"> 
                                     <div class="jl_m_right_img jl_radus_e">
-                                        <a href="<?= Yii::$app->urlManager->createAbsoluteUrl(['site/detail','slug'=>create_slug3($value->title)]) ?>"><img width="120" height="120" src="<?= str_contains($value->image, 'http') ? $value->image : 'https://storage.songxanh24h.vn/images/'.$value->image ?>" class="attachment-sprasa_small_feature size-sprasa_small_feature wp-post-image" alt="<?= $value->title ?>" title="<?= $value->title ?>" loading="lazy" /></a>
+                                        <a href="<?= Yii::$app->urlManager->createAbsoluteUrl(['site/detail','slug'=>create_slug3($value->title)]) ?>"><img width="120" height="120" src="<?= str_contains($value->image, 'http') ? $value->image : 'https://storage.songxanh24h.vn/images'.$value->image ?>" class="attachment-sprasa_small_feature size-sprasa_small_feature wp-post-image" alt="<?= $value->title ?>" title="<?= $value->title ?>" loading="lazy" /></a>
                                     </div>
                                     <div class="jl_m_right_content">
                                         <span class="jl_f_cat"><a class="post-category-color-text" style="background: #91bd3a" href="#"><?=  $value->category?></a></span>
@@ -120,7 +120,7 @@ function create_slug3($string)
                                         <div class="jl_grid_w">
                                             <div class="jl_img_box jl_radus_e">
                                                 <a href="<?= Yii::$app->urlManager->createAbsoluteUrl(['site/detail','slug'=>create_slug3($value->title)]) ?>">
-                                                    <span class="jl_post_type_icon"><i class="jli-gallery"></i></span><img style="width: 550px; height: 358px; object-fit: cover;" width="500" height="350" src="<?= str_contains($value->image, 'http') ? $value->image : 'https://storage.songxanh24h.vn/images/'.$value->image ?>" class="attachment-sprasa_slider_grid_small size-sprasa_slider_grid_small wp-post-image" alt="<?= $value->title ?>" title="<?= $value->title ?>" loading="lazy" /></a>
+                                                    <span class="jl_post_type_icon"><i class="jli-gallery"></i></span><img style="width: 550px; height: 358px; object-fit: cover;" width="500" height="350" src="<?= str_contains($value->image, 'http') ? $value->image : 'https://storage.songxanh24h.vn/images'.$value->image ?>" class="attachment-sprasa_slider_grid_small size-sprasa_slider_grid_small wp-post-image" alt="<?= $value->title ?>" title="<?= $value->title ?>" loading="lazy" /></a>
                                             </div>
                                             <div class="text-box">
                                                 <h3>
@@ -158,7 +158,7 @@ function create_slug3($string)
                             <div class="jl_mg_main">
                                 <div class="jl_mg_main_w">
                                     <div class="jl_img_box jl_radus_e">
-                                        <a href="<?= Yii::$app->urlManager->createAbsoluteUrl(['site/detail','slug'=>create_slug3($news_category5[0]->title)]) ?>"><img style="width: 550px; height: 358px; object-fit: cover;"width="1000" height="500" src="<?= str_contains($news_category5[0]->image, 'http') ? $news_category5[0]->image : 'https://storage.songxanh24h.vn/images/'.$news_category5[0]->image ?>" class="attachment-sprasa_feature_large size-sprasa_feature_large wp-post-image" alt="<?= $news_category5[0]->title ?>" title="<?= $news_category5[0]->title ?>" loading="lazy" /></a>
+                                        <a href="<?= Yii::$app->urlManager->createAbsoluteUrl(['site/detail','slug'=>create_slug3($news_category5[0]->title)]) ?>"><img style="width: 550px; height: 358px; object-fit: cover;"width="1000" height="500" src="<?= str_contains($news_category5[0]->image, 'http') ? $news_category5[0]->image : 'https://storage.songxanh24h.vn/images'.$news_category5[0]->image ?>" class="attachment-sprasa_feature_large size-sprasa_feature_large wp-post-image" alt="<?= $news_category5[0]->title ?>" title="<?= $news_category5[0]->title ?>" loading="lazy" /></a>
                                     </div>
                                     <div class="text-box">
                                         <h3 class="entry-title">
@@ -177,7 +177,7 @@ function create_slug3($string)
                                 <div class="jl_mg_sm">
                                     <div class="jl_mg_sm_w">
                                         <div class="jl_f_img jl_radus_e">
-                                            <a href="<?= Yii::$app->urlManager->createAbsoluteUrl(['site/detail', 'slug'=>create_slug3($item->title)]) ?>"><img style="width: 255px; height: 166px; object-fit: cover;" width="1000" height="169" src="<?= str_contains($item->image, 'http') ? $item->image : 'https://storage.songxanh24h.vn/images/'.$item->image ?>" class="attachment-sprasa_feature_large size-sprasa_feature_large wp-post-image" alt="<?= $item->title; ?>" title="<?= $item->title; ?>" loading="lazy" /></a>
+                                            <a href="<?= Yii::$app->urlManager->createAbsoluteUrl(['site/detail', 'slug'=>create_slug3($item->title)]) ?>"><img style="width: 255px; height: 166px; object-fit: cover;" width="1000" height="169" src="<?= str_contains($item->image, 'http') ? $item->image : 'https://storage.songxanh24h.vn/images'.$item->image ?>" class="attachment-sprasa_feature_large size-sprasa_feature_large wp-post-image" alt="<?= $item->title; ?>" title="<?= $item->title; ?>" loading="lazy" /></a>
                                         </div>
                                         <div class="jl_mg_content">
                                             <h3 class="entry-title">
@@ -214,7 +214,7 @@ function create_slug3($string)
                                             <div class="p-wraper post-2691">
                                                 <div class="jl_grid_w">
                                                     <div class="jl_img_box jl_radus_e">
-                                                        <a href="<?= Yii::$app->urlManager->createAbsoluteUrl(['site/detail', 'slug'=>create_slug3($item->title)]) ?>"><img style="width: 255px; height: 179px; object-fit: cover;" width="500" height="350" src="<?= str_contains($item->image, 'http') ? $item->image : 'https://storage.songxanh24h.vn/images/'.$item->image ?>" class="attachment-sprasa_slider_grid_small size-sprasa_slider_grid_small wp-post-image" alt="<?= $item->title ?>" title="<?= $item->title ?>" loading="lazy" /></a>
+                                                        <a href="<?= Yii::$app->urlManager->createAbsoluteUrl(['site/detail', 'slug'=>create_slug3($item->title)]) ?>"><img style="width: 255px; height: 179px; object-fit: cover;" width="500" height="350" src="<?= str_contains($item->image, 'http') ? $item->image : 'https://storage.songxanh24h.vn/images'.$item->image ?>" class="attachment-sprasa_slider_grid_small size-sprasa_slider_grid_small wp-post-image" alt="<?= $item->title ?>" title="<?= $item->title ?>" loading="lazy" /></a>
                                                     </div>
                                                     <div class="text-box">
                                                         <h3>
@@ -302,7 +302,7 @@ function create_slug3($string)
                                         <div class="jl_grid_w">
                                             <div class="jl_img_box jl_radus_e">
                                                 <a href="<?= Yii::$app->urlManager->createAbsoluteUrl(['site/detail','slug'=>create_slug3($value->title)]) ?>">
-                                                    <span class="jl_post_type_icon"><i class="jli-gallery"></i></span><img style="width: 550px; height: 358px; object-fit: cover;" width="500" height="350" src="<?= str_contains($value->image, 'http') ? $value->image : 'https://storage.songxanh24h.vn/images/'.$value->image ?>" class="attachment-sprasa_slider_grid_small size-sprasa_slider_grid_small wp-post-image" alt="<?= $value->title ?>" title="<?= $value->title ?>" loading="lazy" /></a>
+                                                    <span class="jl_post_type_icon"><i class="jli-gallery"></i></span><img style="width: 550px; height: 358px; object-fit: cover;" width="500" height="350" src="<?= str_contains($value->image, 'http') ? $value->image : 'https://storage.songxanh24h.vn/images'.$value->image ?>" class="attachment-sprasa_slider_grid_small size-sprasa_slider_grid_small wp-post-image" alt="<?= $value->title ?>" title="<?= $value->title ?>" loading="lazy" /></a>
                                             </div>
                                             <div class="text-box">
                                                 <h3>
@@ -344,7 +344,7 @@ function create_slug3($string)
                                             <div class="jl_m_right jl_sm_list jl_ml jl_clear_at">
                                                 <div class="jl_m_right_w">
                                                     <div class="jl_m_right_img jl_radus_e">
-                                                        <a href="<?= Yii::$app->urlManager->createAbsoluteUrl(['site/detail', 'slug'=>create_slug3($item->title)]) ?>"><img width="500" height="500" src="<?= 'https://storage.songxanh24h.vn/images/'.$item->image ?>" class="attachment-sprasa_feature_small size-sprasa_feature_small wp-post-image" alt="<?= $item->title ?>" title="<?= $item->title ?>" loading="lazy" /></a>
+                                                        <a href="<?= Yii::$app->urlManager->createAbsoluteUrl(['site/detail', 'slug'=>create_slug3($item->title)]) ?>"><img width="500" height="500" src="<?= 'https://storage.songxanh24h.vn/images'.$item->image ?>" class="attachment-sprasa_feature_small size-sprasa_feature_small wp-post-image" alt="<?= $item->title ?>" title="<?= $item->title ?>" loading="lazy" /></a>
                                                     </div>
                                                     <div class="jl_m_right_content">
                                                         <span class="jl_f_cat"><a class="post-category-color-text" style="background: #eba845" href="#"><?= $item->category ?></a></span>

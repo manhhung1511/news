@@ -1,5 +1,6 @@
 <?php
 $this->title = $detail->title;
+use common\helper\Tools;
 function create_slug4($string)
 { 
   $search = array(
@@ -191,7 +192,7 @@ function create_slug4($string)
                       <div class="jl_m_right jl_m_list jl_m_img">
                         <div class="jl_m_right_w">
                           <div class="jl_m_right_img jl_radus_e">
-                            <span class="jl_post_type_icon"><i class="jli-gallery"></i></span><a href="<?= Yii::$app->urlManager->createAbsoluteUrl(['site/detail', 'id' => (string)$item->_id, 'slug' => create_slug4($item->title)]) ?>"><img width="500" height="350" src="<?= str_contains($item->image, 'http') ? $item->image : 'https://storage.songxanh24h.vn/images/'.$item->image ?>" class="attachment-sprasa_slider_grid_small size-sprasa_slider_grid_small wp-post-image" alt="<?= $item->title ?>" title="<?= $item->title ?>" loading="lazy" /></a>
+                            <span class="jl_post_type_icon"><i class="jli-gallery"></i></span><a href="<?= Yii::$app->urlManager->createAbsoluteUrl(['site/detail', 'id' => (string)$item->_id, 'slug' => create_slug4($item->title)]) ?>"><img width="500" height="350" src="<?= str_contains($item->image, 'http') ? $item->image : 'https://storage.songxanh24h.vn/images'.$item->image ?>" class="attachment-sprasa_slider_grid_small size-sprasa_slider_grid_small wp-post-image" alt="<?= $item->title ?>" title="<?= $item->title ?>" loading="lazy" /></a>
                           </div>
                           <div class="jl_m_right_content">
                             <span class="jl_f_cat"><a class="post-category-color-text" style="background: #62ce5c" href="#"><?= $item->category ?></a></span>
@@ -201,7 +202,7 @@ function create_slug4($string)
                             <span class="jl_post_meta"><span class="jl_author_img_w"><i class="jli-user"></i><a href="#" title="<?= $item->author ?>" rel="author"><?= $item->author ?></a></span><span class="post-date"><i class="jli-pen"></i><?= DateTime::createFromFormat('Y-m-d H:i:s', $item->created_at)->format('d/m/Y') ?></span><span class="post-read-time"><i class="jli-watch-2"></i>2 Mins
                                 read</span></span>
                             <p class="short_text">
-                              <?= strip_tags($item->content)?>
+                              <?= Tools::subWord(strip_tags($item->content))?>
                             </p>
                           </div>
                         </div>
