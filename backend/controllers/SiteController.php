@@ -123,8 +123,8 @@ class SiteController extends Controller
             $model->category_id = Yii::$app->request->post()['News']['category'];
             $category = Category::findOne(['_id' => new ObjectId(Yii::$app->request->post()['News']['category'])]);
             $model->category = $category->name;
-            $today = date('Y/m/d');
-            $destination = '/srv/www/songxanh24h.vn/news/storage/images/'.$today.'/'. $file['name']['image'];
+            $today = date('Y-m-d');
+            $destination = '../../storage/images/' . date('Y-m-d') .'/'.  $file['name']['image'];
 
             move_uploaded_file($file['tmp_name']['image'], $destination);
 
