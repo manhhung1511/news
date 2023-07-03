@@ -106,7 +106,7 @@ $currentUrl = Url::current([], true);
             <div id="sprasa_about_us_widget-2" class="widget jellywp_about_us_widget">
               <div class="widget_jl_wrapper about_widget_content">
                 <div class="jellywp_about_us_widget_wrapper">
-                  <img class="footer_logo_about" src="img/logo1.png" alt="logo" />
+                  <img class="footer_logo_about" src="/img/logo1.png" alt="logo" />
                   <p>
                     Báo tiếng Việt nhiều người xem nhất
                   </p>
