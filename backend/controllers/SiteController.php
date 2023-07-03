@@ -123,12 +123,12 @@ class SiteController extends Controller
             $model->category_id = Yii::$app->request->post()['News']['category'];
             $category = Category::findOne(['_id' => new ObjectId(Yii::$app->request->post()['News']['category'])]);
             $model->category = $category->name;
-            $today = date('Y-m-d');
-            $destination = '../../storage/images/' . date('Y-m-d') .'/'.  $file['name']['image'];
+
+            $destination = '../../storage/images/'.$file['name']['image'];
 
             move_uploaded_file($file['tmp_name']['image'], $destination);
 
-            $model->image = $today.'/'. $file['name']['image'];
+            $model->image = $file['name']['image'];
             $model->content = Yii::$app->request->post()['News']['content'];
             $model->author = Yii::$app->request->post()['News']['author'];
             $model->category_child = self::Slug(Yii::$app->request->post()['category-child']);
