@@ -106,7 +106,7 @@ $currentUrl = Url::current([], true);
             <div id="sprasa_about_us_widget-2" class="widget jellywp_about_us_widget">
               <div class="widget_jl_wrapper about_widget_content">
                 <div class="jellywp_about_us_widget_wrapper">
-                  <img class="footer_logo_about" src="img/logo_w.png" alt="" />
+                  <img class="footer_logo_about" src="img/logo1.png" alt="logo" />
                   <p>
                     Báo tiếng Việt nhiều người xem nhất
                   </p>
@@ -177,7 +177,7 @@ $currentUrl = Url::current([], true);
         <div class="row bottom_footer_menu_text">
           <div class="col-md-12">
             <div class="jl_ft_w">
-              © 1997-2023. Toàn bộ bản quyền thuộc VnExpress
+              © 1997-2023. Toàn bộ bản quyền thuộc Songxanh24h.vn
             </div>
           </div>
         </div>
