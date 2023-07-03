@@ -185,7 +185,7 @@ function create_slug4($string)
                       <div class="jl_m_right jl_m_list jl_m_img">
                         <div class="jl_m_right_w">
                           <div class="jl_m_right_img jl_radus_e">
-                            <span class="jl_post_type_icon"><i class="jli-gallery"></i></span><a href="<?= Yii::$app->urlManager->createAbsoluteUrl(['site/detail', 'id' => (string)$item->_id, 'slug' => create_slug4($item->title)]) ?>"><img width="500" height="350" src="<?= str_contains($item->image, 'http') ? $item->image : Yii::$app->urlManagerBackend->baseUrl .'/'.$item->image ?>" class="attachment-sprasa_slider_grid_small size-sprasa_slider_grid_small wp-post-image" alt="<?= $item->title ?>" title="<?= $item->title ?>" loading="lazy" /></a>
+                            <span class="jl_post_type_icon"><i class="jli-gallery"></i></span><a href="<?= Yii::$app->urlManager->createAbsoluteUrl(['site/detail', 'id' => (string)$item->_id, 'slug' => create_slug4($item->title)]) ?>"><img width="500" height="350" src="<?= str_contains($item->image, 'http') ? $item->image : 'https://storage.songxanh24h.vn/images/'.$item->image ?>" class="attachment-sprasa_slider_grid_small size-sprasa_slider_grid_small wp-post-image" alt="<?= $item->title ?>" title="<?= $item->title ?>" loading="lazy" /></a>
                           </div>
                           <div class="jl_m_right_content">
                             <span class="jl_f_cat"><a class="post-category-color-text" style="background: #62ce5c" href="#"><?= $item->category ?></a></span>
