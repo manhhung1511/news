@@ -59,7 +59,7 @@ function create_slug3($string)
                             <div class="jl_m_center blog-style-one blog-small-grid">
                                 <div class="jl_m_center_w jl_radus_e">
                                     <div class="jl_f_img_bg" style="
-                              background-image: url('<?= str_contains($news[count($news) - 1 ]->image, 'http') ? $news[count($news) - 1 ]->image : Yii::$app->urlManagerBackend->baseUrl .'/'.$news[count($news) - 1 ]->image ?>');
+                              background-image: url('<?= str_contains($news[count($news) - 1 ]->image, 'http') ? $news[count($news) - 1 ]->image : 'https://storage.songxanh24h.vn/images/'.$news[count($news) - 1 ]->image ?>');
                             " title="<?= $news[count($news) - 1 ]->title ?>" alt="<?= $news[count($news) - 1 ]->title ?>"></div>
                                     <a href="<?= Yii::$app->urlManager->createAbsoluteUrl(['site/detail', 'slug'=>create_slug3($news[count($news) - 1 ]->title)]) ?>" class="jl_f_img_link"></a>
                                     <span class="jl_post_type_icon"><i class="jli-gallery"></i></span>
