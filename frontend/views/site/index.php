@@ -348,13 +348,13 @@ function create_slug3($string)
                                                     </div>
                                                     <div class="jl_m_right_content">
                                                         <span class="jl_f_cat"><a class="post-category-color-text" style="background: #eba845" href="#"><?= $item->category ?></a></span>
-                                                        <h2 class="entry-title" meta-name="<?= $item->title ?>">
+                                                        <h2 class="entry-title">
                                                             <a class="short_text" href="<?= Yii::$app->urlManager->createAbsoluteUrl(['site/detail', 'slug'=>create_slug3($item->title)]) ?>"><?= $item->title?></a>
                                                         </h2>
                                                         <span class="jl_post_meta">
                                                             <span class="jl_author_img_w"><i class="jli-user"></i><a href="#" title="Posts by Spraya" rel="author"></a></span><span class="post-date"><i class="jli-pen"></i><?= DateTime::createFromFormat('Y-m-d H:i:s',$item->created_at)->format('d/m/Y') ?></span><span class="post-read-time"><i class="jli-watch-2"></i>3 Mins
                                                                 read</span></span>
-                                                        <p meta-name="<?= Tools::subWord(strip_tags($item->content))?>" class="short_text">
+                                                        <p class="short_text">
                                                             <?= Tools::subWord(strip_tags($item->content)) ?>
                                                         </p>
                                                     </div>

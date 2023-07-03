@@ -14,7 +14,7 @@ use common\models\News;
 use frontend\models\PasswordResetRequestForm;
 use frontend\models\ResetPasswordForm;
 use frontend\models\SignupForm;
-use MongoDb\BSON\ObjectId;
+use common\helper\Tools;
 use yii\data\Pagination;
 
 /**
@@ -175,6 +175,9 @@ class SiteController extends Controller
         $view = 0;
         $detail->view = $detail->view ? $detail->view + 1 : $view + 1;
         $detail->save();
+
+        Yii::$app->params['description'] = $detail->title .' '. Tools::subWord(strip_tags($detail->content));
+
         return $this->render('detail', [
             'detail' => $detail,
             'relate' => $relate

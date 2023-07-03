@@ -5,8 +5,10 @@
 
 use yii\helpers\Html;
 use frontend\assets\AppAsset;
-
+use yii\helpers\Url;
 AppAsset::register($this);
+
+$currentUrl = Url::current([], true);
 ?>
 
 <?php $this->beginPage() ?>
@@ -17,6 +19,9 @@ AppAsset::register($this);
   <meta charset="<?= Yii::$app->charset ?>">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="robots" content="noindex"/>
+  <meta name="title" content="<?= $this->title ?>">
+  <meta name="description" content="<?=isset(Yii::$app->params['description']) ? Yii::$app->params['description'] :''?>">
+  <link rel="canonical" href="<?= $currentUrl ?>" />
   <?php $this->registerCsrfMetaTags() ?>
   <title><?= Html::encode($this->title) ?></title>
   <link rel="icon" type="image/png" href="/img/logo2.png">

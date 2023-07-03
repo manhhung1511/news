@@ -1,6 +1,6 @@
 <?php
-$this->title = $detail->title;
 use common\helper\Tools;
+$this->title = $detail->title;
 function create_slug4($string)
 { 
   $search = array(
