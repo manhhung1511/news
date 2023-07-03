@@ -124,11 +124,19 @@ class SiteController extends Controller
             $category = Category::findOne(['_id' => new ObjectId(Yii::$app->request->post()['News']['category'])]);
             $model->category = $category->name;
 
-            $destination = '../../storage/images/'.$file['name']['image'];
+            $baseDirectory = '../../storage/images';
+            $currentDate = date('Y/m/d');
+            $folderPath = $baseDirectory . '/' . $currentDate;
+
+            if (!is_dir($folderPath)) {
+                mkdir($folderPath, 0777, true);
+            }
+
+            $destination = '../../storage/images/'.$currentDate.'/'.$file['name']['image'];
 
             move_uploaded_file($file['tmp_name']['image'], $destination);
 
-            $model->image = $file['name']['image'];
+            $model->image = '/'.$currentDate.'/'.$file['name']['image'];
             $model->content = Yii::$app->request->post()['News']['content'];
             $model->author = Yii::$app->request->post()['News']['author'];
             $model->category_child = self::Slug(Yii::$app->request->post()['category-child']);
@@ -183,10 +191,13 @@ class SiteController extends Controller
                 $model->category_child = self::Slug(Yii::$app->request->post()['category-child']);
                 $file = $_FILES['News'];
             
-                $destination = Yii::getAlias('@app/web/img/') . $file['name']['image'];
-                move_uploaded_file($file['tmp_name']['image'], $destination);
+                $currentDate = date('Y/m/d');
 
-                $model->image = $file['name']['image'];
+                $destination = '../../storage/images/'.$currentDate.'/'.$file['name']['image'];
+
+                move_uploaded_file($file['tmp_name']['image'], $destination);
+    
+                $model->image = '/'.$currentDate.'/'.$file['name']['image'];
                 $model->content = Yii::$app->request->post()['News']['content'];
                 $model->author = Yii::$app->request->post()['News']['author'];
                 $model->updated_at = date('Y-m-d H:i:s');
