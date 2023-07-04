@@ -264,7 +264,7 @@ if(isset($detail->category_child) && $detail->category_child) {
                     <div class="widget_jl_wrapper">
                       <div class="ettitle">
                         <div class="widget-title">
-                          <h2 class="jl_title_c"><?= $detail->category_child ? $category_child : $detail->category ?></h2>
+                          <h2 class="jl_title_c"></h2>
                         </div>
                       </div>
                       <div class="bt_post_widget">
