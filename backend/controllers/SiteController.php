@@ -191,10 +191,16 @@ class SiteController extends Controller
                 $model->category_child = self::Slug(Yii::$app->request->post()['category-child']);
                 $file = $_FILES['News'];
             
+                $baseDirectory = '../../storage/images';
                 $currentDate = date('Y/m/d');
+                $folderPath = $baseDirectory . '/' . $currentDate;
+    
+                if (!is_dir($folderPath)) {
+                    mkdir($folderPath, 0777, true);
+                }
 
                 $destination = '../../storage/images/'.$currentDate.'/'.$file['name']['image'];
-
+        
                 move_uploaded_file($file['tmp_name']['image'], $destination);
     
                 $model->image = '/'.$currentDate.'/'.$file['name']['image'];
