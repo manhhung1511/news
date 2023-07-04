@@ -4,6 +4,15 @@ use yii\widgets\ActiveForm;
 use yii\helpers\Html;
 use yii\helpers\ArrayHelper;
 
+$list_author = [
+    [
+        'name' => 'DS.Oanh'
+    ],
+    [
+        'name' => 'DS.Ngọc'
+    ],
+];
+
 ?>
 
 <style>
@@ -14,6 +23,8 @@ use yii\helpers\ArrayHelper;
     .show {
         display: block;
     }
+
+  
 </style>
 
 <div class="card card-company-table">
@@ -22,7 +33,10 @@ use yii\helpers\ArrayHelper;
 
             <?php $form = ActiveForm::begin(['options' => ['enctype' => 'multipart/form-data'], 'id' => 'news-form']); ?>
             
-            <?= $form->field($model, 'author', ['template' => '{label}<div class="input-group input-group-merge"><div class="input-group-prepend"><span class="input-group-text"><i data-feather="home"></i></span></div>{input}</div>{error}', 'options' => ['class' => 'form-group']])->textInput(['autocomplete' => 'off', 'placeholder' => 'Tác giả'])->label(Yii::t('app', 'Tác giả')) ?>
+            <?= $form->field($model, 'author')->dropDownList(ArrayHelper::map($list_author, function($app) {return $app['name'];}, 'name'), [
+                'prompt' => 'Tên tác giả',
+                'class' => 'form-control'
+            ])->label('Tên tác giả') ?>
             
             <?= $form->field($model, 'title', ['template' => '{label}<div class="input-group input-group-merge"><div class="input-group-prepend"><span class="input-group-text"><i data-feather="home"></i></span></div>{input}</div>{error}', 'options' => ['class' => 'form-group']])->textInput(['autocomplete' => 'off', 'placeholder' => 'Tiêu đề'])->label(Yii::t('app', 'Tiêu đề') . ' <span class="color-required">(*)</span>') ?>
 

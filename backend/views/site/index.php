@@ -1,5 +1,6 @@
 <?php
 
+use common\helper\Tools;
 use yii\helpers\Html;
 
 $this->title = 'Tin Tức';
@@ -56,7 +57,7 @@ $this->params['breadcrumbs'][] = $this->title;
                                 <?php foreach ($news->getModels() as $data) : ?>
                                     <tr id="tr-<?= (string) $data['_id'] ?>">
                                         <td>
-                                            <?= $data['title'] ? substr($data['title'].'...', 0, 70) : '' ?>
+                                            <?= $data['title'] ? Tools::subTitle($data['title']) : '' ?>
                                         </td>
                                         <td>
                                             <?= $data['category'] ?  $data['category'] : '' ?>
@@ -70,7 +71,7 @@ $this->params['breadcrumbs'][] = $this->title;
                                             </div>
                                         </td>
                                         <td>
-                                            <?= $data['content'] ? substr($data['content'], 0, 200).'...' : '' ?>
+                                            <?= $data['content'] ? Tools::subWord($data['content']) : '' ?>
                                         </td>
                                         <td>
                                             <div class="custom-control custom-control-primary custom-switch">
