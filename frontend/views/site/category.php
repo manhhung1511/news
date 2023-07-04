@@ -46,6 +46,12 @@ function create_slug2($string)
 }
 ?>
 
+<style>
+.button {
+    background: #e6e6e6;
+}
+</style>
+
 <?php if (isset($news) && $news) : ?>
     <div class="jl_post_loop_wrapper" id="wrapper_masonry">
         <div class="category_header_post_2col_wrapper">
@@ -123,7 +129,9 @@ function create_slug2($string)
                             'pagination' => $pages,
                             'linkOptions' => ['class' => 'page-link'],
                             'pageCssClass' => ['class' => 'page-item'],
-                            'maxButtonCount' => 7
+                            'maxButtonCount' => 7,
+                            'firstPageCssClass' => ['class' => 'button'],
+                            'lastPageCssClass' => ['class' => 'button']
                         ])
                         ?>
                     </div>
