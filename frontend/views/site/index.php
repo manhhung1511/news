@@ -64,7 +64,7 @@ function create_slug3($string)
                                     <a href="<?= Yii::$app->urlManager->createAbsoluteUrl(['site/detail', 'slug'=>create_slug3($news[count($news) - 1 ]->title)]) ?>" class="jl_f_img_link"></a>
                                     <span class="jl_post_type_icon"><i class="jli-gallery"></i></span>
                                     <div class="text-box">
-                                        <span class="jl_f_cat"><a class="post-category-color-text" style="background: #eba845" href="#"><?= $news[count($news) - 1 ]->category ?></a></span>
+                                        <span class="jl_f_cat"><a class="post-category-color-text" style="background: #eba845" href="#"><?= $news[count($news) - 1 ]->category_child ? $news[count($news) - 1 ]->category_child : $news[count($news) - 1 ]->category ?></a></span>
                                         <h3 class="short_text_white">
                                             <a href="<?= Yii::$app->urlManager->createAbsoluteUrl(['site/detail', 'slug'=>create_slug3($news[count($news) - 1 ]->title)]) ?>"><?= $news[count($news) - 1 ]->title ?></a>
                                         </h3>
@@ -84,7 +84,7 @@ function create_slug3($string)
                                         <a href="<?= Yii::$app->urlManager->createAbsoluteUrl(['site/detail','slug'=>create_slug3($value->title)]) ?>"><img width="120" height="120" src="<?= str_contains($value->image, 'http') ? $value->image : 'https://storage.songxanh24h.vn/images'.$value->image ?>" class="attachment-sprasa_small_feature size-sprasa_small_feature wp-post-image" alt="<?= $value->title ?>" title="<?= $value->title ?>" loading="lazy" /></a>
                                     </div>
                                     <div class="jl_m_right_content">
-                                        <span class="jl_f_cat"><a class="post-category-color-text" style="background: #91bd3a" href="#"><?=  $value->category?></a></span>
+                                        <span class="jl_f_cat"><a class="post-category-color-text" style="background: #91bd3a" href="#"><?= $value->category_child ? $value->category_child : $value->category ?></a></span>
                                         <h3 class="entry-title">
                                             <a href="<?= Yii::$app->urlManager->createAbsoluteUrl(['site/detail','slug'=>create_slug3($value->title)]) ?>"><?= Tools::subTitle($value->title) ?></a>
                                         </h3>
@@ -260,7 +260,7 @@ function create_slug3($string)
                                         background-image: url('<?= str_contains($view->image, 'http') ? $view->image : 'https://storage.songxanh24h.vn/images'.$view->image?>');" title="<?= $view->title ?>" alt="<?= $view->title ?>"></div>
                                                         <a href="<?= Yii::$app->urlManager->createAbsoluteUrl(['site/detail', 'slug'=>create_slug3($view->title)]) ?>" class="jl_f_img_link"></a>
                                                         <div class="jl_f_postbox">
-                                                            <span class="jl_f_cat"><a class="post-category-color-text" style="background: #4dcf8f" href="#"><?= $view->category?></a></span>
+                                                            <span class="jl_f_cat"><a class="post-category-color-text" style="background: #4dcf8f" href="#"><?= $view->category_child ? $view->category_child : $view->category ?></a></span>
                                                             <h3 class="jl_f_title">
                                                                 <a href="<?= Yii::$app->urlManager->createAbsoluteUrl(['site/detail', 'slug'=>create_slug3($view->title)]) ?>" tabindex="-1"><?= $view->title?></a>
                                                             </h3>
@@ -347,7 +347,7 @@ function create_slug3($string)
                                                         <a href="<?= Yii::$app->urlManager->createAbsoluteUrl(['site/detail', 'slug'=>create_slug3($item->title)]) ?>"><img width="500" height="500" src="<?= 'https://storage.songxanh24h.vn/images'.$item->image ?>" class="attachment-sprasa_feature_small size-sprasa_feature_small wp-post-image" alt="<?= $item->title ?>" title="<?= $item->title ?>" loading="lazy" /></a>
                                                     </div>
                                                     <div class="jl_m_right_content">
-                                                        <span class="jl_f_cat"><a class="post-category-color-text" style="background: #eba845" href="#"><?= $item->category ?></a></span>
+                                                        <span class="jl_f_cat"><a class="post-category-color-text" style="background: #eba845" href="#"><?= $item->category_child ? $item->category_child : $item->category ?></a></span>
                                                         <h2 class="entry-title">
                                                             <a class="short_text" href="<?= Yii::$app->urlManager->createAbsoluteUrl(['site/detail', 'slug'=>create_slug3($item->title)]) ?>"><?= $item->title?></a>
                                                         </h2>
