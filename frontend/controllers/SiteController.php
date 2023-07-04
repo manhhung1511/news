@@ -135,7 +135,7 @@ class SiteController extends Controller
         if(isset($model->category_child[0]) && $model->category_child[0]) {
             return $this->render('empty');
         }
-        $pages= new Pagination(['totalCount' => $model->count(),'pageSize' => '1']);
+        $pages= new Pagination(['totalCount' => $model->count(),'pageSize' => '6']);
 
         $news = News::find()->where(['category_id' => $id, 'status'=> 1, 'category_child' => ''])->orderBy(['created_at' => SORT_ASC])->offset($pages->offset)->limit($pages->limit)->all();
     
