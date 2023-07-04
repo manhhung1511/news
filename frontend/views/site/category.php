@@ -123,7 +123,7 @@ function create_slug2($string)
                             'pagination' => $pages,
                             'linkOptions' => ['class' => 'page-link'],
                             'pageCssClass' => ['class' => 'page-item'],
-                            'maxButtonCount' => 7
+                            'maxButtonCount' => 5
                         ])
                         ?>
                     </div>
