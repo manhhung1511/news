@@ -150,7 +150,7 @@ class SiteController extends Controller
 
         $model = News::find()->where(['category_child' => $slug, 'status' => 1]);
         
-        $pages= new Pagination(['totalCount' => $model->count(),'pageSize' => '6']);
+        $pages= new Pagination(['totalCount' => $model->count(),'pageSize' => '1']);
 
         $news = News::find()->where(['category_child' => $slug, 'status'=> 1])->orderBy(['created_at' => SORT_ASC])->offset($pages->offset)->limit($pages->limit)->all();
     

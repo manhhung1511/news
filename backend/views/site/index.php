@@ -203,11 +203,11 @@ $this->params['breadcrumbs'][] = $this->title;
             let category = $('.category').val();
             let status = $('.status-news').val();
 
-            let param = keyword != '' ? `&keyword=${keyword}` : '';
+            let param = keyword != '' ? `?keyword=${keyword}` : '';
             if (param != '') {
                 if (status != '') param += `&status=${status}`;
             } else {
-                param += `&status=${status}`;
+                param += `?status=${status}`;
             }
 
             let url = window.location.href + param;
