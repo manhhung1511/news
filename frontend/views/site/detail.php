@@ -42,6 +42,12 @@ function create_slug4($string)
   $string = strtolower($string);
   return $string;
 }
+
+if(isset($detail->category_child) && $detail->category_child) {
+  $slug = $detail->category_child;
+  $category_child = str_replace("-", " ", $slug);
+}
+
 ?>
 
 <style>
@@ -145,12 +151,12 @@ function create_slug4($string)
               <div class="jl_single_style2">
                 <div class="single_post_entry_content single_bellow_left_align jl_top_single_title jl_top_title_feature">
                   <span class="meta-category-small single_meta_category"><a class="post-category-color-text" style="background: #62ce5c" href="#">
-                      <?= $detail->category_child ? $detail->category_child : $detail->category ?>
+                      <?= $detail->category_child ? $category_child : $detail->category ?>
                     </a></span>
                   <h1 class="single_post_title_main">
                     <?= $detail->title ?>
                   </h1>
-                  <span class="jl_post_meta"><span class="jl_author_img_w"><i class="jli-user"></i><a href="#" title="<?= $detail->author ?>" rel="author"><?= $detail->author ?></a></span><span class="post-date"><i class="jli-pen"></i><?= DateTime::createFromFormat('Y-m-d H:i:s', $detail->created_at)->format('d/m/Y') ?></span><span class="post-read-time"><i class="jli-watch-2"></i>2 Mins read</span><span class="meta-comment"><i class="jli-comments"></i><a href="#">0 Comment</a></span></span>
+                  <span class="jl_post_meta"><span class="jl_author_img_w"><i class="jli-user"></i><a href="#" title="<?= $detail->author ?>" rel="author"><?= $detail->author ?></a></span><span class="post-date"><i class="jli-pen"></i><?= DateTime::createFromFormat('Y-m-d H:i:s', $detail->created_at)->format('d/m/Y') ?></span><span class="post-read-time"><i class="jli-watch-2"></i>2 Mins read</span><span class="meta-comment"><i class="jli-comments"></i><a href="#"></a></span></span>
                 </div>
                 <div class="single_content_header jl_single_feature_below">
                 </div>
@@ -183,12 +189,44 @@ function create_slug4($string)
                   </p>
                 </div>
               </div>
+
+              <div class="postnav_w">
+                        <div class="postnav_left">
+                          <div class="single_post_arrow_content">
+                            <a href="<?= Yii::$app->urlManager->createAbsoluteUrl(['site/detail','slug' => create_slug4($random[0]->title)]) ?>" id="prepost">
+                              <span class="jl_cpost_nav">
+                                <span class="jl_post_nav_link"
+                                  ><i class="jli-left-arrow"></i>Previous
+                                  post</span
+                                ><span class="jl_cpost_title"
+                                  ><?= Tools::subTitle($random[0]->title) ?></span
+                                ></span
+                              ></a
+                            >
+                          </div>
+                        </div>
+                        <div class="postnav_right">
+                          <div class="single_post_arrow_content">
+                            <a href="<?= Yii::$app->urlManager->createAbsoluteUrl(['site/detail','slug' => create_slug4($random[1]->title)]) ?>" id="nextpost">
+                              <span class="jl_cpost_nav">
+                                <span class="jl_post_nav_link"
+                                  >Next post<i
+                                    class="jli-right-arrow"
+                                  ></i></span
+                                ><span class="jl_cpost_title"
+                                  ><?= Tools::subTitle($random[1]->title) ?></span
+                                ></span
+                              ></a
+                            >
+                          </div>
+                        </div>
+                      </div>
               <div class="clearfix"></div>
               <div class="related-posts">
-                <h4>Bài viết liên quan</h4>
+                <h4>Bài viết được xem nhiều</h4>
                 <div class="single_related_post">
-                  <?php if (isset($relate) && $relate) : ?>
-                    <?php foreach ($relate as $item) : ?>
+                  <?php if (isset($views) && $views) : ?>
+                    <?php foreach ($views as $item) : ?>
                       <div class="jl_m_right jl_m_list jl_m_img">
                         <div class="jl_m_right_w">
                           <div class="jl_m_right_img jl_radus_e">
@@ -217,6 +255,64 @@ function create_slug4($string)
           <div class="brack_space"></div>
         </div>
       </div>
+      <div class="col-md-4" id="sidebar">
+                <div class="jl_sidebar_w">
+                  <div
+                    id="sprasa_recent_post_text_widget-9"
+                    class="widget post_list_widget"
+                  >
+                    <div class="widget_jl_wrapper">
+                      <div class="ettitle">
+                        <div class="widget-title">
+                          <h2 class="jl_title_c"><?= $detail->category_child ? $category_child : $detail->category ?></h2>
+                        </div>
+                      </div>
+                      <div class="bt_post_widget">
+                      <?php if (isset($relate) && $relate) : ?>
+                    <?php foreach ($relate as $item) : ?>
+                        <div class="jl_m_right jl_sm_list jl_ml jl_clear_at">
+                          <div class="jl_m_right_w">
+                            <div class="jl_m_right_img jl_radus_e">
+                              <a href="<?= Yii::$app->urlManager->createAbsoluteUrl(['site/detail','slug' => create_slug4($item->title)]) ?>"
+                                ><img
+                                  width="120"
+                                  height="120"
+                                  src="<?= str_contains($item->image, 'http') ? $item->image : 'https://storage.songxanh24h.vn/images'.$item->image ?>"
+                                  class="attachment-sprasa_small_feature size-sprasa_small_feature wp-post-image"
+                                  alt="<?= $item->title ?>"
+                                  loading="lazy"
+                              /></a>
+                            </div>
+                            <div class="jl_m_right_content">
+                              <h2 class="entry-title">
+                                <a href="<?= Yii::$app->urlManager->createAbsoluteUrl(['site/detail','slug' => create_slug4($item->title)]) ?>" tabindex="-1"
+                                  ><?= $item->title ?></a
+                                >
+                              </h2>
+                              <span class="jl_post_meta"
+                                ><span class="jl_author_img_w"
+                                  ><i class="jli-user"></i
+                                  ><a
+                                    href="#"
+                                    title="Posts by Spraya"
+                                    rel="author"
+                                    ><?= $item->author ?></a
+                                  ></span
+                                ><span class="post-date"
+                                  ><i class="jli-pen"></i><?= DateTime::createFromFormat('Y-m-d H:i:s', $item->created_at)->format('d/m/Y') ?></span
+                                ></span
+                              >
+                            </div>
+                          </div>
+                        </div>
+                        <?php endforeach; ?>
+                   <?php endif; ?>
+                      </div>
+                    </div>
+                  </div>
+                  </div>
+                </div>
+              </div>
     </div>
   </div>
 </section>

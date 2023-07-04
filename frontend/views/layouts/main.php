@@ -30,7 +30,7 @@ $currentUrl = Url::current([], true);
 
 <?= $this->render('header'); ?>
 
-<body class="d-flex flex-column h-100">
+<body class="d-flex flex-column h-100 mobile_nav_class jl-has-sidebar">
   <?php $this->beginBody() ?>
   <main role="main" class="flex-shrink-0">
     <?= $content ?>

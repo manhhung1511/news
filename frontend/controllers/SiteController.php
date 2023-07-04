@@ -61,13 +61,11 @@ class SiteController extends Controller
 
     public function actionIndex()
     {
-        $news_category3 = '';
-        $news_category5 = '';
         $news = News::findAll(['status' => 1]);
         $new4 = News::find()->where(['status' => 1])->orderBy(['created_at' => SORT_DESC])->limit(5)->all();
         $category = Category::find()->all();
         $news_category3 = News::find()->where(['status' => 1, 'category' => $category[3]->name ])->orderBy(['created_at' => SORT_DESC])->limit(3)->all();
-        // $news_category5 = News::find()->where(['status' => 1, 'category' => $category[5]->name])->orderBy(['created_at' => SORT_DESC])->limit(5)->all();
+        $news_category5 = News::find()->where(['status' => 1, 'category' => $category[5]->name])->orderBy(['created_at' => SORT_DESC])->limit(5)->all();
         $news_category2 = News::find()->where(['status' => 1, 'category' => $category[2]->name])->orderBy(['created_at' => SORT_DESC])->limit(4)->all();
         $views = News::find()->where(['status' => 1])->andWhere(['>=','view', 1])->orderBy(['created_at' => SORT_ASC])->limit(3)->all();
         $new8 = News::find()->where(['status' => 1])->orderBy(['created_at' => SORT_DESC])->limit(7)->all();
@@ -167,10 +165,10 @@ class SiteController extends Controller
         $detail = News::findOne(['slug' => $slug]);
         if(empty($detail->category_child)) {
             $category = $detail->category;
-            $relate = News::find()->where(['status' => 1, 'category' => $category])->orderBy(['created_at' => SORT_ASC])->limit(5)->all();
+            $relate = News::find()->where(['status' => 1, 'category' => $category])->orderBy(['created_at' => SORT_ASC])->limit(6)->all();
         } else {
             $category_child = $detail->category_child;
-            $relate = News::find()->where(['status' => 1, 'category_child' => $category_child])->orderBy(['created_at' => SORT_ASC])->limit(5)->all();
+            $relate = News::find()->where(['status' => 1, 'category_child' => $category_child])->orderBy(['created_at' => SORT_ASC])->limit(6)->all();
         }
         $view = 0;
         $detail->view = $detail->view ? $detail->view + 1 : $view + 1;
@@ -178,9 +176,18 @@ class SiteController extends Controller
 
         Yii::$app->params['description'] = $detail->title .' '. Tools::subWord(strip_tags($detail->content));
 
+        //random
+        $random = News::find()->orderBy(['rand()' => 1])
+                              ->limit(2)
+                               ->all();
+
+        $views = News::find()->where(['status' => 1])->andWhere(['>=','view', 1])->orderBy(['created_at' => SORT_ASC])->limit(6)->all();
+      
         return $this->render('detail', [
             'detail' => $detail,
-            'relate' => $relate
+            'relate' => $relate,
+            'random' => $random,
+            'views' => $views
         ]);
     }
 
