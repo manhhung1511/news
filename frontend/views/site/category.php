@@ -122,7 +122,7 @@ function create_slug2($string)
                         echo LinkPager::widget([
                             'pagination' => $pages,
                             'linkOptions' => ['class' => 'page-link'],
-                            'pageCssClass' => ['class' => 'page-item']
+                            'pageCssClass' => ['class' => 'page-item page-numbers']
                         ])
                         ?>
                     </div>
