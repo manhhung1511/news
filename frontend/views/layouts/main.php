@@ -26,6 +26,20 @@ $currentUrl = Url::current([], true);
   <title><?= Html::encode($this->title) ?></title>
   <link rel="icon" type="image/png" href="/img/logo2.png">
   <?php $this->head() ?>
+
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org/",
+      "@type": "WebSite",
+      "name": "songxanh24h",
+      "url": "https://songxanh24h.vn/",
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": "https://songxanh24h.vn/{search_term_string}",
+        "query-input": "required name=search_term_string"
+      }
+    }
+</script>
 </head>
 
 <?= $this->render('header'); ?>
