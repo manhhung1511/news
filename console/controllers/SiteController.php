@@ -54,7 +54,7 @@ class SiteController extends Controller {
         $filePath = Yii::getAlias('@frontend').'/web/sitemap.xml';
         $data_xml = '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">';
         $news = News::find()->all();
-        $categories = Category::find()->all();
+        $categories = Category::find()->where(['status' => 1])->all();
         $static_url = [
             'https://songxanh24h.vn/',
             'https://songxanh24h.vn/category/benh'
@@ -76,7 +76,7 @@ class SiteController extends Controller {
 
         foreach($categories as $slug) {
             $categories_child = $slug->category_child;
-            if(isset($categories_child) && $categories_child) {
+            if(isset($categories_child) && $categories_child && $categories_child[0] > 1 ) {
                 foreach($categories_child as $item) {
                     $url = $slug->slug .'/'. self::Slug($item);
                     $date = date('Y-m-d');
