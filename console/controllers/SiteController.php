@@ -76,7 +76,7 @@ class SiteController extends Controller {
 
         foreach($categories as $slug) {
             $categories_child = $slug->category_child;
-            if(isset($categories_child) && $categories_child && $categories_child[0] > 1 ) {
+            if((isset($slug->category_child[0]) && $slug->category_child[0])) {
                 foreach($categories_child as $item) {
                     $url = $slug->slug .'/'. self::Slug($item);
                     $date = date('Y-m-d');
