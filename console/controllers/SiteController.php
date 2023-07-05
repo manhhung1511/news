@@ -61,7 +61,7 @@ class SiteController extends Controller {
         ];
 
         foreach($static_url as $url) {
-            $date = date('c');
+            $date = date('Y-m-d');
             $pr = '0.80';
             if($url == 'https://songxanh24h.vn/') $pr = '1.00';
                 $data_xml.= "
@@ -93,7 +93,7 @@ class SiteController extends Controller {
             }
 
             $url = $slug->slug;
-            $date = date('c');
+            $date = date('Y-m-d');
             $pr = '0.80';
                 $data_xml.= "
                     <url>
