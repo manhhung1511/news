@@ -56,8 +56,7 @@ class SiteController extends Controller {
         $news = News::find()->all();
         $categories = Category::find()->where(['status' => 1])->all();
         $static_url = [
-            'https://songxanh24h.vn/',
-            'https://songxanh24h.vn/category/benh'
+            'https://songxanh24h.vn/'
         ];
 
         foreach($static_url as $url) {
