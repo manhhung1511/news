@@ -66,7 +66,7 @@ class SiteController extends Controller
         $last_7_days = date('Y-m-d', strtotime('-6 day', time()));
         $news = News::findAll(['status' => 1]);
         $new4 = News::find()->where(['status' => 1])->orderBy(['created_at' => SORT_DESC])->limit(5)->all();
-        $category = Category::find()->where(['status' => 1, 'push' => 1])->limit(3)->all();
+        $category = Category::find()->where(['push' => 1])->limit(3)->all();
         $news_category3 = News::find()->where(['status' => 1, 'category_child' => $category[0]->slug ])->orderBy(['created_at' => SORT_DESC])->limit(3)->all();
         $news_category5 = News::find()->where(['status' => 1, 'category_child' => $category[1]->slug])->orderBy(['created_at' => SORT_DESC])->limit(5)->all();
         $news_category2 = News::find()->where(['status' => 1, 'category_child' => $category[2]->slug])->orderBy(['created_at' => SORT_DESC])->limit(4)->all();
