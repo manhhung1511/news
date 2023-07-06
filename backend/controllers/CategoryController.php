@@ -40,9 +40,6 @@ class CategoryController extends Controller
 
     public function actionIndex()
     {
-        var_dump(Yii::$app->view->params['views']);
-
-        die;
         $text_search = strip_tags(Yii::$app->request->get('text_search'));
         $list_category = new ActiveDataProvider([
             'query' => Category::find()
