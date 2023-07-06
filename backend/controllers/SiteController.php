@@ -13,6 +13,7 @@ use yii\web\Controller;
 use yii\web\Response;
 use yii\data\ActiveDataProvider;
 use MongoDb\BSON\ObjectId;
+use common\helper\Tools;
 /**
  * Site controller
  */
@@ -132,7 +133,9 @@ class SiteController extends Controller
                 mkdir($folderPath, 0777, true);
             }
 
-            $destination = '../../storage/images/'.$currentDate.'/'.$file['name']['image'];
+            $name_img = Tools::convertTitle($file['name']['image']);
+    
+            $destination = '../../storage/images/'.$currentDate.'/'.$name_img;
 
             move_uploaded_file($file['tmp_name']['image'], $destination);
 
@@ -199,7 +202,9 @@ class SiteController extends Controller
                     mkdir($folderPath, 0777, true);
                 }
 
-                $destination = '../../storage/images/'.$currentDate.'/'.$file['name']['image'];
+                $name_img = Tools::convertTitle($file['name']['image']);
+
+                $destination = '../../storage/images/'.$currentDate.'/'.$name_img;
         
                 move_uploaded_file($file['tmp_name']['image'], $destination);
     
