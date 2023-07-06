@@ -81,7 +81,7 @@ function create_slug2($string)
                 <div class="col-md-12">
                     <div id="blockid_72be465" class="block-section jl-main-block" data-blockid="blockid_72be465" data-name="jl_mgrid" data-page_max="11" data-page_current="1" data-author="none" data-order="date_post" data-posts_per_page="6" data-offset="5">
                         <div class="jl_grid_wrap_f jl_clear_at g_3col">
-                            <div class="jl-roww content-inner jl-col3 jl-col-row">
+                            <div class="jl-roww content-inner jl-col3 jl-col-row" style="border-bottom: 0px;">
                                 <div class="jl_sec_title">
                                     <h3 class="jl_title_c">
                                         <span>Bài đăng gần đây</span>
@@ -94,7 +94,7 @@ function create_slug2($string)
                                                 <div class="jl_grid_w">
                                                     <div class="jl_img_box jl_radus_e">
                                                         <a href="<?= Yii::$app->urlManager->createAbsoluteUrl(['site/detail','slug' => create_slug2($value->title)]) ?>">
-                                                            <span class="jl_post_type_icon"><i class="jli-gallery"></i></span><img style="width: 550px; height: 358px; object-fit: cover;" width="500" height="350" src="<?= str_contains($value->image, 'http') ? $value->image : 'https://storage.songxanh24h.vn/images'.$value->image ?>" class="attachment-sprasa_slider_grid_small size-sprasa_slider_grid_small wp-post-image" alt="<?= $value->title ?>" title="<?= $value->title ?>" loading="lazy" /></a>
+                                                            <span class="jl_post_type_icon"><i class="jli-gallery"></i></span><img width="500" height="350" src="<?= str_contains($value->image, 'http') ? $value->image : 'https://storage.songxanh24h.vn/images'.$value->image ?>" class="attachment-sprasa_slider_grid_small size-sprasa_slider_grid_small wp-post-image" alt="<?= $value->title ?>" title="<?= $value->title ?>" loading="lazy" /></a>
                                                     </div>
                                                     <div class="text-box">
                                                         <h3 class="short_text">
