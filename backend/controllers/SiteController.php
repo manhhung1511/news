@@ -139,7 +139,7 @@ class SiteController extends Controller
 
             move_uploaded_file($file['tmp_name']['image'], $destination);
 
-            $model->image = '/'.$currentDate.'/'.$file['name']['image'];
+            $model->image = '/'.$currentDate.'/'.$name_img;
             $model->content = Yii::$app->request->post()['News']['content'];
             $model->author = Yii::$app->request->post()['News']['author'];
             $model->category_child = self::Slug(Yii::$app->request->post()['category-child']);
@@ -208,7 +208,7 @@ class SiteController extends Controller
         
                 move_uploaded_file($file['tmp_name']['image'], $destination);
     
-                $model->image = '/'.$currentDate.'/'.$file['name']['image'];
+                $model->image = '/'.$currentDate.'/'.$name_img;
                 $model->content = Yii::$app->request->post()['News']['content'];
                 $model->author = Yii::$app->request->post()['News']['author'];
                 $model->updated_at = date('Y-m-d H:i:s');
