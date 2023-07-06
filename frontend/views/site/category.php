@@ -62,11 +62,10 @@ function create_slug2($string)
                                             <span class="jl_post_type_icon"><i class="jli-quote-2"></i></span>
                                         </div>
                                         <div class="text-box">
-                                            <span class="jl_f_cat"><a class="post-category-color-text" style="background: #4dcf8f" href="#">Active</a></span>
+                                            <span class="jl_f_cat"><a class="post-category-color-text" style="background: #4dcf8f" href="#"><?= $news[count($news) - 1]->category_child ?: $news[count($news) - 1]->category  ?></a></span>
                                             <h3 class="entry-title short_text">
                                                 <a href="<?= Yii::$app->urlManager->createAbsoluteUrl(['site/detail','slug' => create_slug2($news[count($news) - 1]->title)]) ?>" tabindex="-1"><?= $news[count($news) - 1]->title ?></a>
                                             </h3>
-                                            <span class="jl_post_meta"><span class="jl_author_img_w"><i class="jli-user"></i><a href="#" title="Posts by Spraya" rel="author">...</a></span><span class="post-date"><i class="jli-pen"></i><?= DateTime::createFromFormat('Y-m-d H:i:s', $news[count($news) - 1]->created_at)->format('d/m/Y') ?></span><span class="post-read-time"><i class="jli-watch-2"></i>2 Mins read</span></span>
                                             <p class="short_text"><?=Tools::subWord(strip_tags($news[count($news) - 1]->content)) ?></p>
                                         </div>
                                     </div>
@@ -101,9 +100,6 @@ function create_slug2($string)
                                                         <h3 class="short_text">
                                                             <a href="<?= Yii::$app->urlManager->createAbsoluteUrl(['site/detail','slug' => create_slug2($value->title)]) ?>"><?= $value->title ?></a>
                                                         </h3>
-                                                        <span class="jl_post_meta">
-                                                            <span class="jl_author_img_w"><i class="jli-user"></i><a href="#" title="Posts by Spraya" rel="author"></a></span><span class="post-date"><i class="jli-pen"></i><?= DateTime::createFromFormat('Y-m-d H:i:s', $value->created_at)->format('d/m/Y') ?></span><span class="post-read-time"><i class="jli-watch-2"></i>2 Mins
-                                                                read</span></span>
                                                         <p class="short_text">
                                                             <?= Tools::subWord(strip_tags($value->content)) ?>
                                                         </p>

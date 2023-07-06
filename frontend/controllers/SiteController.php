@@ -55,19 +55,22 @@ class SiteController extends Controller
 
     public function init() {
         parent::init();
-        $category = Category::find()->where(['status' => 1])->limit(5)->all();
+        $category = Category::find()->where(['status' => 1])->limit(7)->all();
+        $views = News::find()->where(['status' => 1])->andWhere(['>=','view', 1])->orderBy(['created_at' => SORT_ASC])->limit(4)->all();
         Yii::$app->view->params['paramName'] = $category;
+        Yii::$app->view->params['views'] = $views;
     }
 
     public function actionIndex()
     {
+        $last_7_days = date('Y-m-d', strtotime('-6 day', time()));
         $news = News::findAll(['status' => 1]);
         $new4 = News::find()->where(['status' => 1])->orderBy(['created_at' => SORT_DESC])->limit(5)->all();
-        $category = Category::find()->all();
-        $news_category3 = News::find()->where(['status' => 1, 'category' => $category[3]->name ])->orderBy(['created_at' => SORT_DESC])->limit(3)->all();
-        $news_category5 = News::find()->where(['status' => 1, 'category' => $category[5]->name])->orderBy(['created_at' => SORT_DESC])->limit(5)->all();
+        $category = Category::find()->where(['status' => 1, 'push' => 1])->limit(3)->all();
+        $news_category3 = News::find()->where(['status' => 1, 'category' => $category[0]->name ])->orderBy(['created_at' => SORT_DESC])->limit(3)->all();
+        $news_category5 = News::find()->where(['status' => 1, 'category' => $category[1]->name])->orderBy(['created_at' => SORT_DESC])->limit(5)->all();
         $news_category2 = News::find()->where(['status' => 1, 'category' => $category[2]->name])->orderBy(['created_at' => SORT_DESC])->limit(4)->all();
-        $views = News::find()->where(['status' => 1])->andWhere(['>=','view', 1])->orderBy(['created_at' => SORT_ASC])->limit(3)->all();
+        $views = News::find()->where(['status' => 1])->andWhere(['>=','view', 1])->andWhere(['>=','created_at',$last_7_days.' 00:00:00'])->andWhere(['<=','created_at',date('Y-m-d').'23:59:59'])->orderBy(['created_at' => SORT_ASC])->limit(4)->all();
         $new8 = News::find()->where(['status' => 1])->orderBy(['created_at' => SORT_DESC])->limit(7)->all();
         $today = News::find()->where(['status' => 1])->andWhere(['>=','created_at',date('Y-m-d').' 00:00:00'])->andWhere(['<=','created_at',date('Y-m-d').'23:59:59'])->orderBy(['created_at' => SORT_DESC])->limit(8)->all();
         return $this->render('index',[

@@ -156,33 +156,11 @@ if(isset($detail->category_child) && $detail->category_child) {
                   <h1 class="single_post_title_main">
                     <?= $detail->title ?>
                   </h1>
-                  <span class="jl_post_meta"><span class="jl_author_img_w"><i class="jli-user"></i><a href="#" title="<?= $detail->author ?>" rel="author"><?= $detail->author ?></a></span><span class="post-date"><i class="jli-pen"></i><?= DateTime::createFromFormat('Y-m-d H:i:s', $detail->created_at)->format('d/m/Y') ?></span><span class="post-read-time"><i class="jli-watch-2"></i>2 Mins read</span><span class="meta-comment"><i class="jli-comments"></i><a href="#"></a></span></span>
                 </div>
                 <div class="single_content_header jl_single_feature_below">
                 </div>
               </div>
               <div class="post_content_w">
-                <div class="post_sw">
-                  <div class="post_s">
-                    <div class="jl_single_share_wrapper jl_clear_at">
-                      <ul class="single_post_share_icon_post">
-                        <li class="single_post_share_facebook">
-                          <a href="#" target="_blank"><i class="jli-facebook"></i></a>
-                        </li>
-                        <li class="single_post_share_twitter">
-                          <a href="#" target="_blank"><i class="jli-twitter"></i></a>
-                        </li>
-                        <li class="single_post_share_pinterest">
-                          <a href="#" target="_blank"><i class="jli-pinterest"></i></a>
-                        </li>
-                        <li class="single_post_share_linkedin">
-                          <a href="#" target="_blank"><i class="jli-linkedin"></i></a>
-                        </li>
-                      </ul>
-                    </div>
-                    <span class="single-post-meta-wrapper jl_sfoot"><a href="#" class="jm-post-like liked" data-post_id="2838" title="Unlike"><i class="jli-love-full"></i><span>2</span></a><span class="view_options"><i class="jli-view-o"></i><span>531</span></span></span>
-                  </div>
-                </div>
                 <div class="post_content jl_content">
                   <p>
                     <?= $detail->content ?>
@@ -237,8 +215,6 @@ if(isset($detail->category_child) && $detail->category_child) {
                             <h2 class="entry-title short_text">
                               <a href="<?= Yii::$app->urlManager->createAbsoluteUrl(['site/detail', 'id' => (string)$item->_id, 'slug' => create_slug4($item->title)]) ?>" tabindex="-1"><?= $item->title ?></a>
                             </h2>
-                            <span class="jl_post_meta"><span class="jl_author_img_w"><i class="jli-user"></i><a href="#" title="<?= $item->author ?>" rel="author"><?= $item->author ?></a></span><span class="post-date"><i class="jli-pen"></i><?= DateTime::createFromFormat('Y-m-d H:i:s', $item->created_at)->format('d/m/Y') ?></span><span class="post-read-time"><i class="jli-watch-2"></i>2 Mins
-                                read</span></span>
                             <p class="short_text">
                               <?= Tools::subWord(strip_tags($item->content))?>
                             </p>
@@ -289,19 +265,6 @@ if(isset($detail->category_child) && $detail->category_child) {
                                   ><?= $item->title ?></a
                                 >
                               </h2>
-                              <span class="jl_post_meta"
-                                ><span class="jl_author_img_w"
-                                  ><i class="jli-user"></i
-                                  ><a
-                                    href="#"
-                                    title="Posts by Spraya"
-                                    rel="author"
-                                    ><?= $item->author ?></a
-                                  ></span
-                                ><span class="post-date"
-                                  ><i class="jli-pen"></i><?= DateTime::createFromFormat('Y-m-d H:i:s', $item->created_at)->format('d/m/Y') ?></span
-                                ></span
-                              >
                             </div>
                           </div>
                         </div>

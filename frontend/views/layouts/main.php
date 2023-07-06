@@ -3,6 +3,7 @@
 /** @var \yii\web\View $this */
 /** @var string $content */
 
+use common\helper\Tools;
 use yii\helpers\Html;
 use frontend\assets\AppAsset;
 use yii\helpers\Url;
@@ -83,47 +84,75 @@ $currentUrl = Url::current([], true);
             <?php endif; ?>
           <?php endforeach; ?>
         <?php endif; ?>
-
       </ul>
-      <div id="sprasa_about_us_widget-3" class="widget jellywp_about_us_widget">
-        <div class="widget_jl_wrapper about_widget_content">
-          <div class="jellywp_about_us_widget_wrapper">
-            <div class="social_icons_widget">
-              <ul class="social-icons-list-widget icons_about_widget_display">
-                <li>
-                  <a href="#" class="facebook" target="_blank"><i class="jli-facebook"></i></a>
-                </li>
-                <li>
-                  <a href="#" class="behance" target="_blank"><i class="jli-behance"></i></a>
-                </li>
-                <li>
-                  <a href="#" class="vimeo" target="_blank"><i class="jli-vimeo"></i></a>
-                </li>
-                <li>
-                  <a href="#" class="youtube" target="_blank"><i class="jli-youtube"></i></a>
-                </li>
-                <li>
-                  <a href="#" class="instagram" target="_blank"><i class="jli-instagram"></i></a>
-                </li>
-              </ul>
+      <div
+              id="sprasa_recent_post_text_widget-11"
+              class="widget post_list_widget"
+            >
+              <div class="widget_jl_wrapper">
+                <div class="ettitle">
+                  <div class="widget-title">
+                    <h2 class="jl_title_c">Được xem nhiều</h2>
+                  </div>
+                </div>
+                <div class="bt_post_widget">
+                  <?php if(isset(Yii::$app->view->params['views']) && Yii::$app->view->params['views']): ?>
+                  <?php foreach(Yii::$app->view->params['views'] as $item): ?>
+    
+                    <div class="jl_m_right jl_sm_list jl_ml jl_clear_at">
+                    <div class="jl_m_right_w">
+                      <div class="jl_m_right_img jl_radus_e">
+                        <a href="<?= Yii::$app->urlManager->createAbsoluteUrl(['site/detail', 'slug'=>create_slug3($item->title)]) ?>"
+                          ><img
+                            width="120"
+                            height="120"
+                            src="<?= str_contains($item->image, 'http') ? $item->image : 'https://storage.songxanh24h.vn/images'.$item->image ?>"
+                            class="attachment-sprasa_small_feature size-sprasa_small_feature wp-post-image"
+                            alt="<?= $item->title ?>"
+                            loading="lazy"
+                        /></a>
+                      </div>
+                      <div class="jl_m_right_content">
+                        <h2 class="entry-title">
+                          <a href="<?= Yii::$app->urlManager->createAbsoluteUrl(['site/detail', 'slug'=>create_slug3($item->title)]) ?>" tabindex="-1"
+                            ><?= Tools::subTitle($item->title) ?></a
+                          >
+                        </h2>
+                      </div>
+                    </div>
+                  </div>
+                  <?php endforeach; ?>
+                  <?php endif; ?>
+                </div>
+              </div>
             </div>
-          </div>
-        </div>
-      </div>
     </div>
   </div>
   <footer id="footer-container" class="jl_footer_act enable_footer_columns_dark">
     <div class="footer-columns">
       <div class="container">
         <div class="row">
-          <div class="col-md-6">
+          <div class="col-md-8">
             <div id="sprasa_about_us_widget-2" class="widget jellywp_about_us_widget">
               <div class="widget_jl_wrapper about_widget_content">
                 <div class="jellywp_about_us_widget_wrapper">
-                  <img class="footer_logo_about" src="/img/logo1.png" alt="logo" />
-                  <p>
-                    Báo tiếng Việt nhiều người xem nhất
+                  <img width="200px" height="45px" class="footer_logo_about" src="/img/logo1.png" alt="logo" />
+                  <p class="mt-1">
+                     Songxanh24h.com - Tận tâm chăm sóc sức khỏe 
                   </p>
+                  <p class="mt-1">
+                     Email: bientap@songxanh24.com
+                   </p>
+                   <p class="mt-1">
+                      Số điện thoại: 0987283077 
+                   </p>
+                    <p class="mt-1">
+                      Địa chỉ: Trần Hữu Dực, Nam Từ Liêm, Hà Nội
+                    </p>
+                     <p class="mt-1">
+                      Thông tin trên website này chỉ mang tính chất tham khảo, website đang chạy thử nghiệm chờ cấp phép
+                    </p>
+                
                   <div class="social_icons_widget">
                     <ul class="social-icons-list-widget icons_about_widget_display"></ul>
                   </div>
@@ -138,7 +167,7 @@ $currentUrl = Url::current([], true);
               </div>
             </div>
           </div>
-          <div class="col-md-6">
+          <div class="col-md-4">
             <div id="sprasa_recent_post_text_widget-8" class="widget post_list_widget">
               <div class="widget_jl_wrapper">
                 <div class="ettitle">
@@ -152,28 +181,7 @@ $currentUrl = Url::current([], true);
                       <a href="#" class="facebook" target="_blank"><i class="jli-facebook"></i></a>
                     </li>
                     <li>
-                      <a href="#" class="behance" target="_blank"><i class="jli-behance"></i></a>
-                    </li>
-                    <li>
-                      <a href="#" class="telegram" target="_blank"><i class="jli-telegram"></i></a>
-                    </li>
-                    <li>
-                      <a href="#" class="vimeo" target="_blank"><i class="jli-vimeo"></i></a>
-                    </li>
-                    <li>
                       <a href="#" class="youtube" target="_blank"><i class="jli-youtube"></i></a>
-                    </li>
-                    <li>
-                      <a href="#" class="tumblr" target="_blank"><i class="jli-tumblr"></i></a>
-                    </li>
-                    <li>
-                      <a href="#" class="instagram" target="_blank"><i class="jli-instagram"></i></a>
-                    </li>
-                    <li>
-                      <a href="#" class="linkedin" target="_blank"><i class="jli-linkedin"></i></a>
-                    </li>
-                    <li>
-                      <a href="#" class="pinterest" target="_blank"><i class="jli-pinterest"></i></a>
                     </li>
                     <li>
                       <a href="#" class="twitter" target="_blank"><i class="jli-twitter"></i></a>
@@ -181,17 +189,6 @@ $currentUrl = Url::current([], true);
                   </ul>
                 </div>
               </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="footer-bottom enable_footer_copyright_dark">
-      <div class="container">
-        <div class="row bottom_footer_menu_text">
-          <div class="col-md-12">
-            <div class="jl_ft_w">
-              © 1997-2023. Toàn bộ bản quyền thuộc Songxanh24h.vn
             </div>
           </div>
         </div>

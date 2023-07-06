@@ -33,14 +33,15 @@ $this->title = Yii::t('app', 'All Category');
                 <th>Tên danh mục</th>
                 <th>Danh mục con</th>
                 <th>Created_at</th>
-                <th class="w-120">Action</th>
+                <th>Push</th>
+                <th class="">Action</th>
               </tr>
             </thead>
             <tbody class="font-13">
               <?php if (isset($list_category)) : ?>
                 <?php foreach ($list_category->getModels() as $data) : ?>
                  
-                  <tr data-app-id="<?= $data->_id ?>">
+                  <tr data-key="<?= $data->_id ?>">
                     <td>
                      <?= $data->name ?>
                     </td>  
@@ -51,9 +52,12 @@ $this->title = Yii::t('app', 'All Category');
                         <?php endforeach; ?>
                       <?php endif; ?>
                     </td>  
-                    <td class="w-120"><?= $data->created_at ? \DateTime::createFromFormat('Y-m-d H:i:s', trim($data->created_at))->format('d/m/Y') : '' ?>
+                    <td class=""><?= $data->created_at ? \DateTime::createFromFormat('Y-m-d H:i:s', trim($data->created_at))->format('d/m/Y') : '' ?>
                   
                     </td>
+                    
+                      <th style="text-align:center;"><input class="pushup" type="checkbox" <?= ($data->push == 1) ? 'checked=""' : '' ?>></th>
+                    
                     <td class="w-120">
                     <?= Html::a('<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-edit-2 icon-hover hover-success font-medium-2" data-toggle="tooltip" title="" data-original-title="'.Yii::t('app', 'Update').'"><path d="M17 3a2.828 2.828 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z"></path></svg>', Yii::$app->urlManager->createAbsoluteUrl(['category/update', 'id' => (string) $data->_id]), ['data-toggle' => 'tooltip', 'title' => Yii::t('app', 'Update')]); ?>
                      <?= Html::a('<svg viewBox="0 0 1024 1024" width="14" height="14" xmlns="http://www.w3.org/2000/svg"><path fill="currentColor" d="M128 192v640h768V320H485.76L357.504 192H128zm-32-64h287.872l128.384 128H928a32 32 0 0 1 32 32v576a32 32 0 0 1-32 32H96a32 32 0 0 1-32-32V160a32 32 0 0 1 32-32zm370.752 448-90.496-90.496 45.248-45.248L512 530.752l90.496-90.496 45.248 45.248L557.248 576l90.496 90.496-45.248 45.248L512 621.248l-90.496 90.496-45.248-45.248L466.752 576z"/></svg>', Yii::$app->urlManager->createAbsoluteUrl(['category/delete', 'id' => (string) $data->_id]), ['data-toggle' => 'tooltip', 'title' => Yii::t('app', 'Delete'), 'data-method' => 'POST', 'data-confirm' => Yii::t('app', 'Are you sure you want to delete this item?')]);?>
@@ -85,6 +89,26 @@ $this->title = Yii::t('app', 'All Category');
 </div>
 
 <script>
+
+$(document).ready(function() {
+        $('body').on('change', '.pushup', function() {
+            var id = $(this).closest('tr').attr('data-key');
+            if ($(this).is(':checked')) {
+                var push = 1;
+            } else {
+                var push = -1;
+            }
+            $.ajax({
+                url: '/index.php?r=category%2Fpush',
+                type: 'get',
+                dataType: 'text',
+                data: {
+                    id: id,
+                    push: push
+                },
+            })
+        })
+    })
         const debounce = (func, wait, immediate)=> {
         let timeout;
         return function executedFunction() {

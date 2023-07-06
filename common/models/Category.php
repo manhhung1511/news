@@ -35,6 +35,7 @@ class Category extends \yii\mongodb\ActiveRecord
             'slug',
             'category_child',
             'status',
+            'push',
             'created_at',
             'updated_at'
         ];

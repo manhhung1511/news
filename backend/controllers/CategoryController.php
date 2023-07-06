@@ -161,6 +161,26 @@ class CategoryController extends Controller
         return $this->redirect(Yii::$app->urlManager->createAbsoluteUrl(['category/index']));
     }
 
+    public function actionPush() {
+        $id = Yii::$app->request->get('id', '');
+        $push = Yii::$app->request->get('push', '-1');
+        $model = Category::findOne(['_id' => $id]);
+        if (empty($model)) {
+            $model = new Category();
+            $model->push = $push;
+        }
+        if ($push == 1) {
+            $model->push = (int) 1;
+            $model->updated_at = date('Y-m-d H:i:s');
+        } else {
+            $model->push = (int) 0;
+        }
+        if ($model->save()) {
+            return true;
+        }
+        return false;
+    }
+
     public static function Slug($string)
     {
         $search = array(
