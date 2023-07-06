@@ -10,47 +10,7 @@ use yii\helpers\Url;
 AppAsset::register($this);
 
 $currentUrl = Url::current([], true);
-function create_slug3($string)
-{
-    $search = array(
-        '#(à|á|ạ|ả|ã|â|ầ|ấ|ậ|ẩ|ẫ|ă|ằ|ắ|ặ|ẳ|ẵ)#',
-        '#(è|é|ẹ|ẻ|ẽ|ê|ề|ế|ệ|ể|ễ)#',
-        '#(ì|í|ị|ỉ|ĩ)#',
-        '#(ò|ó|ọ|ỏ|õ|ô|ồ|ố|ộ|ổ|ỗ|ơ|ờ|ớ|ợ|ở|ỡ)#',
-        '#(ù|ú|ụ|ủ|ũ|ư|ừ|ứ|ự|ử|ữ)#',
-        '#(ỳ|ý|ỵ|ỷ|ỹ)#',
-        '#(đ)#',
-        '#(À|Á|Ạ|Ả|Ã|Â|Ầ|Ấ|Ậ|Ẩ|Ẫ|Ă|Ằ|Ắ|Ặ|Ẳ|Ẵ)#',
-        '#(È|É|Ẹ|Ẻ|Ẽ|Ê|Ề|Ế|Ệ|Ể|Ễ)#',
-        '#(Ì|Í|Ị|Ỉ|Ĩ)#',
-        '#(Ò|Ó|Ọ|Ỏ|Õ|Ô|Ồ|Ố|Ộ|Ổ|Ỗ|Ơ|Ờ|Ớ|Ợ|Ở|Ỡ)#',
-        '#(Ù|Ú|Ụ|Ủ|Ũ|Ư|Ừ|Ứ|Ự|Ử|Ữ)#',
-        '#(Ỳ|Ý|Ỵ|Ỷ|Ỹ)#',
-        '#(Đ)#',
-        "/[^a-zA-Z0-9\-\_]/",
-    );
-    $replace = array(
-        'a',
-        'e',
-        'i',
-        'o',
-        'u',
-        'y',
-        'd',
-        'A',
-        'E',
-        'I',
-        'O',
-        'U',
-        'Y',
-        'D',
-        '-',
-    );
-    $string = preg_replace($search, $replace, $string);
-    $string = preg_replace('/(-)+/', '-', $string);
-    $string = strtolower($string);
-    return $string;
-    }
+
 ?>
 
 <?php $this->beginPage() ?>
@@ -143,7 +103,7 @@ function create_slug3($string)
                     <div class="jl_m_right jl_sm_list jl_ml jl_clear_at">
                     <div class="jl_m_right_w">
                       <div class="jl_m_right_img jl_radus_e">
-                        <a href="<?= Yii::$app->urlManager->createAbsoluteUrl(['site/detail', 'slug'=>create_slug3($item->title)]) ?>"
+                        <a href="<?= Yii::$app->urlManager->createAbsoluteUrl(['site/detail', 'slug'=>create_slug($item->title)]) ?>"
                           ><img
                             width="120"
                             height="120"
@@ -155,7 +115,7 @@ function create_slug3($string)
                       </div>
                       <div class="jl_m_right_content">
                         <h2 class="entry-title">
-                          <a href="<?= Yii::$app->urlManager->createAbsoluteUrl(['site/detail', 'slug'=>create_slug3($item->title)]) ?>" tabindex="-1"
+                          <a href="<?= Yii::$app->urlManager->createAbsoluteUrl(['site/detail', 'slug'=>create_slug($item->title)]) ?>" tabindex="-1"
                             ><?= Tools::subTitle($item->title) ?></a
                           >
                         </h2>
