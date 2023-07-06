@@ -122,5 +122,10 @@ class SiteController extends Controller {
 
         file_put_contents($filePath, $data_xml);
     }
+
+    public function actionTest() {
+        $category = Category::find()->where(['status' => 1, 'push' => 1])->limit(3)->all();
+        var_dump($category);
+    }
 }
 ?>
