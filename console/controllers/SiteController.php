@@ -124,7 +124,7 @@ class SiteController extends Controller {
     }
 
     public function actionTest() {
-        $category = Category::find()->where(['status' => 1, 'push' => 1])->limit(3)->all();
+        $category = Category::find()->where(['push' => 1])->limit(3)->all();
         var_dump($category);
     }
 }
