@@ -133,8 +133,10 @@ class SiteController extends Controller
                 mkdir($folderPath, 0777, true);
             }
 
-            $name_img = Tools::convertTitle($file['name']['image']);
-    
+
+            $extension = pathinfo($file['name']['image'], PATHINFO_EXTENSION);
+            $name_img = Tools::convertTitle($file['name']['image']).'.'.$extension;
+            
             $destination = '../../storage/images/'.$currentDate.'/'.$name_img;
 
             move_uploaded_file($file['tmp_name']['image'], $destination);
@@ -202,10 +204,11 @@ class SiteController extends Controller
                     mkdir($folderPath, 0777, true);
                 }
 
-                $name_img = Tools::convertTitle($file['name']['image']);
-
+                $extension = pathinfo($file['name']['image'], PATHINFO_EXTENSION);
+                $name_img = Tools::convertTitle($file['name']['image']).'.'.$extension;
+                
                 $destination = '../../storage/images/'.$currentDate.'/'.$name_img;
-        
+    
                 move_uploaded_file($file['tmp_name']['image'], $destination);
     
                 $model->image = '/'.$currentDate.'/'.$name_img;
