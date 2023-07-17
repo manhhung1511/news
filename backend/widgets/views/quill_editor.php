@@ -259,6 +259,35 @@ $this->registerJsFile('@web/app-assets/vendors/js/editors/quill/quill.min.js');
             quillEditor.format('background', value);
         });
 
+         // Configure the image upload handler
+    quillEditor.getModule('toolbar').addHandler('image', function() {
+     var input = document.createElement('input');
+     input.setAttribute('type', 'file');
+     input.setAttribute('accept', 'image/*');
+     input.click();
+
+     input.onchange = function() {
+        var file = input.files[0];
+        var formData = new FormData();
+        formData.append('file', file);
+
+        // Send the image file to the server using AJAX
+        var xhr = new XMLHttpRequest();
+        xhr.open('POST', '/index.php?r=site%2Fupload', true);
+        xhr.onload = function() {
+            if (xhr.status === 200) {
+                // Insert the uploaded image into the editor
+                var index = quillEditor.getSelection().index;
+                 quillEditor.insertEmbed(index, 'image', `https://storage.songxanh24h.vn/images/${xhr.response}`);
+                console.log('Image saved successfully.');
+            } else {
+            console.log('Failed to save image.');
+            }
+        };
+        xhr.send(formData);
+     };
+     });
+
         function addClassTextShake(contentChange) {
             $(contentChange).addClass('text-shake');
             setTimeout(function() {
@@ -279,6 +308,7 @@ $this->registerJsFile('@web/app-assets/vendors/js/editors/quill/quill.min.js');
         $('#<?= isset($editor_id) ? $editor_id : 'editor' ?>').focusin(function() {
             addClassTextShake('.<?= isset($class_box_change) ? $class_box_change : '' ?>');
         });
+
 
         // let html = quillEditor.root.innerHTML;
         // console.log(html);

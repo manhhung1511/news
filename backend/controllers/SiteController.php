@@ -33,7 +33,7 @@ class SiteController extends Controller
                         'allow' => true,
                     ],
                     [
-                        'actions' => ['logout', 'index','create','update-status','update','delete','category-child'],
+                        'actions' => ['logout', 'index','create','update-status','update','delete','category-child','upload'],
                         'allow' => true,
                         'roles' => ['@'],
                     ],
@@ -336,5 +336,29 @@ class SiteController extends Controller
         $string = preg_replace('/(-)+/', '-', $string);
         $string = strtolower($string);
         return $string;
+    }
+
+    public function actionUpload() {
+        $baseDirectory = '../../storage/images';
+        $currentDate = date('Y/m/d');
+        $folderPath = $baseDirectory . '/' . $currentDate;
+
+        if (!is_dir($folderPath)) {
+            mkdir($folderPath, 0777, true);
+        }
+        $extension = pathinfo($_FILES['file']['name'], PATHINFO_EXTENSION);
+
+        $name_img = Tools::convertTitle($_FILES['file']['name']).'.'.$extension;
+
+        $uploadedFile = $_FILES['file']['tmp_name'];
+        $destination = '../../storage/images/'.$currentDate.'/'.$name_img;
+
+        if (move_uploaded_file($uploadedFile, $destination)) {
+            return $currentDate.'/'.$name_img;
+        } else {
+            echo "Failed to save image.";
+        }
+
+       
     }
 }
