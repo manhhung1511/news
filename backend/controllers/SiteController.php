@@ -133,13 +133,35 @@ class SiteController extends Controller
                 mkdir($folderPath, 0777, true);
             }
 
+            $name_img = Tools::convertTitle($file['name']['image']).'.webp';
+          
+            $uploadedFile = $file['tmp_name']['image'];
 
-            $extension = pathinfo($file['name']['image'], PATHINFO_EXTENSION);
-            $name_img = Tools::convertTitle($file['name']['image']).'.'.$extension;
-            
-            $destination = '../../storage/images/'.$currentDate.'/'.$name_img;
+            $originalImageInfo = getimagesize($uploadedFile);
 
-            move_uploaded_file($file['tmp_name']['image'], $destination);
+            $originalImageType = $originalImageInfo[2];
+
+            if ($originalImageType === IMAGETYPE_JPEG) {
+                $originalImage = imagecreatefromjpeg($uploadedFile);
+            } elseif ($originalImageType === IMAGETYPE_PNG) {
+                $originalImage = imagecreatefrompng($uploadedFile);
+            } elseif ($originalImageType === IMAGETYPE_GIF) {
+                $originalImage = imagecreatefromgif($uploadedFile);
+            }  elseif ($originalImageType === IMAGETYPE_WEBP) {
+                $originalImage = imagecreatefromwebp($uploadedFile);
+            }
+
+            $croppedWidth = 500;
+            $croppedHeight = 350;
+
+            $newImage = imagecreatetruecolor($croppedWidth, $croppedHeight);
+            imagecopyresampled($newImage, $originalImage, 0, 0, 0, 0, $croppedWidth, $croppedHeight, imagesx($originalImage), imagesy($originalImage));
+
+            $newImagePath = '../../storage/images/'.$currentDate.'/'.$name_img;
+            imagewebp($newImage, $newImagePath, 100);
+
+            imagedestroy($originalImage);
+            imagedestroy($newImage);
 
             $model->image = '/'.$currentDate.'/'.$name_img;
             $model->content = Yii::$app->request->post()['News']['content'];
@@ -195,7 +217,7 @@ class SiteController extends Controller
                 $model->category = $category->name;
                 $model->category_child = self::Slug(Yii::$app->request->post()['category-child']);
                 $file = $_FILES['News'];
-            
+        
                 $baseDirectory = '../../storage/images';
                 $currentDate = date('Y/m/d');
                 $folderPath = $baseDirectory . '/' . $currentDate;
@@ -203,14 +225,43 @@ class SiteController extends Controller
                 if (!is_dir($folderPath)) {
                     mkdir($folderPath, 0777, true);
                 }
-
-                $extension = pathinfo($file['name']['image'], PATHINFO_EXTENSION);
-                $name_img = Tools::convertTitle($file['name']['image']).'.'.$extension;
                 
-                $destination = '../../storage/images/'.$currentDate.'/'.$name_img;
+                $name_img = Tools::convertTitle($file['name']['image']).'.webp';
+        
+
+                if($file['type']['image'] == 'text/plain') {
+
+                    $uploadedFile = $file['tmp_name']['image'];
+
+                    $originalImageInfo = getimagesize($uploadedFile);
+        
+                    $originalImageType = $originalImageInfo[2];
+                    
+                    $originalImageInfo = getimagesize($uploadedFile);
+                    $originalImageType = $originalImageInfo[2];
+                    if ($originalImageType === IMAGETYPE_JPEG) {
+                        $originalImage = imagecreatefromjpeg($uploadedFile);
+                    } elseif ($originalImageType === IMAGETYPE_PNG) {
+                        $originalImage = imagecreatefrompng($uploadedFile);
+                    } elseif ($originalImageType === IMAGETYPE_GIF) {
+                        $originalImage = imagecreatefromgif($uploadedFile);
+                    } elseif ($originalImageType === IMAGETYPE_WEBP) {
+                        $originalImage = imagecreatefromwebp($uploadedFile);
+                    }
     
-                move_uploaded_file($file['tmp_name']['image'], $destination);
-    
+                    $croppedWidth = 500;
+                    $croppedHeight = 350;
+        
+                    $newImage = imagecreatetruecolor($croppedWidth, $croppedHeight);
+                    imagecopyresampled($newImage, $originalImage, 0, 0, 0, 0, $croppedWidth, $croppedHeight, imagesx($originalImage), imagesy($originalImage));
+        
+                    $newImagePath = '../../storage/images/'.$currentDate.'/'.$name_img;
+                    imagewebp($newImage, $newImagePath, 100);
+        
+                    imagedestroy($originalImage);
+                    imagedestroy($newImage);
+                }
+
                 $model->image = '/'.$currentDate.'/'.$name_img;
                 $model->content = Yii::$app->request->post()['News']['content'];
                 $model->author = Yii::$app->request->post()['News']['author'];
@@ -362,3 +413,6 @@ class SiteController extends Controller
        
     }
 }
+
+
+
