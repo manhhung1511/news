@@ -33,7 +33,7 @@ class SiteController extends Controller
                         'allow' => true,
                     ],
                     [
-                        'actions' => ['logout', 'index','create','update-status','update','delete','category-child','upload'],
+                        'actions' => ['logout', 'index','create','update-status','update','delete','category-child','upload','category_update'],
                         'allow' => true,
                         'roles' => ['@'],
                     ],
@@ -208,7 +208,10 @@ class SiteController extends Controller
         $model = News::findOne($id);
         $category_id = $model->category_id;
         $list_category  = Category::find()->where(['status' => 1])->all();
-
+        $category_curr = Category::findOne(['_id' => new ObjectId($category_id)]);
+        $category_child = $model->category_child;
+        $list_curr = $category_curr->category_child;
+        
         if ($model->load(Yii::$app->request->post()) && $model->validate()) {
                 $model->title = Yii::$app->request->post()['News']['title'];
                 $model->slug = self::Slug(Yii::$app->request->post()['News']['title']);
@@ -229,7 +232,7 @@ class SiteController extends Controller
                 $name_img = Tools::convertTitle($file['name']['image']).'.webp';
         
 
-                if($file['type']['image'] == 'text/plain') {
+                if($file['type']['image'] !== 'text/plain') {
 
                     $uploadedFile = $file['tmp_name']['image'];
 
@@ -275,8 +278,14 @@ class SiteController extends Controller
         return $this->render('update', [
             'model' => $model,
             'list_category' => $list_category,
-            'category_id' => $category_id
+            'category_id' => $category_id,
+            'list_curr' => $list_curr,
+            'category_child' => $category_child
         ]);
+    }
+
+    public function actionUpdateCategory() {
+
     }
 
     public function actionDelete($id)
