@@ -22,14 +22,14 @@
 }
 
 .home_section3 {
-    margin-top: 50px;
+    /* margin-top: 50px; */
     background-color: #fff;
     padding: 45px 0 30px 0
 }
 
-.home_section4 {
+/* .home_section4 {
     margin-top: 50px
-}
+} */
 
 .home_section5 {
     margin-top: 10px
@@ -17578,7 +17578,7 @@ a img.aligncenter {
     display: flex;
     -webkit-box-align: center;
     -ms-flex-align: center;
-    align-items: center
+    align-items: center;
 }
 
 .bt_post_widget .jl_m_right:last-child .jl_m_right_w {

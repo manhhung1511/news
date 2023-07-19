@@ -105,7 +105,9 @@ function create_slug3($string)
                             <div class="jl-roww content-inner jl-col3 jl-col-row">
                                 <div class="jl_sec_title">
                                     <h3 class="jl_title_c">
-                                        <span><?= $category[0]->name ?></span>
+                                        <a href="http://frontend-techway1.com/category/benh/<?=$category[0]->slug?>"> 
+                                            <span><?= $category[0]->name ?></span>
+                                        </a>
                                     </h3>
                                 </div>
                                 <?php if(isset($news_category3) && $news_category3): ?>
@@ -142,7 +144,11 @@ function create_slug3($string)
             <div class="row">
                 <div class="col-md-12">
                     <div class="jl_sec_title">
-                        <h3 class="jl_title_c"><?= $category[1]->name ?></h3>
+                        <h3 class="jl_title_c">
+                            <a href="http://frontend-techway1.com/category/benh/<?=$category[1]->slug?>"> 
+                                <span><?= $category[1]->name ?></span>
+                            </a>
+                        </h3>
                     </div>
                     <?php if(isset($news_category5) && $news_category5): ?>
                     <div class="jl_mg_wrapper jl_clear_at">
@@ -192,7 +198,9 @@ function create_slug3($string)
                             <div class="jl-roww content-inner jl-col3 jl-col-row">
                                 <div class="jl_sec_title">
                                     <h3 class="jl_title_c">
-                                        <span><?= $category[2]->name ?></span>
+                                        <a href="http://frontend-techway1.com/category/benh/<?=$category[2]->slug?>"> 
+                                            <span><?= $category[2]->name ?></span>
+                                        </a>
                                     </h3>
                                 </div>
                                 <?php if(isset($news_category2) && $news_category2): ?>

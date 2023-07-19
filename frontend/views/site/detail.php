@@ -201,10 +201,10 @@ if(isset($detail->category_child) && $detail->category_child) {
                       </div>
               <div class="clearfix"></div>
               <div class="related-posts">
-                <h4>Bài viết được xem nhiều</h4>
+                <h4>Dành cho bạn</h4>
                 <div class="single_related_post">
-                  <?php if (isset($views) && $views) : ?>
-                    <?php foreach ($views as $item) : ?>
+                  <?php if (isset($relate) && $relate) : ?>
+                    <?php foreach ($relate as $item) : ?>
                       <div class="jl_m_right jl_m_list jl_m_img">
                         <div class="jl_m_right_w">
                           <div class="jl_m_right_img jl_radus_e">
@@ -240,12 +240,12 @@ if(isset($detail->category_child) && $detail->category_child) {
                     <div class="widget_jl_wrapper">
                       <div class="ettitle">
                         <div class="widget-title">
-                          <h2 class="jl_title_c"></h2>
+                          <h2 class="jl_title_c">Xem nhiều</h2>
                         </div>
                       </div>
                       <div class="bt_post_widget">
-                      <?php if (isset($relate) && $relate) : ?>
-                    <?php foreach ($relate as $item) : ?>
+                      <?php if (isset($views) && $views) : ?>
+                    <?php foreach ($views as $item) : ?>
                         <div class="jl_m_right jl_sm_list jl_ml jl_clear_at">
                           <div class="jl_m_right_w">
                             <div class="jl_m_right_img jl_radus_e">
