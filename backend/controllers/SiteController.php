@@ -151,8 +151,11 @@ class SiteController extends Controller
                 $originalImage = imagecreatefromwebp($uploadedFile);
             }
 
-            $croppedWidth = 700;
-            $croppedHeight = 500;
+            $width = imagesx($originalImage);
+            $height = imagesy($originalImage);
+
+            $croppedWidth = $width/2;
+            $croppedHeight = $height/2;
 
             $newImage = imagecreatetruecolor($croppedWidth, $croppedHeight);
             imagecopyresampled($newImage, $originalImage, 0, 0, 0, 0, $croppedWidth, $croppedHeight, imagesx($originalImage), imagesy($originalImage));
@@ -253,8 +256,11 @@ class SiteController extends Controller
                         $originalImage = imagecreatefromwebp($uploadedFile);
                     }
     
-                    $croppedWidth = 700;
-                    $croppedHeight = 500;
+                    $width = imagesx($originalImage);
+                    $height = imagesy($originalImage);
+        
+                    $croppedWidth = $width/2;
+                    $croppedHeight = $height/2;
         
                     $newImage = imagecreatetruecolor($croppedWidth, $croppedHeight);
                     imagecopyresampled($newImage, $originalImage, 0, 0, 0, 0, $croppedWidth, $croppedHeight, imagesx($originalImage), imagesy($originalImage));
