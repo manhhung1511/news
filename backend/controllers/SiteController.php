@@ -151,7 +151,7 @@ class SiteController extends Controller
                 $originalImage = imagecreatefromwebp($uploadedFile);
             }
 
-            $croppedWidth = 750;
+            $croppedWidth = 700;
             $croppedHeight = 500;
 
             $newImage = imagecreatetruecolor($croppedWidth, $croppedHeight);
@@ -253,7 +253,7 @@ class SiteController extends Controller
                         $originalImage = imagecreatefromwebp($uploadedFile);
                     }
     
-                    $croppedWidth = 750;
+                    $croppedWidth = 700;
                     $croppedHeight = 500;
         
                     $newImage = imagecreatetruecolor($croppedWidth, $croppedHeight);
