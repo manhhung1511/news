@@ -20,7 +20,7 @@ $currentUrl = Url::current([], true);
 <head>
   <meta charset="<?= Yii::$app->charset ?>">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="robots" content="noindex"/>
+  <meta name="robots" content="index"/>
   <meta name="title" content="<?= $this->title ?>">
   <meta name="description" content="<?=isset(Yii::$app->params['description']) ? Yii::$app->params['description'] :''?>">
   <link rel="canonical" href="<?= $currentUrl ?>" />
