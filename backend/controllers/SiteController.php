@@ -133,7 +133,7 @@ class SiteController extends Controller
                 mkdir($folderPath, 0777, true);
             }
 
-            $name_img = Tools::convertTitle($file['name']['image']).'.webp';
+            $name_img = 'thump-'.Tools::convertTitle($file['name']['image']).'.webp';
           
             $uploadedFile = $file['tmp_name']['image'];
 
@@ -236,7 +236,7 @@ class SiteController extends Controller
         
 
                 if($file['type']['image'] !== 'text/plain') {
-                    $name_img = Tools::convertTitle($file['name']['image']).'.webp';
+                    $name_img = 'thump-'.Tools::convertTitle($file['name']['image']).'.webp';
 
                     $uploadedFile = $file['tmp_name']['image'];
 
