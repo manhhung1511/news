@@ -42,8 +42,9 @@ function create_slug3($string)
     $string = strtolower($string);
     return $string;
     }
-    $this->title = 'SongXanh24h';
+    $this->title = 'Songxanh24h - Sức khỏe, dinh dưỡng, làm đẹp, bệnh, thuốc tin cậy';
 
+    $this->registerMetaTag([ 'name' => 'keywords', 'content' => 'Songxanh24h - Sức khỏe, dinh dưỡng, làm đẹp, bệnh, thuốc tin cậy', ]);
 ?>
 
 <style>
