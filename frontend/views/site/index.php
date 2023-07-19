@@ -228,9 +228,9 @@ function create_slug3($string)
                         <div class="jl_grid_wrap_f jl_clear_at g_3col">
                             <div class="jl-roww content-inner jl-col3 jl-col-row">
                                 <div class="jl_sec_title">
-                                    <h3 class="jl_title_c">
+                                    <h1 class="jl_title_c">
                                         <span>Xem nhiều trong tuần</span>
-                                    </h3>
+                                    </h1>
                                 </div>
                                 <?php if(isset($views) && $views): ?>
                                     <?php foreach($views as $key => $value): ?>
@@ -269,7 +269,7 @@ function create_slug3($string)
                         <div class="jl_grid_wrap_f jl_clear_at g_4col">
                             <div class="jl-roww content-inner jl-col3 jl-col-row">
                                 <div class="jl_sec_title">
-                                    <h3 class="jl_title_c"><span>Bài đăng gần đây</span></h3>
+                                    <h1 class="jl_title_c"><span>Bài đăng gần đây</span></h1>
                                 </div>
                                 <?php if(isset($new8) && $new8): ?>
                                     <?php foreach($new8 as $item): ?>
@@ -298,7 +298,7 @@ function create_slug3($string)
         </div>
     </section>
   
-    <section class="home_section7">
+    <!-- <section class="home_section7">
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
@@ -337,5 +337,5 @@ function create_slug3($string)
                 </div>
             </div>
         </div>
-    </section>
+    </section> -->
 </div>
