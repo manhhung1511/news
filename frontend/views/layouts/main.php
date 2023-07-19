@@ -23,6 +23,7 @@ $currentUrl = Url::current([], true);
   <meta name="robots" content="index, follow">
   <meta name="title" content="<?= $this->title ?>">
   <meta name="description" content="<?=isset(Yii::$app->params['description']) ? Yii::$app->params['description'] :'Tận tâm chăm sóc sức khỏe, Thông tin sức khỏe, dinh dưỡng, bệnh, thuốc, chăm sóc làm đẹp tin cậy cho người Việt'?>">
+  <meta name="google-site-verification" content="_ZUx7P0qUS7RGBkYQZ9UfLTX9ADw3Gmy9TbBHO1_GKQ" />
   <link rel="canonical" href="<?= $currentUrl ?>" />
   <?php $this->registerCsrfMetaTags() ?>
   <title><?= Html::encode($this->title) ?></title>
