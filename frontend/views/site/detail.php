@@ -213,7 +213,7 @@ if(isset($detail->category_child) && $detail->category_child) {
                           <div class="jl_m_right_content">
                             <span class="jl_f_cat"><a class="post-category-color-text" style="background: #62ce5c" href="#"><?= $item->category ?></a></span>
                             <h2 class="entry-title short_text">
-                              <a href="<?= Yii::$app->urlManager->createAbsoluteUrl(['site/detail', 'id' => (string)$item->_id, 'slug' => create_slug4($item->title)]) ?>" tabindex="-1"><?= $item->title ?></a>
+                              <a href="<?= Yii::$app->urlManager->createAbsoluteUrl(['site/detail','slug' => create_slug4($item->title)]) ?>" tabindex="-1"><?= $item->title ?></a>
                             </h2>
                             <p class="short_text">
                               <?= Tools::subWord(strip_tags($item->content))?>

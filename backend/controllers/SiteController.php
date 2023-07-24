@@ -209,6 +209,7 @@ class SiteController extends Controller
     public function actionUpdate($id)
     {
         $model = News::findOne($id);
+        $image = $model->image;
         $category_id = $model->category_id;
         $list_category  = Category::find()->where(['status' => 1])->all();
         $category_curr = Category::findOne(['_id' => new ObjectId($category_id)]);
@@ -222,20 +223,18 @@ class SiteController extends Controller
                 $category = Category::findOne(['_id' => new ObjectId(Yii::$app->request->post()['News']['category'])]);
                 $model->category = $category->name;
                 $model->category_child = self::Slug(Yii::$app->request->post()['category-child']);
+                $model->image = $image;
                 $file = $_FILES['News'];
         
-                $baseDirectory = '../../storage/images';
-                $currentDate = date('Y/m/d');
-                $folderPath = $baseDirectory . '/' . $currentDate;
-    
-                if (!is_dir($folderPath)) {
-                    mkdir($folderPath, 0777, true);
-                }
-                
-                $name_img = $file['name']['image'];
-        
-
                 if($file['type']['image'] !== 'text/plain') {
+                    $baseDirectory = '../../storage/images';
+                    $currentDate = date('Y/m/d');
+                    $folderPath = $baseDirectory . '/' . $currentDate;
+        
+                    if (!is_dir($folderPath)) {
+                        mkdir($folderPath, 0777, true);
+                    }
+
                     $name_img = 'thump-'.Tools::convertTitle($file['name']['image']).'.webp';
 
                     $uploadedFile = $file['tmp_name']['image'];
@@ -270,9 +269,9 @@ class SiteController extends Controller
         
                     imagedestroy($originalImage);
                     imagedestroy($newImage);
+                    $model->image = '/'.$currentDate.'/'.$name_img;
                 }
 
-                $model->image = '/'.$currentDate.'/'.$name_img;
                 $model->content = Yii::$app->request->post()['News']['content'];
                 $model->author = Yii::$app->request->post()['News']['author'];
                 $model->updated_at = date('Y-m-d H:i:s');
