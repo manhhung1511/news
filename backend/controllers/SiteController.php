@@ -170,6 +170,7 @@ class SiteController extends Controller
             $model->content = Yii::$app->request->post()['News']['content'];
             $model->author = Yii::$app->request->post()['News']['author'];
             $model->category_child = self::Slug(Yii::$app->request->post()['category-child']);
+            $model->name_category_child = Yii::$app->request->post()['category-child'];
             $model->status = 1;
             $model->created_at = date('Y-m-d H:i:s');
             $model->updated_at = date('Y-m-d H:i:s');
@@ -223,6 +224,7 @@ class SiteController extends Controller
                 $category = Category::findOne(['_id' => new ObjectId(Yii::$app->request->post()['News']['category'])]);
                 $model->category = $category->name;
                 $model->category_child = self::Slug(Yii::$app->request->post()['category-child']);
+                $model->name_category_child = Yii::$app->request->post()['category-child'];
                 $model->image = $image;
                 $file = $_FILES['News'];
         
