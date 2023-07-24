@@ -3,10 +3,9 @@ namespace console\controllers;
 
 use common\models\Category;
 use common\models\News;
-use common\models\User;
+use Google_Client;
 use Yii;
 use yii\console\Controller;
-use yii\web\Request;
 
 class SiteController extends Controller {
     public static function  Slug ($string)
@@ -123,9 +122,70 @@ class SiteController extends Controller {
         file_put_contents($filePath, $data_xml);
     }
 
-    public function actionTest() {
-        $category = Category::find()->where(['push' => 1])->limit(3)->all();
-        var_dump($category);
-    }
+    public function actionIndex1() {
+        $filename = Yii::getAlias('@console').'/file/index1.csv';
+        // //get data
+        // $news = News::find()->all();
+        // $data = [];
+        // foreach($news as $new) {
+        //     $data[] = ['https://songxanh24h.vn/'.$new->slug];
+        // }
+        
+        // $file = fopen($filename, 'w'); 
+
+        // foreach ($data as $row) {
+        //     fputcsv($file, $row); 
+        // }
+        // fclose($file); 
+
+        // Read URLs from CSV file
+            $urls = array();
+            if (($handle = fopen($filename, "r")) !== FALSE) {
+                while (($data = fgetcsv($handle, 1000, ",")) !== FALSE) {
+                    $urls[] = $data[0];
+                }
+                fclose($handle);
+            } 
+
+            $ok_responses = array();
+            $other_responses = array();
+            foreach ($urls as $url) {
+                    
+                $client = new Google_Client();
+                
+                // service_account_file.json is the private key that you created for your service account.
+                $fileKey = Yii::getAlias('@console').'/file/service_account.json';
+                $client->setAuthConfig($fileKey);
+                $client->addScope('https://www.googleapis.com/auth/indexing');
+                
+                // Get a Guzzle HTTP Client
+                $httpClient = $client->authorize();
+                $endpoint = 'https://indexing.googleapis.com/v3/urlNotifications:publish';
+                
+                $content = json_encode(array("url" => $url, "type" => "URL_UPDATED"));
+            
+                $response = $httpClient->post($endpoint, ['body' => $content]);
+                $status_code = $response->getStatusCode();
+            
+                // Store response and URL for checking and printing later
+                $decoded_response = json_decode($response->getBody(), true);
+                if ($status_code == 200) {
+                    $ok_responses[] = array("url" => $url, "response" => $decoded_response);
+                } else {
+                    $other_responses[] = array("url" => $url, "response" => $decoded_response);
+                }
+            }
+            
+            // Display all responses
+            echo "200 OK Responses: <br>";
+            foreach ($ok_responses as $response) {
+                echo "Response: " . json_encode($response['response']) . "<br>";
+            }
+            
+            echo "<br> <br> Other Responses: <br>";
+            foreach ($other_responses as $response) {
+                echo "URL: " . $response['url'] . " | Response: " . json_encode($response['response']) . "<br>";
+            }   
+     }   
 }
 ?>

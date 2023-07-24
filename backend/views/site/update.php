@@ -146,7 +146,6 @@ $list_author = [
 
     const fileInput = document.querySelector('input[type="file"]');
     const value = document.querySelector('input[type="file"]').getAttribute("value");
-
     const myFile = new File([value],value, {
         type: 'text/plain',
         lastModified: new Date(),
@@ -155,7 +154,7 @@ $list_author = [
     const dataTransfer = new DataTransfer();
     dataTransfer.items.add(myFile);
     fileInput.files = dataTransfer.files;
-
+    
     $("#news-category").on('change', function(e) {
         let category_id = $("#news-category option:selected").val();
         $.ajax({
@@ -175,7 +174,6 @@ $list_author = [
                         if(response != '') {
                             let data = JSON.parse(JSON.stringify(response));
                             for (const key in data) {
-                              console.log(1);
                                 $('#category_child').append(`<option class="child" value='${data[key]}'>${data[key]}</option>`);
                                 $('.category_child').removeClass('hidden').addClass('show');
                             }
