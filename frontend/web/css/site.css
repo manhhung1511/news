@@ -29,15 +29,10 @@
 }
 
 #content_nav .menu_moble_slide>li a, #mainmenu>li>a, .header_layout_style3_custom .navigation_wrapper>ul>li>a, .header_magazine_full_screen .navigation_wrapper .jl_main_menu>li>a {
-    font-family: Inter !important;
     font-size: 17px !important;
     font-weight: 600 !important;
     text-transform: capitalize !important;
     letter-spacing: -.025em !important
-}
-
-.jl_count_style_2 .jlsocial-element-right, .jl_social_counter .num-count, .navigation_wrapper #mainmenu.jl_main_menu>li li>a, .social-count-plus span {
-    font-family: Inter !important
 }
 
 #search_block_top #search_query_top, .blog_grid_post_style .jelly_read_more_wrapper a, .blog_large_post_style .large_post_content .jelly_read_more_wrapper a, .blog_list_post_style .jelly_read_more_wrapper a, .date_post_large_display, .format-quote a p.quote_source, .full-slider-wrapper .banner-carousel-item .banner-container .more_btn a, .meta-category-small-builder a, .pagination-more div a, .single-item-slider .banner-carousel-item .banner-container .more_btn a, .tagcloud a, body, p {
@@ -49,10 +44,6 @@
     font-weight: 700 !important;
     text-transform: capitalize !important;
     letter-spacing: -.025em !important
-}
-
-.box-1 .inside h3, .carousel_title, .cfs_from_wrapper .cfs_form_title, .comment-meta .comment-author-name, .date_post_large_display, .detailholder.medium h3, .feature-post-list .feature-post-title, .footer_carousel .meta-comment, .format-aside a p.aside_title, .grid.caption_header h3, .image-post-title, .item_slide_caption h1 a, .jl_cat_img_w .jl_cm_overlay .jl_cm_name, .jl_cpost_title, .jl_hsubt, .jl_recent_post_number .meta-category-small-text a, .jl_recent_post_number>li .jl_list_bg_num, .large_continue_reading span, .postnav a, .sf-top-menu li a, .tickerfloat, .widget-title h2, .woocommerce-page .product-name a, blockquote p, h1, h2, h3, h4, h5, h6, li.woocommerce-mini-cart-item a:not(.remove), ul.tabs li a {
-    font-family: Inter !important
 }
 
 .navigation_wrapper #mainmenu.jl_main_menu>li li>a {
