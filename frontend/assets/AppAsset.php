@@ -15,9 +15,9 @@ class AppAsset extends AssetBundle
         // 'css/site.css',
         'css/site1.min.css',
         'css/site2.min.css',
-        // 'css/fonts/jl_font.ttf',
-        // 'css/fonts/P5sMzZCDf9_T_10ZxCE.woff2',
-        // 'css/fonts/UcC73FwrK3iLTeHuS_fvQtMwCp50KnMa1ZL7.woff2'
+        'css/fonts/jl_font.ttf',
+        'css/fonts/P5sMzZCDf9_T_10ZxCE.woff2',
+        'css/fonts/UcC73FwrK3iLTeHuS_fvQtMwCp50KnMa1ZL7.woff2'
     ];
     public $js = [
         'js/jquery.js'
