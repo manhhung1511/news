@@ -214,7 +214,7 @@ class SiteController extends Controller
         $category_id = $model->category_id;
         $list_category  = Category::find()->where(['status' => 1])->all();
         $category_curr = Category::findOne(['_id' => new ObjectId($category_id)]);
-        $category_child = $model->category_child;
+        $category_child = $model->name_category_child;
         $list_curr = $category_curr->category_child;
         
         if ($model->load(Yii::$app->request->post()) && $model->validate()) {

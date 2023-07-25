@@ -104,7 +104,7 @@ $list_author = [
                   <option value="">Chọn danh mục con</option>  
                   <?php if(isset($list_curr) && $list_curr): ?>  
                   <?php foreach($list_curr as $item): ?>
-                    <option value="<?= create_slug($item) ?>" <?php if ($category_child == create_slug($item)) echo 'selected'; ?>><?= $item ?></option>
+                    <option value="<?= $item ?>" <?php if ($category_child === $item) echo 'selected'; ?>><?= $item ?></option>
                   <?php endforeach; ?>
                   <?php endif; ?>
                 </select>
