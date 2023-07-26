@@ -125,7 +125,7 @@ class SiteController extends Controller {
     public function actionWriteFile() {
         $filename = Yii::getAlias('@console').'/file/index1.csv';
         // //get data
-        $news = News::find()->andWhere(['>=','created_at',date('Y-m-d').' 00:00:00'])->andWhere(['<=','created_at',date('Y-m-d').'23:59:59'])->all();
+        $news = News::find()->all();
         $data = [];
         foreach($news as $new) {
             $data[] = ['https://songxanh24h.vn/'.$new->slug];
