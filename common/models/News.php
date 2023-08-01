@@ -53,7 +53,7 @@ class News extends \yii\mongodb\ActiveRecord
     public function rules()
     {
         return [
-            ['category','image','required', 'message' => 'Vui lòng chọn danh mục'],
+            ['category','required', 'message' => 'Vui lòng chọn danh mục'],
             [['category','title','description','image','status', 'author'], 'safe']
         ];
     }
