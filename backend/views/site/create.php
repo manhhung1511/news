@@ -63,6 +63,7 @@ $list_author = [
             <hr class="mt-2 mb-2">
 
             <?= $form->field($model, 'image')->fileInput() ?>
+                <span style="color:red;" class="image-error"></span>
             <hr class="mt-2 mb-2">
             <?= $form->field($model, 'content')->hiddenInput(['autocomplete' => 'off', 'class' => 'form-control pt-50 pb-50'])->label(false) ?>
             <!-- quill editor -->
@@ -91,11 +92,25 @@ $list_author = [
 <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 <script>
 	$('#news-category').select2();
+
+    const fileInput = document.querySelector('input[type="file"]');
+
     $('.btn-submit-form').click(function() {
+        const selectedFiles = fileInput.files[0];
+        // Check if no file is selected
+        if (selectedFiles.name === 'null') {
+            let a = document.querySelector(".image-error");
+            a.textContent = 'Vui lòng chọn hình ảnh';
+            return;
+        }
         $('#news-form').submit();
     });
 
-    const fileInput = document.querySelector('input[type="file"]');
+    fileInput.addEventListener('change', function() {
+        let a = document.querySelector(".image-error");
+        a.textContent = '';
+    });
+
     const value = document.querySelector('input[type="file"]').getAttribute("value");
 
     const myFile = new File([value],value, {
@@ -106,7 +121,7 @@ $list_author = [
     const dataTransfer = new DataTransfer();
     dataTransfer.items.add(myFile);
     fileInput.files = dataTransfer.files;
-    
+
     $("#news-category").on('change', function(e) {
         let category_id = $("#news-category option:selected").val();
         $.ajax({
