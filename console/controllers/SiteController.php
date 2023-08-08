@@ -9,6 +9,7 @@ use Yii;
 use yii\console\Controller;
 use Google\Service\Blogger;
 use Google\Service\Blogger\Post;
+use MongoDb\BSON\ObjectId;
 
 class SiteController extends Controller {
     public static function  Slug ($string)
