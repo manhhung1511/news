@@ -15,7 +15,11 @@ use frontend\models\PasswordResetRequestForm;
 use frontend\models\ResetPasswordForm;
 use frontend\models\SignupForm;
 use common\helper\Tools;
+use common\models\Auth;
 use yii\data\Pagination;
+use Google\Service\Blogger;
+use Google\Service\Blogger\Post;
+use Google_Client;
 
 /**
  * Site controller
@@ -314,4 +318,79 @@ class SiteController extends Controller
             'model' => $model
         ]);
     }
+
+    public function actionBlogger() {
+        $authToken = 'ya29.a0AfB_byBTjZkxE6wwId2P8zSud27ew3JWyCfLfZ945iV3GZhCEYBGs2WguqoroC9nsUkw-pVz4mpKjd5CDWrrhTVBZFifd29Tus1smgF4aoz3xf0gzsJmfh8bkdWJGBrja9t8iVokYqA3wne410108I734SQNfSYaCgYKAfwSARISFQHsvYlsPHTUanlG3YxnMPtSFWqvYA0166';
+        $blogID = '2638507688997638382';
+       // The data to send to the API
+    $postData = array(
+        'kind' => 'blogger#post',
+        'blog' => array(
+            'id' => $blogID
+        ) ,
+        'title' => 'This is the Post Title - ',
+        'content' => 'Content of the Article goes here'
+    );
+    // Setup cURL
+    $ch = curl_init('https://www.googleapis.com/blogger/v3/blogs/' . $blogID . '/posts/');
+    curl_setopt_array($ch, array(
+        CURLOPT_POST => true,
+        CURLOPT_RETURNTRANSFER => true,
+        CURLOPT_HTTPHEADER => array(
+            'Authorization: Bearer ' . $authToken,
+            'Content-Type: application/json'
+        ) ,
+        CURLOPT_POSTFIELDS => json_encode($postData)
+    ));
+    // Send the request
+    $response = curl_exec($ch);
+    // Check for errors
+    if ($response === false)
+    {
+        die(curl_error($ch));
+    }
+    echo ($response);
+    // Decode the response
+    $responseData = json_decode($response, true);
+    var_dump($responseData);
+    // Print the date from the response
+    // echo $responseData['published'];
+    }
+
+    public function actionTest() {
+        // $code = '4/0Adeu5BU4w2SSvZf0VzPsmaZC61OyOx2eWZqn2b-LBuo9HBSJHkTsyyGfYiTgK8Wd8N1cYg';
+        // $client_id = '850065321278-2mpf2cht8p57ld2gg88jj0jmm8io318t.apps.googleusercontent.com';
+        // $client_secret = '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';
+        // $redirect_uri = 'https://songxanh24h.com';
+        
+        // $url = 'https://oauth2.googleapis.com/token';
+        // $data = array(
+        //     'code' => $code,
+        //     'client_id' => $client_id,
+        //     'client_secret' => $client_secret,
+        //     'redirect_uri' => $redirect_uri,
+        //     'grant_type' => 'authorization_code'
+        // );
+        
+        // $ch = curl_init($url);
+        // curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        // curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($data));
+        
+        // $response = curl_exec($ch);
+        // curl_close($ch);
+        
+        // $tokens = json_decode($response, true);
+        $access_token = 'ya29.a0AfB_byAl1QoAWUsUUVpf6JQci2SoFUmqIbiATkR450l2w9WQiv9F-q7y3l1AnZOqRCjrCVBJHHX55-Q7uAt7hSADOchqxxcOp1iz7nGT20JRWedClt-NDvYwYFWy2zs5qRl2Pty7YPez4Myk4hCGbO_c3zR5aCgYKAcwSARISFQHsvYls9ehxOEThmGodfbwfEStECA0163';
+        $refresh_token = '1//0esIKMJaVIh3UCgYIARAAGA4SNwF-L9IrcfsCtkUiOOrj5dK4ryNpOx_psbXvN9qNtJtqNoDAXLujyWp3_7XnZ3oqB4zOjmoGFkM';
+        
+        $auth = new Auth();
+        $auth->access_token = $access_token;
+        $auth->refresh_token = $refresh_token;
+        $auth->type= "blogger";
+        $auth->status = 1;
+        $auth->created_at = date('Y-m-d');
+        $auth->updated_at = date('Y-m-d');
+        $auth->save();
+    }
 }
+
