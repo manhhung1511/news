@@ -35,6 +35,9 @@ AppAsset::register($this);
       <li class="nav-item">
         <a class="nav-link text-white" href="<?= Yii::$app->urlManager->createAbsoluteUrl(['site/index']) ?>">Tin Tức</a>
       </li>
+      <li class="nav-item">
+        <a class="nav-link text-white" href="<?= Yii::$app->urlManager->createAbsoluteUrl(['site/blogger']) ?>">Blogger</a>
+      </li>
     </ul>
     <span class="navbar-text text-white">
        <?php

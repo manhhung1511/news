@@ -112,7 +112,7 @@ $list_author = [
     });
 
     const value = document.querySelector('input[type="file"]').getAttribute("value");
-
+   
     const myFile = new File([value],value, {
         type: 'text/plain',
         lastModified: new Date(),

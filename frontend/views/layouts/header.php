@@ -76,7 +76,7 @@ function create_slug($string)
                         <ul id="mainmenu" class="jl_main_menu">
                             <?php if (isset($this->params['paramName']) && $this->params['paramName']) : ?>
                                 <?php foreach ($this->params['paramName'] as $item) : ?>
-                                    <?php if (isset($item->category_child[0]) && count($item->category_child) > 1) : ?>
+                                    <?php if (isset($item->category_child[0]) && $item->category_child[0]) : ?>
                                         <li class="menu-item menu-item-has-children">
                                             <a href="<?= Yii::$app->urlManager->createAbsoluteUrl(['site/category','slug'=>create_slug($item['name'])]) ?>">
                                                 <?= $item->name?> <span class="border-menu"></span>

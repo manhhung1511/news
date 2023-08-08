@@ -14,6 +14,11 @@ use yii\web\Response;
 use yii\data\ActiveDataProvider;
 use MongoDb\BSON\ObjectId;
 use common\helper\Tools;
+use common\models\Auth;
+use Google_Client;
+use Google\Service\Blogger;
+use Google\Service\Blogger\Post;
+
 /**
  * Site controller
  */
@@ -29,17 +34,17 @@ class SiteController extends Controller
                 'class' => AccessControl::class,
                 'rules' => [
                     [
-                        'actions' => ['login', 'error','signup'],
+                        'actions' => ['login', 'error', 'signup'],
                         'allow' => true,
                     ],
                     [
-                        'actions' => ['logout', 'index','create','update-status','update','delete','category-child','upload','category_update'],
+                        'actions' => ['logout', 'index', 'create', 'update-status', 'update', 'delete', 'category-child', 'upload', 'category_update', 'blogger', 'send-blog'],
                         'allow' => true,
                         'roles' => ['@'],
                     ],
                 ],
             ],
-            'verbs' => [  
+            'verbs' => [
                 'class' => VerbFilter::class,
                 'actions' => [
                     'logout' => ['post'],
@@ -60,7 +65,8 @@ class SiteController extends Controller
         ];
     }
 
-    public function beforeAction($action) {
+    public function beforeAction($action)
+    {
         $this->enableCsrfValidation = false;
         return parent::beforeAction($action);
     }
@@ -73,12 +79,12 @@ class SiteController extends Controller
     public function actionIndex()
     {
         $keyword = strip_tags(Yii::$app->request->get('keyword'));
-        $status = Yii::$app->request->get('status', '');    
+        $status = Yii::$app->request->get('status', '');
         $filters = [];
 
-        if($status) $filters['status'] = (int) $status;
+        if ($status) $filters['status'] = (int) $status;
         else $filters['status'] = ['$ne' => 3];
-     
+
         $news = new ActiveDataProvider([
             'query' => News::find()
                 ->where($filters)
@@ -108,14 +114,13 @@ class SiteController extends Controller
             'status' => $status
         ]);
     }
-    
+
     public function actionCreate()
     {
         $model = new News();
         $list_category  = Category::find()->where(['status' => 1])->all();
 
-       
-        if($model->load(Yii::$app->request->post()) && $model->validate()) {
+        if ($model->load(Yii::$app->request->post()) && $model->validate()) {
 
             $file = $_FILES['News'];
 
@@ -133,8 +138,8 @@ class SiteController extends Controller
                 mkdir($folderPath, 0777, true);
             }
 
-            $name_img = 'thump-'.Tools::convertTitle($file['name']['image']).'.webp';
-          
+            $name_img = 'thump-' . Tools::convertTitle($file['name']['image']) . '.webp';
+
             $uploadedFile = $file['tmp_name']['image'];
 
             $originalImageInfo = getimagesize($uploadedFile);
@@ -147,26 +152,26 @@ class SiteController extends Controller
                 $originalImage = imagecreatefrompng($uploadedFile);
             } elseif ($originalImageType === IMAGETYPE_GIF) {
                 $originalImage = imagecreatefromgif($uploadedFile);
-            }  elseif ($originalImageType === IMAGETYPE_WEBP) {
+            } elseif ($originalImageType === IMAGETYPE_WEBP) {
                 $originalImage = imagecreatefromwebp($uploadedFile);
             }
 
             $width = imagesx($originalImage);
             $height = imagesy($originalImage);
 
-            $croppedWidth = $width/2;
-            $croppedHeight = $height/2;
+            $croppedWidth = $width / 2;
+            $croppedHeight = $height / 2;
 
             $newImage = imagecreatetruecolor($croppedWidth, $croppedHeight);
             imagecopyresampled($newImage, $originalImage, 0, 0, 0, 0, $croppedWidth, $croppedHeight, imagesx($originalImage), imagesy($originalImage));
 
-            $newImagePath = '../../storage/images/'.$currentDate.'/'.$name_img;
+            $newImagePath = '../../storage/images/' . $currentDate . '/' . $name_img;
             imagewebp($newImage, $newImagePath, 100);
 
             imagedestroy($originalImage);
             imagedestroy($newImage);
 
-            $model->image = '/'.$currentDate.'/'.$name_img;
+            $model->image = '/' . $currentDate . '/' . $name_img;
             $model->content = Yii::$app->request->post()['News']['content'];
             $model->author = Yii::$app->request->post()['News']['author'];
             $model->category_child = self::Slug(Yii::$app->request->post()['category-child']);
@@ -184,7 +189,8 @@ class SiteController extends Controller
         ]);
     }
 
-    public function actionUpdateStatus() {
+    public function actionUpdateStatus()
+    {
         \Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
         if (Yii::$app->request->isAjax && Yii::$app->request->get()) {
             $id = new ObjectId(Yii::$app->request->get()['id']);
@@ -193,7 +199,7 @@ class SiteController extends Controller
             else $status = 2;
             $model->status = $status;
             $model->updated_at = date('Y-m-d H:i:s');
-            if($model->save()) {
+            if ($model->save()) {
                 return [
                     'err_code' => 0,
                     'message' => $status
@@ -216,67 +222,67 @@ class SiteController extends Controller
         $category_curr = Category::findOne(['_id' => new ObjectId($category_id)]);
         $category_child = $model->name_category_child;
         $list_curr = $category_curr->category_child;
-        
+
         if ($model->load(Yii::$app->request->post()) && $model->validate()) {
-                $model->title = Yii::$app->request->post()['News']['title'];
-                $model->slug = self::Slug(Yii::$app->request->post()['News']['title']);
-                $model->category_id = Yii::$app->request->post()['News']['category'];
-                $category = Category::findOne(['_id' => new ObjectId(Yii::$app->request->post()['News']['category'])]);
-                $model->category = $category->name;
-                $model->category_child = self::Slug(Yii::$app->request->post()['category-child']);
-                $model->name_category_child = Yii::$app->request->post()['category-child'];
-                $model->image = $image;
-                $file = $_FILES['News'];
-        
-                if($file['type']['image'] !== 'text/plain') {
-                    $baseDirectory = '../../storage/images';
-                    $currentDate = date('Y/m/d');
-                    $folderPath = $baseDirectory . '/' . $currentDate;
-        
-                    if (!is_dir($folderPath)) {
-                        mkdir($folderPath, 0777, true);
-                    }
+            $model->title = Yii::$app->request->post()['News']['title'];
+            $model->slug = self::Slug(Yii::$app->request->post()['News']['title']);
+            $model->category_id = Yii::$app->request->post()['News']['category'];
+            $category = Category::findOne(['_id' => new ObjectId(Yii::$app->request->post()['News']['category'])]);
+            $model->category = $category->name;
+            $model->category_child = self::Slug(Yii::$app->request->post()['category-child']);
+            $model->name_category_child = Yii::$app->request->post()['category-child'];
+            $model->image = $image;
+            $file = $_FILES['News'];
 
-                    $name_img = 'thump-'.Tools::convertTitle($file['name']['image']).'.webp';
+            if ($file['type']['image'] !== 'text/plain') {
+                $baseDirectory = '../../storage/images';
+                $currentDate = date('Y/m/d');
+                $folderPath = $baseDirectory . '/' . $currentDate;
 
-                    $uploadedFile = $file['tmp_name']['image'];
-
-                    $originalImageInfo = getimagesize($uploadedFile);
-        
-                    $originalImageType = $originalImageInfo[2];
-                    
-                    $originalImageInfo = getimagesize($uploadedFile);
-                    $originalImageType = $originalImageInfo[2];
-                    if ($originalImageType === IMAGETYPE_JPEG) {
-                        $originalImage = imagecreatefromjpeg($uploadedFile);
-                    } elseif ($originalImageType === IMAGETYPE_PNG) {
-                        $originalImage = imagecreatefrompng($uploadedFile);
-                    } elseif ($originalImageType === IMAGETYPE_GIF) {
-                        $originalImage = imagecreatefromgif($uploadedFile);
-                    } elseif ($originalImageType === IMAGETYPE_WEBP) {
-                        $originalImage = imagecreatefromwebp($uploadedFile);
-                    }
-    
-                    $width = imagesx($originalImage);
-                    $height = imagesy($originalImage);
-        
-                    $croppedWidth = $width/2;
-                    $croppedHeight = $height/2;
-        
-                    $newImage = imagecreatetruecolor($croppedWidth, $croppedHeight);
-                    imagecopyresampled($newImage, $originalImage, 0, 0, 0, 0, $croppedWidth, $croppedHeight, imagesx($originalImage), imagesy($originalImage));
-        
-                    $newImagePath = '../../storage/images/'.$currentDate.'/'.$name_img;
-                    imagewebp($newImage, $newImagePath, 100);
-        
-                    imagedestroy($originalImage);
-                    imagedestroy($newImage);
-                    $model->image = '/'.$currentDate.'/'.$name_img;
+                if (!is_dir($folderPath)) {
+                    mkdir($folderPath, 0777, true);
                 }
 
-                $model->content = Yii::$app->request->post()['News']['content'];
-                $model->author = Yii::$app->request->post()['News']['author'];
-                $model->updated_at = date('Y-m-d H:i:s');
+                $name_img = 'thump-' . Tools::convertTitle($file['name']['image']) . '.webp';
+
+                $uploadedFile = $file['tmp_name']['image'];
+
+                $originalImageInfo = getimagesize($uploadedFile);
+
+                $originalImageType = $originalImageInfo[2];
+
+                $originalImageInfo = getimagesize($uploadedFile);
+                $originalImageType = $originalImageInfo[2];
+                if ($originalImageType === IMAGETYPE_JPEG) {
+                    $originalImage = imagecreatefromjpeg($uploadedFile);
+                } elseif ($originalImageType === IMAGETYPE_PNG) {
+                    $originalImage = imagecreatefrompng($uploadedFile);
+                } elseif ($originalImageType === IMAGETYPE_GIF) {
+                    $originalImage = imagecreatefromgif($uploadedFile);
+                } elseif ($originalImageType === IMAGETYPE_WEBP) {
+                    $originalImage = imagecreatefromwebp($uploadedFile);
+                }
+
+                $width = imagesx($originalImage);
+                $height = imagesy($originalImage);
+
+                $croppedWidth = $width / 2;
+                $croppedHeight = $height / 2;
+
+                $newImage = imagecreatetruecolor($croppedWidth, $croppedHeight);
+                imagecopyresampled($newImage, $originalImage, 0, 0, 0, 0, $croppedWidth, $croppedHeight, imagesx($originalImage), imagesy($originalImage));
+
+                $newImagePath = '../../storage/images/' . $currentDate . '/' . $name_img;
+                imagewebp($newImage, $newImagePath, 100);
+
+                imagedestroy($originalImage);
+                imagedestroy($newImage);
+                $model->image = '/' . $currentDate . '/' . $name_img;
+            }
+
+            $model->content = Yii::$app->request->post()['News']['content'];
+            $model->author = Yii::$app->request->post()['News']['author'];
+            $model->updated_at = date('Y-m-d H:i:s');
 
             if ($model->save()) {
                 Yii::$app->session->setFlash('success', Yii::t('app', 'Update successfully'));
@@ -292,25 +298,26 @@ class SiteController extends Controller
         ]);
     }
 
-    public function actionUpdateCategory() {
-
+    public function actionUpdateCategory()
+    {
     }
 
     public function actionDelete($id)
     {
         $model = News::findOne($id);
         $model->delete();
-    
+
         Yii::$app->session->setFlash('success', Yii::t('app', 'Deleted successfully'));
         return $this->redirect(Yii::$app->urlManager->createAbsoluteUrl(['site/index']));
     }
 
-    public function actionCategoryChild() {
-        if(Yii::$app->request->isAjax && Yii::$app->request->post()) {
+    public function actionCategoryChild()
+    {
+        if (Yii::$app->request->isAjax && Yii::$app->request->post()) {
             $category_id = Yii::$app->request->post()['category_id'];
             $category = Category::findOne(['_id' => new ObjectId($category_id)]);
             $category_child = $category->category_child;
-            return json_encode($category_child, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES |JSON_NUMERIC_CHECK|JSON_PRETTY_PRINT);
+            return json_encode($category_child, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES | JSON_NUMERIC_CHECK | JSON_PRETTY_PRINT);
         }
     }
 
@@ -406,7 +413,8 @@ class SiteController extends Controller
         return $string;
     }
 
-    public function actionUpload() {
+    public function actionUpload()
+    {
         $baseDirectory = '../../storage/images';
         $currentDate = date('Y/m/d');
         $folderPath = $baseDirectory . '/' . $currentDate;
@@ -416,20 +424,71 @@ class SiteController extends Controller
         }
         $extension = pathinfo($_FILES['file']['name'], PATHINFO_EXTENSION);
 
-        $name_img = Tools::convertTitle($_FILES['file']['name']).'.'.$extension;
+        $name_img = Tools::convertTitle($_FILES['file']['name']) . '.' . $extension;
 
         $uploadedFile = $_FILES['file']['tmp_name'];
-        $destination = '../../storage/images/'.$currentDate.'/'.$name_img;
+        $destination = '../../storage/images/' . $currentDate . '/' . $name_img;
 
         if (move_uploaded_file($uploadedFile, $destination)) {
-            return $currentDate.'/'.$name_img;
+            return $currentDate . '/' . $name_img;
         } else {
             echo "Failed to save image.";
         }
+    }
 
-       
+    public function actionBlogger()
+    {
+        $model = new News();
+        $list_news = News::find()->where(['status' => 1])->all();
+
+        return $this->render('blogger', [
+            'model' => $model,
+            'list_news' => $list_news
+        ]);
+    }
+
+    public function actionSendBlog()
+    {
+        if (Yii::$app->request->isAjax && Yii::$app->request->post()) {
+            $blog = Yii::$app->request->post()['blogger'];
+            $post = Yii::$app->request->post()['post'];
+            $new = News::findOne(['_id' => new ObjectId($post)]);
+
+            //post
+            $auth = Auth::findOne(['type' => 'blogger']);
+            $refresh_token = $auth->refresh_token;
+            $client_id = '850065321278-2mpf2cht8p57ld2gg88jj0jmm8io318t.apps.googleusercontent.com';
+            $client_secret = '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';
+
+            $url = 'https://oauth2.googleapis.com/token';
+            $data = array(
+                'refresh_token' => $refresh_token,
+                'client_id' => $client_id,
+                'client_secret' => $client_secret,
+                'grant_type' => 'refresh_token'
+            );
+
+            $ch = curl_init($url);
+            curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+            curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($data));
+
+            $response = curl_exec($ch);
+            curl_close($ch);
+
+            $tokens = json_decode($response, true);
+            $access_token = $tokens['access_token'];
+
+            $client = new Google_Client();
+            $client->setAccessToken($access_token);
+            // Create a new post
+            $blogger = new Blogger($client);
+            $post = new Post();
+            $post->setTitle($new->title);
+            $post->setContent($new->content);
+            if($blogger->posts->insert($blog, $post)) {
+                return true;
+            }
+            return false;
+        }
     }
 }
-
-
-
