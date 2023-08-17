@@ -8,22 +8,17 @@ use Yii;
  * This is the model class for collection "banners".
  *
  * @property \MongoDB\BSON\ObjectID|string $_id
- * @property mixed $access_token
- * @property mixed $refresh_token
- * @property mixed $type
+ * @property mixed $n
  * @property mixed $status
- * @property mixed $created_at
- * @property mixed $updated_at
- * 
  */
-class Auth extends \yii\mongodb\ActiveRecord
+class Medicine extends \yii\mongodb\ActiveRecord
 {
     /**
      * {@inheritdoc}
      */
     public static function collectionName()
     {
-        return ['news', 'auth'];
+        return ['news', 'medicines'];
     }
 
     /**
@@ -33,10 +28,16 @@ class Auth extends \yii\mongodb\ActiveRecord
     {
         return [
             '_id',
-            'access_token',
-            'refresh_token',
+            'name',
             'type',
-            'status',
+            'category',
+            'img',
+            'subscribe',
+            'link',
+            'producer',
+            'number',
+            'slug',
+            'content',
             'created_at',
             'updated_at'
         ];
@@ -47,7 +48,7 @@ class Auth extends \yii\mongodb\ActiveRecord
     public function rules()
     {
         return [
-            [['access_token','refresh_token'], 'safe']
+            [['name'], 'safe']
         ];
     }
     /**

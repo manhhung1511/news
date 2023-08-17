@@ -15,11 +15,10 @@ use frontend\models\PasswordResetRequestForm;
 use frontend\models\ResetPasswordForm;
 use frontend\models\SignupForm;
 use common\helper\Tools;
-use common\models\Auth;
+use common\models\Medicine;
 use yii\data\Pagination;
-use Google\Service\Blogger;
-use Google\Service\Blogger\Post;
-use Google_Client;
+use MongoDb\BSON\ObjectId;
+use yii\web\Response;
 
 /**
  * Site controller
@@ -317,6 +316,48 @@ class SiteController extends Controller
         return $this->render('resendVerificationEmail', [
             'model' => $model
         ]);
+    }
+
+    public function actionMedicine() {
+        $model = Medicine::find()->where(['category' => 'Thuốc gây tê, mê']);
+        $pages= new Pagination(['totalCount' => $model->count(),'pageSize' => '20']);
+        $medicine = Medicine::find()->where(['category' => 'Thuốc gây tê, mê'])->orderBy(['created_at' => SORT_ASC])->offset($pages->offset)->limit($pages->limit)->all();
+        // $categories = Me
+        return $this->render('medicine', [
+            'medicine' => $medicine,
+            'pages' => $pages
+        ]);
+    }
+
+    public function actionMedicineDetail() {
+        $slug = Yii::$app->request->get('slug');
+        $detail = Medicine::findOne(['slug' => $slug]);
+        $category = $detail->category;
+        $categories = Medicine::find()->where(['category' => $category])->limit(10)->all();
+
+        return $this->render("medicineDetail",[
+            'detail' => $detail,
+            'categories' => $categories
+        ]);
+    }
+
+    public function actionApiMedicine() {
+        Yii::$app->response->format = Response::FORMAT_JSON;
+
+        $medicine = new Medicine();
+
+        if ($medicine->load(Yii::$app->request->post()) && $medicine->save()) {
+            return [
+                'success' => true,
+                'message' => 'Product created successfully',
+                'data' => $medicine,
+            ];
+        } else {
+            return [
+                'success' => false,
+                'errors' =>'loi roi'
+            ];
+        }
     }
 }
 

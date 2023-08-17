@@ -51,6 +51,7 @@ return [
                 'category/<parent:[\w\-]+>/<slug:[\w\-]+>/' => 'site/category-child',   
                 '<slug:[\w\-]+>' => 'site/detail', 
                 '<slug:[\w\-]+>/page-<page:\w+>/per-page-<per_page:\w+>/' => 'site/category',
+                'thuoc/<slug:[\w\-]+>' => 'site/medicine-detail'
             ], 
         ],
     

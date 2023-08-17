@@ -4,6 +4,7 @@ namespace console\controllers;
 use common\models\Auth;
 use common\models\Category;
 use common\models\News;
+use Exception;
 use Google_Client;
 use Google_Service;
 use Yii;
@@ -194,19 +195,25 @@ class SiteController extends Controller {
         // foreach ($other_responses as $response) {
         //     echo "URL: " . $response['url'] . " | Response: " . json_encode($response['response']) . "<br>";
         // }   
-     }   
+    }
+       
     public function actionTest() {
-        $access_token = 'ya29.a0AfB_byAl1QoAWUsUUVpf6JQci2SoFUmqIbiATkR450l2w9WQiv9F-q7y3l1AnZOqRCjrCVBJHHX55-Q7uAt7hSADOchqxxcOp1iz7nGT20JRWedClt-NDvYwYFWy2zs5qRl2Pty7YPez4Myk4hCGbO_c3zR5aCgYKAcwSARISFQHsvYls9ehxOEThmGodfbwfEStECA0163';
-        $refresh_token = '1//0esIKMJaVIh3UCgYIARAAGA4SNwF-L9IrcfsCtkUiOOrj5dK4ryNpOx_psbXvN9qNtJtqNoDAXLujyWp3_7XnZ3oqB4zOjmoGFkM';
-        
-        $auth = new Auth();
-        $auth->access_token = $access_token;
-        $auth->refresh_token = $refresh_token;
-        $auth->type= "blogger";
-        $auth->status = 1;
-        $auth->created_at = date('Y-m-d');
-        $auth->updated_at = date('Y-m-d');
-        $auth->save();
+        $url = 'https://www.thuocbietduoc.com.vn/nhom-thuoc-1-0/thuoc-gay-te-me.aspx';
+        try {
+            $content = @file_get_contents($url);
+        } catch (Exception $exc) {
+            
+        }
+        $dom = new \DOMDocument();
+        @$dom->loadHTML(mb_convert_encoding($content, 'HTML-ENTITIES', 'UTF-8'));
+        $xpath = new \DOMXpath($dom);
+
+        $node = $xpath->query('//tbody/tr/td/h2/a');
+        var_dump($node);
+        foreach($node as $value) {
+            $data = $value->nodeValue;
+            var_dump($data);
+        }
     }
 }
 ?>
