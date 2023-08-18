@@ -254,7 +254,7 @@ img {
         });
     });
 
-    $(`.active-64deed820bd170c7ec638475`).addClass('active');
+    $(`.active-64df47bcb9a34a698e02c637`).addClass('active');
 
     $(document).on('click', '.page-link', function (e) {
        e.preventDefault();
