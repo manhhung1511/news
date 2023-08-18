@@ -19,7 +19,7 @@ use common\models\Medicine;
 use yii\data\Pagination;
 use MongoDb\BSON\ObjectId;
 use yii\web\Response;
-
+use yii\helpers\Json;
 /**
  * Site controller
  */
@@ -343,21 +343,27 @@ class SiteController extends Controller
 
     public function actionApiMedicine() {
         Yii::$app->response->format = Response::FORMAT_JSON;
-
+   
         $medicine = new Medicine();
-
-        if ($medicine->load(Yii::$app->request->post()) && $medicine->save()) {
-            return [
-                'success' => true,
-                'message' => 'Product created successfully',
-                'data' => $medicine,
-            ];
+        $medicine->name = Yii::$app->request->post()['name'];
+        $medicine->img = Yii::$app->request->post()['img'];
+        $medicine->subscribe = Yii::$app->request->post()['subscribe'];
+        $medicine->number = Yii::$app->request->post()['number'];
+        $medicine->type = Yii::$app->request->post()['type'];
+        $medicine->link = Yii::$app->request->post()['link'];
+        $medicine->slug = Yii::$app->request->post()['slug'];
+        $medicine->producer = Yii::$app->request->post()['producer'];
+        $medicine->category = Yii::$app->request->post()['category'];
+        $medicine->content = Yii::$app->request->post()['content'];
+        $medicine->created_at =date('Y-m-d H:i:s');
+        $medicine->updated_at =date('Y-m-d H:i:s');
+        
+        if($medicine->save()) {
+            return true;
         } else {
-            return [
-                'success' => false,
-                'errors' =>'loi roi'
-            ];
+            return false;
         }
+        
     }
 }
 
