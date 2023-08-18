@@ -15,6 +15,7 @@ use frontend\models\PasswordResetRequestForm;
 use frontend\models\ResetPasswordForm;
 use frontend\models\SignupForm;
 use common\helper\Tools;
+use common\models\CategoryMedicine;
 use common\models\Medicine;
 use yii\data\Pagination;
 use MongoDb\BSON\ObjectId;
@@ -321,11 +322,20 @@ class SiteController extends Controller
     public function actionMedicine() {
         $model = Medicine::find()->where(['category' => 'Thuốc gây tê, mê']);
         $pages= new Pagination(['totalCount' => $model->count(),'pageSize' => '20']);
-        $medicine = Medicine::find()->where(['category' => 'Thuốc gây tê, mê'])->orderBy(['created_at' => SORT_ASC])->offset($pages->offset)->limit($pages->limit)->all();
-        // $categories = Me
+        $medicine = Medicine::find()->where(['category' => 'Thuốc gây tê, mê'])->offset($pages->offset)->limit($pages->limit)->all();
+        $categories = CategoryMedicine::find()->all();
+        $name = 'Thuốc gây mê, tê';
+        if(Yii::$app->request->isAjax) {
+            return $this->renderAjax('_data', [
+                'medicine' => $medicine,
+                'pages' => $pages,
+                'name' => $name
+            ]);
+        }
         return $this->render('medicine', [
             'medicine' => $medicine,
-            'pages' => $pages
+            'pages' => $pages,
+            'categories' => $categories
         ]);
     }
 
@@ -341,6 +351,31 @@ class SiteController extends Controller
         ]);
     }
 
+    public function actionChangeMedicine() {
+        if(Yii::$app->request->post()) {
+            $id = Yii::$app->request->post()['id'];
+        } else {
+            $id = Yii::$app->request->get()['id'];
+        }
+        $category = CategoryMedicine::findOne(['_id' => new ObjectId($id)]);
+        $model = Medicine::find()->where(['category' => $category->name]);
+        $pages= new Pagination(['totalCount' => $model->count(),'pageSize' => '20']);
+        $medicine = Medicine::find()->where(['category' => $category->name])->offset($pages->offset)->limit($pages->limit)->all();
+        if(Yii::$app->request->isAjax) {
+            return $this->renderAjax('_data', [
+                'medicine' => $medicine,
+                'pages' => $pages,
+                'name' => $category->name
+            ]);
+        }
+        return $this->renderAjax('medicine-ajax',[
+            'medicine' => $medicine,
+            'pages' => $pages,
+            'name' => $category->name
+		]);
+    }
+
+    //api update from nodejs
     public function actionApiMedicine() {
         Yii::$app->response->format = Response::FORMAT_JSON;
    
@@ -363,7 +398,24 @@ class SiteController extends Controller
         } else {
             return false;
         }
-        
     }
+
+    //api update from nodejs
+    public function actionApiCategoryMedicine() {
+        Yii::$app->response->format = Response::FORMAT_JSON;
+   
+        $medicine = new CategoryMedicine();
+        $medicine->name = Yii::$app->request->post()['name'];
+        $medicine->slug = Yii::$app->request->post()['slug'];
+        $medicine->created_at =date('Y-m-d H:i:s');
+        $medicine->updated_at =date('Y-m-d H:i:s');
+        
+        if($medicine->save()) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
 }
 
