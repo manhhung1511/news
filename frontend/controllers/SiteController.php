@@ -344,7 +344,7 @@ class SiteController extends Controller
         $slug = Yii::$app->request->get('slug');
         $detail = Medicine::findOne(['slug' => $slug]);
         $category = $detail->category;
-        $categories = Medicine::find()->where(['category' => $category])->limit(10)->all();
+        $categories = Medicine::find()->where(['category' => $category])->orderBy(['created_at' => SORT_ASC])->limit(10)->all();
        
         Yii::$app->params['description'] = $detail->name;
 
