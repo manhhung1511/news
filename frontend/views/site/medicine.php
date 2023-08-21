@@ -181,6 +181,9 @@ function create_slug4($string)
     .options_dark_skin .card {
         background-color: #1111;
     }
+    #mySelect {
+        padding: 6px;
+    }
 </style>
 
 <div class="container">
@@ -218,7 +221,7 @@ function create_slug4($string)
                                         <div class="media">
                                             <div class="msg-img">
                                                 <a href="<?= Yii::$app->urlManager->createAbsoluteUrl(['site/medicine-detail', 'slug' => create_slug4($item->name)]) ?>">
-                                                    <img src="<?= $item->img ?>" alt="<?= $item->name ?>">
+                                                    <img src="https://storage.songxanh24h.vn/images/thuoc/'<?= $item->img ?>" alt="<?= $item->name ?>">
                                                 </a>
                                             </div>
                                             <div class="media-body">

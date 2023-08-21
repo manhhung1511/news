@@ -3,6 +3,7 @@ namespace console\controllers;
 
 use common\models\Auth;
 use common\models\Category;
+use common\models\Medicine;
 use common\models\News;
 use Exception;
 use Google_Client;
@@ -214,6 +215,10 @@ class SiteController extends Controller {
             $data = $value->nodeValue;
             var_dump($data);
         }
+    }
+
+    public function actionTest1() {
+        Medicine::deleteAll();
     }
 }
 ?>

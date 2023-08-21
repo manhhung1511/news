@@ -62,7 +62,7 @@ function create_slug2($string)
                                             <span class="jl_post_type_icon"><i class="jli-quote-2"></i></span>
                                         </div>
                                         <div class="text-box">
-                                            <span class="jl_f_cat"><a class="post-category-color-text" style="background: #4dcf8f" href="#"><?= $news[count($news) - 1]->name_category_child ?: $news[count($news) - 1]->category  ?></a></span>
+                                            <h1 class="jl_f_cat"><a class="post-category-color-text" style="background: #4dcf8f" href="#"><?= $news[count($news) - 1]->name_category_child ?: $news[count($news) - 1]->category  ?></a></h1>
                                             <h1 class="entry-title short_text">
                                                 <a href="<?= Yii::$app->urlManager->createAbsoluteUrl(['site/detail','slug' => create_slug2($news[count($news) - 1]->title)]) ?>" tabindex="-1"><?= $news[count($news) - 1]->title ?></a>
                                             </h1>
