@@ -65,7 +65,7 @@ function create_slug5($string)
                                 <div class="post_content_w">
                                     <div class="post_content jl_content">
                                         <?php foreach ($detail->content as $content) : ?>
-                                            <img src="https://storage.songxanh24h.vn/images/thuoc/'<?= $detail->img ?>" />
+                                            <img src="https://storage.songxanh24h.vn/images/thuoc/<?= $detail->img ?>" />
                                             <div class="mt-3">
                                                 <?= isset($content['value1']) && $content['value1'] ? $content['value1'] : '' ?>
                                             </div>
