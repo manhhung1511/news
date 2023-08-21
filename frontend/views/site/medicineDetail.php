@@ -1,5 +1,5 @@
 <?php
-
+$this->title = $detail->name.'- Thuốc biệt dược';
 function create_slug5($string)
 { 
   $search = array(
@@ -123,11 +123,6 @@ function create_slug5($string)
                                         <?php endforeach; ?>
                                     </div>
                                 </div>
-
-
-
-
-
                                 <div class="clearfix"></div>
                             </div>
                         </div>

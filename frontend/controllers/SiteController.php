@@ -134,6 +134,8 @@ class SiteController extends Controller
     {
         $slug = Yii::$app->request->get('slug');
         $category = Category::findOne(['slug' => $slug]);
+        $name_category = $category->name;
+        Yii::$app->params['category'] = $name_category .' Songxanh24h - Tận tâm chăm sóc sức khỏe, Thông tin sức khỏe, dinh dưỡng, hỗ trợ tư vấn điều trị bệnh, thông tin thuốc, chăm sóc làm đẹp tin cậy cho người Việt';
         $id = (string) $category->_id;
         $model = News::find()->where(['category_id' => $id, 'status' => 1, 'category_child' => '']);
     
@@ -146,22 +148,24 @@ class SiteController extends Controller
     
         return $this->render('category', [
             'news' => $news,
-            'pages' => $pages
+            'pages' => $pages,
+            'name_category' => $name_category
         ]);
     }
 
     public function actionCategoryChild() {
         $slug = Yii::$app->request->get('slug');
-
+        $category = Category::findOne(['slug' => $slug]);
+        $name_category = $category->name;
+        Yii::$app->params['category'] = $name_category .' Songxanh24h - Tận tâm chăm sóc sức khỏe, Thông tin sức khỏe, dinh dưỡng, hỗ trợ tư vấn điều trị bệnh, thông tin thuốc, chăm sóc làm đẹp tin cậy cho người Việt';
         $model = News::find()->where(['category_child' => $slug, 'status' => 1]);
-        
         $pages= new Pagination(['totalCount' => $model->count(),'pageSize' => '6']);
-
         $news = News::find()->where(['category_child' => $slug, 'status'=> 1])->orderBy(['created_at' => SORT_ASC])->offset($pages->offset)->limit($pages->limit)->all();
     
         return $this->render('category', [
             'news' => $news,
-            'pages' => $pages
+            'pages' => $pages,
+            'name_category' => $name_category
         ]);
     }
 
@@ -320,22 +324,19 @@ class SiteController extends Controller
     }
 
     public function actionMedicine() {
-        $model = Medicine::find()->where(['category' => 'Thuốc gây tê, mê']);
+        $slug = Yii::$app->request->get('slug');
+        $category_slug = CategoryMedicine::findOne(['slug' => $slug]);
+        $category_name = $category_slug->name;
+        Yii::$app->params['category'] = $category_name .' Songxanh24h - Tận tâm chăm sóc sức khỏe, Thông tin sức khỏe, dinh dưỡng, hỗ trợ tư vấn điều trị bệnh, thông tin thuốc, chăm sóc làm đẹp tin cậy cho người Việt';
+        $model = Medicine::find()->where(['category' => $category_name]);
         $pages= new Pagination(['totalCount' => $model->count(),'pageSize' => '20']);
-        $medicine = Medicine::find()->where(['category' => 'Thuốc gây tê, mê'])->offset($pages->offset)->limit($pages->limit)->all();
+        $medicine = Medicine::find()->where(['category' => $category_name])->offset($pages->offset)->limit($pages->limit)->all();
         $categories = CategoryMedicine::find()->all();
-        $name = 'Thuốc gây mê, tê';
-        if(Yii::$app->request->isAjax) {
-            return $this->renderAjax('_data', [
-                'medicine' => $medicine,
-                'pages' => $pages,
-                'name' => $name
-            ]);
-        }
         return $this->render('medicine', [
             'medicine' => $medicine,
             'pages' => $pages,
-            'categories' => $categories
+            'categories' => $categories,
+            'name' => $category_name
         ]);
     }
 
@@ -344,35 +345,13 @@ class SiteController extends Controller
         $detail = Medicine::findOne(['slug' => $slug]);
         $category = $detail->category;
         $categories = Medicine::find()->where(['category' => $category])->limit(10)->all();
+       
+        Yii::$app->params['description'] = $detail->name;
 
         return $this->render("medicineDetail",[
             'detail' => $detail,
             'categories' => $categories
         ]);
-    }
-
-    public function actionChangeMedicine() {
-        if(Yii::$app->request->post()) {
-            $id = Yii::$app->request->post()['id'];
-        } else {
-            $id = Yii::$app->request->get()['id'];
-        }
-        $category = CategoryMedicine::findOne(['_id' => new ObjectId($id)]);
-        $model = Medicine::find()->where(['category' => $category->name]);
-        $pages= new Pagination(['totalCount' => $model->count(),'pageSize' => '20']);
-        $medicine = Medicine::find()->where(['category' => $category->name])->offset($pages->offset)->limit($pages->limit)->all();
-        if(Yii::$app->request->isAjax) {
-            return $this->renderAjax('_data', [
-                'medicine' => $medicine,
-                'pages' => $pages,
-                'name' => $category->name
-            ]);
-        }
-        return $this->renderAjax('medicine-ajax',[
-            'medicine' => $medicine,
-            'pages' => $pages,
-            'name' => $category->name
-		]);
     }
 
     //api update from nodejs

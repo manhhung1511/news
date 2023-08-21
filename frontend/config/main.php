@@ -52,7 +52,7 @@ return [
                 '<slug:[\w\-]+>' => 'site/detail', 
                 '<slug:[\w\-]+>/page-<page:\w+>/per-page-<per_page:\w+>/' => 'site/category',
                 'thuoc/<slug:[\w\-]+>' => 'site/medicine-detail',
-                'nhom-thuoc/thuoc' => 'site/medicine'
+                'nhom-thuoc/thuoc/<slug:[\w\-]+>' => 'site/medicine'
             ], 
         ],
     

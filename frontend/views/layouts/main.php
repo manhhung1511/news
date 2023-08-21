@@ -22,7 +22,7 @@ $currentUrl = Url::current([], true);
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="robots" content="index, follow">
   <meta name="title" content="<?= $this->title ?>">
-  <meta name="description" content="<?=isset(Yii::$app->params['description']) ? Yii::$app->params['description'] :'Tận tâm chăm sóc sức khỏe, Thông tin sức khỏe, dinh dưỡng, hỗ trợ tư vấn điều trị bệnh, thông tin thuốc, chăm sóc làm đẹp tin cậy cho người Việt'?>">
+  <meta name="description" content="<?=isset(Yii::$app->params['description']) ? Yii::$app->params['description'] :(isset(Yii::$app->params['category']) ? Yii::$app->params['category'] :'Tận tâm chăm sóc sức khỏe, Thông tin sức khỏe, dinh dưỡng, hỗ trợ tư vấn điều trị bệnh, thông tin thuốc, chăm sóc làm đẹp tin cậy cho người Việt')?>">
   <meta name="google-site-verification" content="_ZUx7P0qUS7RGBkYQZ9UfLTX9ADw3Gmy9TbBHO1_GKQ" />
   <link rel="canonical" href="<?= $currentUrl ?>" />
   <?php $this->registerCsrfMetaTags() ?>

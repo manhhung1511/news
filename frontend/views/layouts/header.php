@@ -101,7 +101,7 @@ function create_slug($string)
                                 <?php endforeach; ?>
                             <?php endif; ?>
                             <li class="menu-item current-menu-item current_page_item">
-                                <a href="<?= Yii::$app->urlManager->createAbsoluteUrl(['site/medicine']) ?>">Thuốc<span class="border-menu"></span></a>
+                                <a href="<?= Yii::$app->urlManager->createAbsoluteUrl(['site/medicine', 'slug'=>create_slug("Thuốc gây tê, mê")]) ?>">Thuốc<span class="border-menu"></span></a>
                             </li>
                         </ul>
                     </div>
