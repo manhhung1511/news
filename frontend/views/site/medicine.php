@@ -184,12 +184,15 @@ function create_slug4($string)
     #mySelect {
         padding: 6px;
     }
+    .hidden {
+        display: none;
+    }
 </style>
 
 <div class="container">
     <div class="row">
         <div class="col-md-4">
-            <select id="mySelect" class="form-select mt-4" aria-label="Default select example">
+            <select id="mySelect" class="form-select mt-4 hidden" aria-label="Default select example">
                 <option>Nhóm thuốc</option>
                 <?php foreach ($categories as $item) : ?>
                         <option value="<?= Yii::$app->urlManager->createAbsoluteUrl(['site/medicine', 'slug' => create_slug4($item->name)]) ?>">
@@ -275,10 +278,9 @@ function create_slug4($string)
 
 
 <script>
-    $('.form-select').css("display", "none");
     if (window.innerWidth < 768) {
-        $('.list-group').css("display", "none");
-        $('.form-select').css("display", "block");
+        $('.list-group').addClass("hidden");
+        $('.form-select').removeClass("hidden");
     }
     $('.list-group-item').click(function() {
         let id = $(this).attr('data-id');
