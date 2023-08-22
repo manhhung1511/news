@@ -65,7 +65,7 @@ function create_slug5($string)
                                 <div class="post_content_w">
                                     <div class="post_content jl_content">
                                         <?php foreach ($detail->content as $content) : ?>
-                                            <img src="https://storage.songxanh24h.vn/images/thuoc/<?= $detail->img ?>" />
+                                            <img src="https://storage.songxanh24h.vn/images/thuoc2/<?= $detail->img ?>" />
                                             <div class="mt-3">
                                                 <?= isset($content['value1']) && $content['value1'] ? $content['value1'] : '' ?>
                                             </div>
@@ -146,7 +146,7 @@ function create_slug5($string)
                                         <div class="jl_m_right jl_sm_list jl_ml jl_clear_at">
                                             <div class="jl_m_right_w">
                                                 <div class="jl_m_right_img jl_radus_e">
-                                                    <a href="<?= Yii::$app->urlManager->createAbsoluteUrl(['site/medicine-detail', 'slug' => $item->slug ]) ?>"><img width="120" height="120" src="https://storage.songxanh24h.vn/images/thuoc/<?= $item->img ?>" class="attachment-sprasa_small_feature size-sprasa_small_feature wp-post-image" alt="<?= $item->name ?>" loading="lazy" /></a>
+                                                    <a href="<?= Yii::$app->urlManager->createAbsoluteUrl(['site/medicine-detail', 'slug' => $item->slug ]) ?>"><img width="120" height="120" src="https://storage.songxanh24h.vn/images/thuoc2/<?= $item->img ?>" class="attachment-sprasa_small_feature size-sprasa_small_feature wp-post-image" alt="<?= $item->name ?>" loading="lazy" /></a>
                                                 </div>
                                                 <div class="jl_m_right_content">
                                                     <h2 class="entry-title">
