@@ -143,7 +143,7 @@ class SiteController extends Controller
             return $this->render('empty');
         }
         $pages= new Pagination(['totalCount' => $model->count(),'pageSize' => '6']);
-        $views = News::find()->where(['status' => 1])->limit(4)->all();
+        $views = News::find()->where(['status' => 1])->andWhere(['>','view', 1])->orderBy(['created_at' => SORT_ASC])->limit(4)->all();
         $news = News::find()->where(['category_id' => $id, 'status'=> 1, 'category_child' => ''])->orderBy(['created_at' => SORT_ASC])->offset($pages->offset)->limit($pages->limit)->all();
     
         return $this->render('category', [
@@ -162,10 +162,12 @@ class SiteController extends Controller
         $model = News::find()->where(['category_child' => $slug, 'status' => 1]);
         $pages= new Pagination(['totalCount' => $model->count(),'pageSize' => '6']);
         $news = News::find()->where(['category_child' => $slug, 'status'=> 1])->orderBy(['created_at' => SORT_ASC])->offset($pages->offset)->limit($pages->limit)->all();
-    
+        $views = News::find()->where(['status' => 1])->andWhere(['>','view', 1])->orderBy(['created_at' => SORT_ASC])->limit(4)->all();
+
         return $this->render('category', [
             'news' => $news,
             'pages' => $pages,
+            'views' => $views,
             'name_category' => $name_category
         ]);
     }
