@@ -281,6 +281,7 @@ function create_slug4($string)
     if (window.innerWidth < 768) {
         $('.list-group').addClass("hidden");
         $('.form-select').removeClass("hidden");
+        $('.card-title').css("font-size", "25px");
     }
     $('.list-group-item').click(function() {
         let id = $(this).attr('data-id');
