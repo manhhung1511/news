@@ -143,12 +143,13 @@ class SiteController extends Controller
             return $this->render('empty');
         }
         $pages= new Pagination(['totalCount' => $model->count(),'pageSize' => '6']);
-
+        $views = News::find()->where(['status' => 1])->andWhere(['>=','view', 1])->orderBy(['created_at' => SORT_ASC])->limit(4)->all();
         $news = News::find()->where(['category_id' => $id, 'status'=> 1, 'category_child' => ''])->orderBy(['created_at' => SORT_ASC])->offset($pages->offset)->limit($pages->limit)->all();
     
         return $this->render('category', [
             'news' => $news,
             'pages' => $pages,
+            'views' => $views,
             'name_category' => $name_category
         ]);
     }
@@ -188,7 +189,7 @@ class SiteController extends Controller
         Yii::$app->params['description'] = $detail->title .' '. Tools::subWord(strip_tags($detail->content));
 
         //random
-        $random = News::find()->orderBy(['rand()' => 1])
+        $random = News::find()->orderBy(['created_at' => SORT_ASC])
                               ->limit(2)
                                ->all();
 

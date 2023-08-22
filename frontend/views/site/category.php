@@ -84,7 +84,7 @@ function create_slug2($string)
                             <div class="jl-roww content-inner jl-col3 jl-col-row" style="border-bottom: 0px;">
                                 <div class="jl_sec_title">
                                     <h2 class="jl_title_c">
-                                        <span>Bài đăng gần đây</span>
+                                        <span>Dành riêng cho bạn</span>
                                     </h2>
                                 </div>
                                 <?php if (isset($news) && $news) : ?>
@@ -112,8 +112,46 @@ function create_slug2($string)
                             </div>
                         </div>
                     </div>
-                    <!-- pagination -->
-                    <div class="d-flex justify-content-around mt-4 jellywp_pagination">
+                </div>
+            </div>
+        </div>
+        <section class="home_section5">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div id="blockid_84d79c5" class="block-section jl-main-block">
+                        <div class="jl_grid_wrap_f jl_clear_at g_4col">
+                            <div class="jl-roww content-inner jl-col3 jl-col-row">
+                                <div class="jl_sec_title">
+                                    <h3 class="jl_title_c"><span>Bài được quan tâm</span></h3>
+                                </div>
+                                <?php if(isset($views) && $views): ?>
+                                    <?php foreach($views as $item): ?>
+                                        <div class="jl-grid-cols">
+                                            <div class="p-wraper post-2691">
+                                                <div class="jl_grid_w">
+                                                    <div class="jl_img_box jl_radus_e">
+                                                        <a href="<?= Yii::$app->urlManager->createAbsoluteUrl(['site/detail', 'slug'=>create_slug2($item->title)]) ?>"><img width="500" height="350" src="<?= str_contains($item->image, 'http') ? $item->image : 'https://storage.songxanh24h.vn/images'.$item->image ?>" class="attachment-sprasa_slider_grid_small size-sprasa_slider_grid_small wp-post-image mobile-img" alt="<?= $item->title ?>" title="<?= $item->title ?>" loading="lazy" /></a>
+                                                    </div>
+                                                    <div class="text-box">
+                                                        <h3>
+                                                            <a href="<?= Yii::$app->urlManager->createAbsoluteUrl(['site/detail', 'slug'=>create_slug2($item->title)]) ?>"><?= Tools::subTitle( $item->title ) ?></a>
+                                                        </h3>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    <?php endforeach; ?>
+                                <?php endif; ?>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </section>
+      <!-- pagination -->
+      <div class="d-flex justify-content-around mt-4 jellywp_pagination">
                         <?php
                         echo LinkPager::widget([
                             'pagination' => $pages,
@@ -123,10 +161,6 @@ function create_slug2($string)
                         ])
                         ?>
                     </div>
-                </div>
-
-            </div>
-        </div>
     </div>
 
 <?php endif; ?>
