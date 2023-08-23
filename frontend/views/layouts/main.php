@@ -103,7 +103,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
               <div class="widget_jl_wrapper">
                 <div class="ettitle">
                   <div class="widget-title">
-                    <h2 class="jl_title_c">Được xem nhiều</h2>
+                    <h3 class="jl_title_c">Được xem nhiều</h3>
                   </div>
                 </div>
                 <div class="bt_post_widget">
@@ -124,11 +124,11 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                         /></a>
                       </div>
                       <div class="jl_m_right_content">
-                        <h2 class="entry-title">
+                        <h3 class="entry-title">
                           <a href="<?= Yii::$app->urlManager->createAbsoluteUrl(['site/detail', 'slug'=>create_slug($item->title)]) ?>" tabindex="-1"
                             ><?= Tools::subTitle($item->title) ?></a
                           >
-                        </h2>
+                        </h3>
                       </div>
                     </div>
                   </div>
@@ -183,7 +183,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
               <div class="widget_jl_wrapper">
                 <div class="ettitle">
                   <div class="widget-title">
-                    <h2 class="jl_title_c">Liên hệ với chúng tôi</h2>
+                    <h3 class="jl_title_c">Liên hệ với chúng tôi</h3>
                   </div>
                 </div>
                 <div class="social_icons_widget">
