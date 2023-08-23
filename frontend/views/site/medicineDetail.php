@@ -1,5 +1,5 @@
 <?php
-$this->title = $detail->name.'- Thuốc biệt dược';
+$this->title = 'Thuốc '.$detail->name.'Thần phần, liều lượng, Cách dùng, Songxanh24h.vn - Chuyên trang sức khỏe, dinh dưỡng, làm đẹp';
 function create_slug5($string)
 { 
   $search = array(

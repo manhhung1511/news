@@ -65,9 +65,9 @@ function create_slug3($string)
                                     <a href="<?= Yii::$app->urlManager->createAbsoluteUrl(['site/detail', 'slug'=>create_slug3($news[count($news) - 1 ]->title)]) ?>" class="jl_f_img_link"></a>
                                     <span class="jl_post_type_icon"><i class="jli-gallery"></i></span>
                                     <div class="text-box">
-                                        <h3 class="short_text_white">
+                                        <h4 class="short_text_white">
                                             <a href="<?= Yii::$app->urlManager->createAbsoluteUrl(['site/detail', 'slug'=>create_slug3($news[count($news) - 1 ]->title)]) ?>"><?= $news[count($news) - 1 ]->title ?></a>
-                                        </h3>
+                                        </h4>
                                     </div>
                                 </div>
                             </div>
@@ -82,9 +82,9 @@ function create_slug3($string)
                                         <a href="<?= Yii::$app->urlManager->createAbsoluteUrl(['site/detail','slug'=>create_slug3($value->title)]) ?>"><img width="120" height="120" src="<?= str_contains($value->image, 'http') ? $value->image : 'https://storage.songxanh24h.vn/images'.$value->image ?>" class="attachment-sprasa_small_feature size-sprasa_small_feature wp-post-image" alt="<?= $value->title ?>" title="<?= $value->title ?>" loading="lazy" /></a>
                                     </div>
                                     <div class="jl_m_right_content">
-                                        <h3 class="entry-title">
+                                        <h4 class="entry-title">
                                             <a href="<?= Yii::$app->urlManager->createAbsoluteUrl(['site/detail','slug'=>create_slug3($value->title)]) ?>"><?= Tools::subTitle($value->title) ?></a>
-                                        </h3>
+                                        </h4>
                                     </div>
                                 </div>
                             </div>
@@ -120,9 +120,9 @@ function create_slug3($string)
                                                     <span class="jl_post_type_icon"><i class="jli-gallery"></i></span><img width="500" height="350" src="<?= str_contains($value->image, 'http') ? $value->image : 'https://storage.songxanh24h.vn/images'.$value->image ?>" class="attachment-sprasa_slider_grid_small size-sprasa_slider_grid_small wp-post-image" alt="<?= $value->title ?>" title="<?= $value->title ?>" loading="lazy" /></a>
                                             </div>
                                             <div class="text-box">
-                                                <h3>
+                                                <h4>
                                                     <a href="<?= Yii::$app->urlManager->createAbsoluteUrl(['site/detail','slug'=>create_slug3($value->title)]) ?>"><?= Tools::subTitle($value->title)?></a>
-                                                </h3>
+                                                </h4>
                                                 <p class="short_text">
                                                     <?= Tools::subWord( ($value->content))?>
                                                 </p>
@@ -159,9 +159,9 @@ function create_slug3($string)
                                         <a href="<?= Yii::$app->urlManager->createAbsoluteUrl(['site/detail','slug'=>create_slug3($news_category5[0]->title)]) ?>"><img style="width: 550px; height: 358px; object-fit: cover;"width="1000" height="500" src="<?= str_contains($news_category5[0]->image, 'http') ? $news_category5[0]->image : 'https://storage.songxanh24h.vn/images'.$news_category5[0]->image ?>" class="attachment-sprasa_feature_large size-sprasa_feature_large wp-post-image" alt="<?= $news_category5[0]->title ?>" title="<?= $news_category5[0]->title ?>" loading="lazy" /></a>
                                     </div>
                                     <div class="text-box">
-                                        <h3 class="entry-title">
+                                        <h4 class="entry-title">
                                             <a href="<?= Yii::$app->urlManager->createAbsoluteUrl(['site/detail','slug'=>create_slug3($news_category5[0]->title)]) ?>" tabindex="-1"><?=Tools::subTitle($news_category5[0]->title) ?></a>
-                                        </h3>
+                                        </h4>
                                         <p class="short_text">
                                              <?= Tools::subWord(strip_tags($news_category5[0]->content)) ?>
                                         </p>
@@ -176,7 +176,7 @@ function create_slug3($string)
                                             <a href="<?= Yii::$app->urlManager->createAbsoluteUrl(['site/detail', 'slug'=>create_slug3($item->title)]) ?>"><img width="1000" height="169" src="<?= str_contains($item->image, 'http') ? $item->image : 'https://storage.songxanh24h.vn/images'.$item->image ?>" class="attachment-sprasa_feature_large size-sprasa_feature_large wp-post-image" alt="<?= $item->title; ?>" title="<?= $item->title; ?>" loading="lazy" /></a>
                                         </div>
                                         <div class="jl_mg_content">
-                                            <h3 class="entry-title">
+                                            <h4 class="entry-title">
                                                 <a href="<?= Yii::$app->urlManager->createAbsoluteUrl(['site/detail', 'slug'=>create_slug3($item->title)]) ?>"><?= Tools::subWord( $item->title )?></a>
                                         </div>
                                     </div>
@@ -212,9 +212,9 @@ function create_slug3($string)
                                                         <a href="<?= Yii::$app->urlManager->createAbsoluteUrl(['site/detail', 'slug'=>create_slug3($item->title)]) ?>"><img width="500" height="350" src="<?= str_contains($item->image, 'http') ? $item->image : 'https://storage.songxanh24h.vn/images'.$item->image ?>" class="attachment-sprasa_slider_grid_small size-sprasa_slider_grid_small wp-post-image mobile-img" alt="<?= $item->title ?>" title="<?= $item->title ?>" loading="lazy" /></a>
                                                     </div>
                                                     <div class="text-box">
-                                                        <h3>
+                                                        <h4>
                                                             <a href="<?= Yii::$app->urlManager->createAbsoluteUrl(['site/detail', 'slug'=>create_slug3($item->title)]) ?>"><?= Tools::subTitle( $item->title ) ?></a>
-                                                        </h3>
+                                                        </h4>
                                                     </div>
                                                 </div>
                                             </div>
@@ -250,9 +250,9 @@ function create_slug3($string)
                                                     <span class="jl_post_type_icon"><i class="jli-gallery"></i></span><img width="500" height="350" src="<?= str_contains($value->image, 'http') ? $value->image : 'https://storage.songxanh24h.vn/images'.$value->image ?>" class="attachment-sprasa_slider_grid_small size-sprasa_slider_grid_small wp-post-image" alt="<?= $value->title ?>" title="<?= $value->title ?>" loading="lazy" /></a>
                                             </div>
                                             <div class="text-box">
-                                                <h3>
+                                                <h4>
                                                     <a href="<?= Yii::$app->urlManager->createAbsoluteUrl(['site/detail','slug'=>create_slug3($value->title)]) ?>"><?= Tools::subTitle($value->title) ?></a>
-                                                </h3>
+                                                </h4>
                                                 <p class="short_text">
                                                      <?= Tools::subWord(strip_tags($value->content)) ?>
                                                 </p>
@@ -277,7 +277,7 @@ function create_slug3($string)
                         <div class="jl_grid_wrap_f jl_clear_at g_4col">
                             <div class="jl-roww content-inner jl-col3 jl-col-row">
                                 <div class="jl_sec_title">
-                                    <h1 class="jl_title_c"><span>Bài đăng gần đây</span></h1>
+                                    <h2 class="jl_title_c"><span>Bài đăng gần đây</span></h2>
                                 </div>
                                 <?php if(isset($new8) && $new8): ?>
                                     <?php foreach($new8 as $item): ?>
@@ -289,9 +289,9 @@ function create_slug3($string)
                                                         <a href="<?= Yii::$app->urlManager->createAbsoluteUrl(['site/detail', 'slug'=>create_slug3($item->title)]) ?>"><img width="500" height="350" src="<?= str_contains($item->image, 'http') ? $item->image : 'https://storage.songxanh24h.vn/images'.$item->image ?>" class="attachment-sprasa_slider_grid_small size-sprasa_slider_grid_small wp-post-image mobile-img" alt="<?= $item->title ?>" title="<?= $item->title ?>" loading="lazy" /></a>
                                                     </div>
                                                     <div class="text-box">
-                                                        <h3>
+                                                        <h4>
                                                             <a href="<?= Yii::$app->urlManager->createAbsoluteUrl(['site/detail', 'slug'=>create_slug3($item->title)]) ?>"><?= Tools::subTitle( $item->title ) ?></a>
-                                                        </h3>
+                                                        </h4>
                                                     </div>
                                                 </div>
                                             </div>

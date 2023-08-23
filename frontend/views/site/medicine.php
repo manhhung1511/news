@@ -2,7 +2,7 @@
 
 use yii\widgets\LinkPager;
 
-$this->title = $name.' Songxanh24h - Chuyên trang sức khỏe, dinh dưỡng, làm đẹp';
+$this->title = $name.' - Chuyên trang sức khỏe, dinh dưỡng, làm đẹp';
 
 function create_slug4($string)
 {

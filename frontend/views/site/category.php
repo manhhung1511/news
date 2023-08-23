@@ -1,5 +1,5 @@
 <?php
-$this->title = $name_category .' Songxanh24h - Chuyên trang sức khỏe, dinh dưỡng, làm đẹp';
+$this->title = $name_category .' - Chuyên trang sức khỏe, dinh dưỡng, làm đẹp';
 use yii\widgets\LinkPager;
 use common\helper\Tools;
 
@@ -63,9 +63,9 @@ function create_slug2($string)
                                         </div>
                                         <div class="text-box">
                                             <h1 class="jl_f_cat"><a class="post-category-color-text" style="background: #4dcf8f" href="#"><?= $news[count($news) - 1]->name_category_child ?: $news[count($news) - 1]->category  ?></a></h1>
-                                            <h1 class="entry-title short_text">
+                                            <h3 class="entry-title short_text">
                                                 <a href="<?= Yii::$app->urlManager->createAbsoluteUrl(['site/detail','slug' => create_slug2($news[count($news) - 1]->title)]) ?>" tabindex="-1"><?= $news[count($news) - 1]->title ?></a>
-                                            </h1>
+                                            </h3>
                                             <p class="short_text"><?=Tools::subWord(strip_tags($news[count($news) - 1]->content)) ?></p>
                                         </div>
                                     </div>
