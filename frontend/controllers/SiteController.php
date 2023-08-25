@@ -137,7 +137,7 @@ class SiteController extends Controller
         $slug = Yii::$app->request->get('slug');
         $category = Category::findOne(['slug' => $slug]);
         $name_category = $category->name;
-        Yii::$app->params['category'] = $name_category .' - Tận tâm chăm sóc sức khỏe, Thông tin sức khỏe, dinh dưỡng, hỗ trợ tư vấn điều trị bệnh, thông tin thuốc, chăm sóc làm đẹp tin cậy cho người Việt';
+        Yii::$app->params['category'] = substr($name_category .' - Tận tâm chăm sóc sức khỏe, Thông tin sức khỏe, dinh dưỡng, hỗ trợ tư vấn điều trị bệnh, thông tin thuốc, chăm sóc làm đẹp tin cậy cho người Việt',0, 150);
         $id = (string) $category->_id;
         $model = News::find()->where(['category_id' => $id, 'status' => 1, 'category_child' => '']);
     
@@ -160,7 +160,7 @@ class SiteController extends Controller
         $slug = Yii::$app->request->get('slug');
         $category = Category::findOne(['slug' => $slug]);
         $name_category = $category->name;
-        Yii::$app->params['category'] = $name_category .' - Tận tâm chăm sóc sức khỏe, Thông tin sức khỏe, dinh dưỡng, hỗ trợ tư vấn điều trị bệnh, thông tin thuốc, chăm sóc làm đẹp tin cậy cho người Việt';
+        Yii::$app->params['category'] = substr($name_category .' - Tận tâm chăm sóc sức khỏe, Thông tin sức khỏe, dinh dưỡng, hỗ trợ tư vấn điều trị bệnh, thông tin thuốc, chăm sóc làm đẹp tin cậy cho người Việt', 0,  150);
         $model = News::find()->where(['category_child' => $slug, 'status' => 1]);
         $pages= new Pagination(['totalCount' => $model->count(),'pageSize' => '6']);
         $news = News::find()->where(['category_child' => $slug, 'status'=> 1])->orderBy(['created_at' => SORT_ASC])->offset($pages->offset)->limit($pages->limit)->all();

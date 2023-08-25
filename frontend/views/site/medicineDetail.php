@@ -1,5 +1,6 @@
 <?php
-$this->title = 'Thuốc '.$detail->name.'Thần phần, liều lượng, Cách dùng, Songxanh24h.vn - Chuyên trang sức khỏe, dinh dưỡng, làm đẹp';
+$title = 'Thuốc '.$detail->name.' Thành phần, liều lượng, Cách dùng, Songxanh24h.vn - Chuyên trang sức khỏe, dinh dưỡng, làm đẹp';
+$this->title = substr($title, 0, 60);
 function create_slug5($string)
 { 
   $search = array(
