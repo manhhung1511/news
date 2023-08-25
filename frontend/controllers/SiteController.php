@@ -61,6 +61,8 @@ class SiteController extends Controller
         parent::init();
         $category = Category::find()->where(['status' => 1])->limit(7)->all();
         $views = News::find()->where(['status' => 1])->andWhere(['>=','view', 1])->orderBy(['created_at' => SORT_ASC])->limit(4)->all();
+        $medicine_category = CategoryMedicine::find()->limit(30)->all();
+        Yii::$app->view->params['medicine'] = $medicine_category;
         Yii::$app->view->params['paramName'] = $category;
         Yii::$app->view->params['views'] = $views;
     }

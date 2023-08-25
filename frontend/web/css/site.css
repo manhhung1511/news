@@ -2,6 +2,92 @@
 .home_section1 {
     margin-top: 50px
 }
+/* sub-menu */
+.sub_menu {
+    position: absolute;
+    width: 908px;
+    height: 450px;
+    border-radius: 0px 0px 16px 16px;
+    transition: all 0.4s ease 0.2s;
+    cursor: auto;
+    top: 0;
+    padding: 16px;
+    background-color: white;
+    top: 80px;
+    right: 50px;
+    display: none;
+    transform-origin: 60% top;
+    animation: navGrowth ease-in 0.25s;
+    box-shadow: 0 5px 5px rgba(0, 0, 0, 0.5);
+}
+.sub_menu::before {
+    content: "";
+    display: block;
+    position: absolute;
+    top: -37px;
+    right: 0;
+    width: 911px;
+    height: 49px;
+}
+.has-navbar:hover .sub_menu {
+    display: block;
+}
+.has-navbar::after {
+    display: inline-block;
+    content: "\e95f";
+    margin-left: 7px;
+    margin-top: 38px;
+    font-family: jl_font;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 8px;
+    line-height: .9;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+.sub_menu-link {
+    display: flex;
+    text-transform: none !important;
+    font-size: 16px;
+    font-weight: 400;
+    cursor: pointer;
+}
+.sub_menu-item {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    margin-left: 20px;
+}
+.sub_menu-link:hover {
+    color: cadetblue !important;
+}
+.has-navbar:hover .modal1 {
+    display: block;
+}
+
+.options_dark_skin .sub_menu {
+    background-color: #1a1a1a !important;
+}
+
+.options_dark_skin .sub_menu-link {
+    color: #fff 
+}
+
+.options_dark_skin .list_infor {
+    color: #fff 
+}
+
+@keyframes navGrowth {
+    from {
+        opacity: 0;
+        transform: scale(0);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+/* 
+end submenu */
 @media only screen and (min-width: 600px) {
     .mobile-img {
         width: 255px; 
@@ -14,6 +100,7 @@
         object-fit: cover;
     }
 }
+
 .home_section2 {
     margin-top: 50px
 }
@@ -355,7 +442,7 @@ textarea {
     padding-left: 0
 }
 
-.col, .col-1, .col-10, .col-11, .col-12, .col-2, .col-3, .col-4, .col-5, .col-6, .col-7, .col-8, .col-9, .col-auto, .col-lg, .col-lg-1, .col-lg-10, .col-lg-11, .col-lg-12, .col-lg-2, .col-lg-3, .col-lg-4, .col-lg-5, .col-lg-6, .col-lg-7, .col-lg-8, .col-lg-9, .col-lg-auto, .col-md, .col-md-1, .col-md-10, .col-md-11, .col-md-12, .col-md-2, .col-md-3, .col-md-4, .col-md-5, .col-md-6, .col-md-7, .col-md-8, .col-md-9, .col-md-auto, .col-sm, .col-sm-1, .col-sm-10, .col-sm-11, .col-sm-12, .col-sm-2, .col-sm-3, .col-sm-4, .col-sm-5, .col-sm-6, .col-sm-7, .col-sm-8, .col-sm-9, .col-sm-auto, .col-xl, .col-xl-1, .col-xl-10, .col-xl-11, .col-xl-12, .col-xl-2, .col-xl-3, .col-xl-4, .col-xl-5, .col-xl-6, .col-xl-7, .col-xl-8, .col-xl-9, .col-xl-auto {
+.col, .col-1, .col-10, .col-11, .col-2, .col-3, .col-4, .col-5, .col-6, .col-7, .col-8, .col-9, .col-auto, .col-lg, .col-lg-1, .col-lg-10, .col-lg-11, .col-lg-12, .col-lg-2, .col-lg-3, .col-lg-4, .col-lg-5, .col-lg-6, .col-lg-7, .col-lg-8, .col-lg-9, .col-lg-auto, .col-md, .col-md-1, .col-md-10, .col-md-11, .col-md-12, .col-md-2, .col-md-3, .col-md-4, .col-md-5, .col-md-7, .col-md-8, .col-md-9, .col-md-auto, .col-sm, .col-sm-1, .col-sm-10, .col-sm-11, .col-sm-12, .col-sm-2, .col-sm-3, .col-sm-4, .col-sm-5, .col-sm-6, .col-sm-7, .col-sm-8, .col-sm-9, .col-sm-auto, .col-xl, .col-xl-1, .col-xl-10, .col-xl-11, .col-xl-12, .col-xl-2, .col-xl-3, .col-xl-4, .col-xl-5, .col-xl-6, .col-xl-7, .col-xl-8, .col-xl-9, .col-xl-auto {
     position: relative;
     width: 100%;
     padding-right: 15px;
@@ -8444,6 +8531,12 @@ a.text-dark:focus, a.text-dark:hover {
     .wp-block-column {
         flex-basis: 100% !important
     }
+    .col-12 {
+        position: relative;
+        width: 100%;
+        padding-right: 15px;
+        padding-left: 15px
+    }
 }
 
 @media (min-width:600px) and (max-width:781px) {
@@ -8454,6 +8547,12 @@ a.text-dark:focus, a.text-dark:hover {
 
     .wp-block-column:nth-child(2n) {
         margin-left: 32px
+    }
+    .col-12 {
+        position: relative;
+        width: 100%;
+        padding-right: 15px;
+        padding-left: 15px
     }
 }
 
@@ -16374,7 +16473,7 @@ color: #cacaca !important;
 }
 
 .options_dark_skin .enable_footer_columns_dark, .options_dark_skin .enable_footer_copyright_dark {
-    background: #1a1a1a
+    background: #1a1a1a;
 }
 
 .options_dark_skin .jl_header_magazine_style.header_layout_style3_custom .menu_wrapper {
@@ -21555,6 +21654,10 @@ footer .tagcloud a {
     white-space: nowrap;
     list-style: none;
     margin: 0 3px
+}
+
+.options_dark_skin .jellywp_pagination ul li a {
+    background-color: #121416;
 }
 
 .jellywp_pagination ul li a {
@@ -28656,7 +28759,7 @@ p.notfound_p_text {
 }
 
 #sidebar, .jl-h-sidebar {
-    width: 30.33333333%;
+    width: 24.333333%;
     padding-left: 40px
 }
 
@@ -30783,18 +30886,21 @@ footer .row {
     display: none
 }
 
+@media only screen and (min-width:768px) {
+    .col-md-6 {
+        position: relative;
+        width: 50%;
+        padding-right: 15px;
+        padding-left: 15px
+    }
+}
 @media only screen and (min-width:768px) and (max-width:992px) {
     .jl_header_magazine_style.header_layout_style3_custom #menu_wrapper .navigation_wrapper>ul {
         display: none
     }
-
-    #content, #sidebar {
-        width: 100%;
-        max-width: 100%;
-        flex: 0 0 100%;
-        padding-right: 15px;
-        padding-left: 15px;
-        border-right: 0 solid #e4e4e4
+    .card-image {
+        width: 213px !important;
+        height: 205px !important;
     }
 
     .g_4col.jl_grid_wrap_f .jl-col3 .jl-grid-cols {
@@ -30997,7 +31103,7 @@ footer .row {
         margin-bottom: 20px
     }
 
-    #content, #sidebar {
+    /* #content, #sidebar {
         width: 100%;
         max-width: 100%;
         flex: 0 0 100%;
@@ -31005,7 +31111,7 @@ footer .row {
         padding-left: 15px;
         border-right: 0 solid #e4e4e4;
         margin-bottom: 40px
-    }
+    } */
 
     .jl_header_magazine_style.header_layout_style3_custom #menu_wrapper .navigation_wrapper>ul {
         display: none

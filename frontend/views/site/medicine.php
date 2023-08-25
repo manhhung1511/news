@@ -2,7 +2,7 @@
 
 use yii\widgets\LinkPager;
 
-$this->title = $name.' - Chuyên trang sức khỏe, dinh dưỡng, làm đẹp';
+$this->title = $name . ' - Chuyên trang sức khỏe, dinh dưỡng, làm đẹp';
 
 function create_slug4($string)
 {
@@ -48,11 +48,6 @@ function create_slug4($string)
 ?>
 
 <style>
-    body {
-        background: #f6f9fc;
-        margin-top: 20px;
-    }
-
     /* booking */
 
     .bg-light-blue {
@@ -181,118 +176,117 @@ function create_slug4($string)
     .options_dark_skin .card {
         background-color: #1111;
     }
-    #mySelect {
-        padding: 6px;
-    }
     .hidden {
         display: none;
     }
-</style>
+    .card-image {
+        width: 270px;
+        height: 208px;
+    }
+    .page_title h1 {
+        font-size: 28px;
+        padding: 27px;
+        margin-bottom: 0px;
+    }
+    .name_link h4:hover {
+        color: cadetblue;
+    }
 
-<div class="container">
-    <div class="row">
-        <div class="col-md-4">
-            <select id="mySelect" class="form-select mt-4 hidden" aria-label="Default select example">
-                <option>Nhóm thuốc</option>
-                <?php foreach ($categories as $item) : ?>
-                        <option value="<?= Yii::$app->urlManager->createAbsoluteUrl(['site/medicine', 'slug' => create_slug4($item->name)]) ?>">
-                            <?= $item->name ?>
-                        </option>
-                <?php endforeach; ?>
-            </select>
-            <div class="list-group mt-4">
-                <?php foreach ($categories as $item) : ?>
-                    <h2 style="font-size: 17px;">
-                        <a data-id=<?= $item->_id ?> href="<?= Yii::$app->urlManager->createAbsoluteUrl(['site/medicine', 'slug' => create_slug4($item->name)]) ?>" class="list-group-item list-group-item-action active-<?= $item->_id ?>">
-                            <?= $item->name ?>
-                        </a>
-                    </h2>
-                <?php endforeach; ?>
+    @media (max-width:767px) {
+        .page_title h1 {
+            font-size: 22px;
+            padding: 10px 0 0 0 !important;
+            margin-left: 20px;
+            margin-bottom: 0px;
+        }
+        .name_link h4 {
+            font-size: 23px;
+        }
+    }
+
+</style>
+<main id="main" class="main">
+    <section class="section dashboard">
+        <div class="container">
+            <div class="page_title">
+                <h1><?= $name ?></h1>
             </div>
-        </div>
-        <div class="col-md-8">
-            <div class="content-main">
-                <div class="card card-white mb-5">
-                    <div class="card-heading clearfix border-bottom mb-4">
-                        <h1 class="card-title"><?= $name ?></h1>
-                    </div>
-                    <div class="card-body">
-                        <ul class="list-unstyled">
-                            <?php if (isset($medicine) && $medicine) : ?>
-                                <?php foreach ($medicine as $item) : ?>
-                                    <li class="position-relative booking">
-                                        <div class="media">
-                                            <div class="msg-img">
-                                                <a href="<?= Yii::$app->urlManager->createAbsoluteUrl(['site/medicine-detail', 'slug' => create_slug4($item->name)]) ?>">
-                                                    <img src="https://storage.songxanh24h.vn/images/thuoc2/<?= $item->img ?>" alt="<?= $item->name ?>">
-                                                </a>
+            <div class="row">
+                <?php if (isset($medicine) && $medicine) : ?>
+                    <?php foreach ($medicine as $item) : ?>
+                        <div class="col-md-4 col-12">
+                            <div class="card info-card sales-card">
+                                <div class="card-body">
+                                    <a class="name_link" href="<?= Yii::$app->urlManager->createAbsoluteUrl(['site/medicine-detail', 'slug' => create_slug4($item->name)]) ?>">
+                                        <h4 class="mb-4"><?= $item->name ?></h4>
+                                    </a>
+
+                                    <div class="content">
+                                        <div class="card-image d-flex align-items-center justify-content-center">
+                                            <a href="<?= Yii::$app->urlManager->createAbsoluteUrl(['site/medicine-detail', 'slug' => create_slug4($item->name)]) ?>">
+                                                <img src="https://storage.songxanh24h.vn/images/thuoc2/<?= $item->img ?>" alt="<?= $item->name ?>">
+                                            </a>
+                                        </div>
+                                        <div class="ps-3 list_infor">
+                                            <div class="mb-3">
+                                                <span class="mr-2 d-sm-inline-block mb-2 mb-sm-0">Dạng bào chế:</span>
+                                                <span class="bg-light-blue"><?= $item->type ?: '' ?></span>
                                             </div>
-                                            <div class="media-body">
-                                                <a class="name_link" href="<?= Yii::$app->urlManager->createAbsoluteUrl(['site/medicine-detail', 'slug' => create_slug4($item->name)]) ?>">
-                                                    <h3 class="mb-4"><?= $item->name ?></h3>
-                                                </a>
-                                                <div class="mb-3">
-                                                    <span class="mr-2 d-block d-sm-inline-block mb-2 mb-sm-0">Dạng bào chế:</span>
-                                                    <span class="bg-light-blue"><?= $item->type ?: '' ?></span>
-                                                </div>
-                                                <div class="mb-3">
-                                                    <span class="mr-2 d-block d-sm-inline-block mb-2 mb-sm-0">Nhà sản xuất:</span>
-                                                    <span class="bg-light-blue"><?= $item->producer ?: '' ?></span>
-                                                </div>
-                                                <div class="mb-3">
-                                                    <span class="mr-2 d-block d-sm-inline-block mb-2 mb-sm-0">Nhà đăng ký:</span>
-                                                    <span class="bg-light-blue"><?= $item->subscribe ?: '' ?></span>
-                                                </div>
-                                                <div class="mb-3">
-                                                    <span class="mr-2 d-block d-sm-inline-block mb-1 mb-sm-0">Nhà phân phối:</span>
-                                                </div>
-                                                <div class="mb-3">
-                                                    <span class="mr-2 d-block d-sm-inline-block mb-2 mb-sm-0">Số đăng ký:</span>
-                                                    <span class="bg-light-blue"><?= $item->number ?: '' ?></span>
-                                                </div>
+                                            <div class="mb-3">
+                                                <span class="mr-2 d-sm-inline-block mb-2 mb-sm-0">Nhà sản xuất:</span>
+                                                <span class="bg-light-blue"><?= $item->producer ?: '' ?></span>
+                                            </div>
+                                            <div class="mb-3">
+                                                <span class="mr-2 d-sm-inline-block mb-2 mb-sm-0">Nhà đăng ký:</span>
+                                                <span class="bg-light-blue"><?= $item->subscribe ?: '' ?></span>
+                                            </div>
+                                            <div class="mb-3">
+                                                <span class="mr-2 d-sm-inline-block mb-1 mb-sm-0">Nhà phân phối:</span>
+                                            </div>
+                                            <div class="mb-3">
+                                                <span class="mr-2 d-sm-inline-block mb-2 mb-sm-0">Số đăng ký:</span>
+                                                <span class="bg-light-blue"><?= $item->number ?: '' ?></span>
                                             </div>
                                         </div>
-                                    </li>
-                                <?php endforeach; ?>
-                            <?php endif; ?>
-                        </ul>
-
-                    </div>
-                </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <?php endforeach; ?>
+                    <?php endif; ?>
+    
+                        <!-- pagination -->
+                        <div class="d-flex justify-content-around mt-4 jellywp_pagination">
+                            <?php
+                            echo LinkPager::widget([
+                                'pagination' => $pages,
+                                'linkOptions' => ['class' => 'page-link'],
+                                'pageCssClass' => ['class' => 'page-item'],
+                                'maxButtonCount' => 5
+                            ])
+                            ?>
+                        </div>
             </div>
         </div>
+    </section>
+</main>
 
-        <!-- pagination -->
-        <div class="d-flex justify-content-around mt-4 jellywp_pagination">
-            <?php
-            echo LinkPager::widget([
-                'pagination' => $pages,
-                'linkOptions' => ['class' => 'page-link'],
-                'pageCssClass' => ['class' => 'page-item'],
-                'maxButtonCount' => 5
-            ])
-            ?>
-        </div>
-    </div>
-</div>
 
 
 <script>
-    if (window.innerWidth < 768) {
-        $('.list-group').addClass("hidden");
-        $('.form-select').removeClass("hidden");
-        $('.card-title').css("font-size", "25px");
-    }
-    $('.list-group-item').click(function() {
-        let id = $(this).attr('data-id');
-        $(`.active-${id}`).addClass('active');
-    });
+    // if (window.innerWidth < 768) {
+    //     $('.list-group').addClass("hidden");
+    //     $('.form-select').removeClass("hidden");
+    //     $('.card-title').css("font-size", "25px");
+    // }
+    // $('.list-group-item').click(function() {
+    //     let id = $(this).attr('data-id');
+    //     $(`.active-${id}`).addClass('active');
+    // });
 
-    document.getElementById("mySelect").addEventListener("change", function() {
-        var selectedOption = this.options[this.selectedIndex];
-        var url = selectedOption.value;
-        if (url) {
-            window.location.href = url;
-        }
-    });
+    //   if (select('.toggle-sidebar-btn')) {
+    //     on('click', '.toggle-sidebar-btn', function(e) {
+    //       select('body').classList.toggle('toggle-sidebar')
+    //     })
+    //   }
 </script>

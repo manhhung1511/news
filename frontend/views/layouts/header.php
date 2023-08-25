@@ -1,4 +1,7 @@
 <?php
+
+use common\helper\Tools;
+
 function create_slug($string)
 {
     $search = array(
@@ -100,8 +103,29 @@ function create_slug($string)
                                     <?php endif; ?>
                                 <?php endforeach; ?>
                             <?php endif; ?>
-                            <li class="menu-item current-menu-item current_page_item">
-                                <a href="<?= Yii::$app->urlManager->createAbsoluteUrl(['site/medicine', 'slug'=>create_slug("Thuốc gây tê, mê")]) ?>">Thuốc<span class="border-menu"></span></a>
+                            <li class="menu-item current-menu-item current_page_item has-navbar">
+                                <a href="javascript:void(0)">Thuốc<span class="border-menu"></span>
+                                <span class="jl_menu_lb" style="
+                              background: #ffe500 !important;
+                              color: red !important;
+                            "><span class="jl_lb_ar" style="border-top: 3px solid #ffe500 !important"></span>Hot</span>
+                                </a>
+                                <div class="sub_menu">
+                                        <div class="sub_menu-list">
+                                            <?php if(isset(Yii::$app->view->params['medicine']) && Yii::$app->view->params['medicine']): ?>
+                                                <div class="row">
+                                                    <?php foreach(Yii::$app->view->params['medicine'] as $key => $item): ?>
+                                                            <div class="col-md-4">
+                                                                <div class="sub_menu-item">
+                                                                    <a href="<?= Yii::$app->urlManager->createAbsoluteUrl(['site/medicine', 'slug'=>create_slug($item->name)]) ?>" class="sub_menu-link"><?= Tools::subTitle($item->name, 5)?></a>
+                                                                </div>
+                                                            </div>
+                                                    <?php endforeach; ?>
+                                                </div>
+                                            <?php endif;?>
+                                            
+                                        </div>
+                                </div>
                             </li>
                         </ul>
                     </div>
