@@ -16,7 +16,7 @@
     top: 80px;
     right: 50px;
     display: none;
-    transform-origin: 60% top;
+    transform-origin: 10% top;
     animation: navGrowth ease-in 0.25s;
     box-shadow: 0 5px 5px rgba(0, 0, 0, 0.5);
 }
