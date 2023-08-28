@@ -137,7 +137,7 @@ class SiteController extends Controller
         $slug = Yii::$app->request->get('slug');
         $category = Category::findOne(['slug' => $slug]);
         $name_category = $category->name;
-        Yii::$app->params['category'] = substr($name_category .' - Tận tâm chăm sóc sức khỏe, Thông tin sức khỏe, dinh dưỡng, hỗ trợ tư vấn điều trị bệnh, thông tin thuốc, chăm sóc làm đẹp tin cậy cho người Việt',0, 150);
+        Yii::$app->params['category'] = substr($name_category .' - Tận tâm chăm sóc sức khỏe, Thông tin sức khỏe, dinh dưỡng, hỗ trợ tư vấn điều trị bệnh, thông tin thuốc, chăm sóc làm đẹp tin cậy cho người Việt',0, 155);
         $id = (string) $category->_id;
         $model = News::find()->where(['category_id' => $id, 'status' => 1, 'category_child' => '']);
     
@@ -160,7 +160,7 @@ class SiteController extends Controller
         $slug = Yii::$app->request->get('slug');
         $category = Category::findOne(['slug' => $slug]);
         $name_category = $category->name;
-        Yii::$app->params['category'] = substr($name_category .' - Tận tâm chăm sóc sức khỏe, Thông tin sức khỏe, dinh dưỡng, hỗ trợ tư vấn điều trị bệnh, thông tin thuốc, chăm sóc làm đẹp tin cậy cho người Việt', 0,  150);
+        Yii::$app->params['category'] = substr($name_category .' - Tận tâm chăm sóc sức khỏe, Thông tin sức khỏe, dinh dưỡng, hỗ trợ tư vấn điều trị bệnh, thông tin thuốc, chăm sóc làm đẹp tin cậy cho người Việt', 0,  155);
         $model = News::find()->where(['category_child' => $slug, 'status' => 1]);
         $pages= new Pagination(['totalCount' => $model->count(),'pageSize' => '6']);
         $news = News::find()->where(['category_child' => $slug, 'status'=> 1])->orderBy(['created_at' => SORT_ASC])->offset($pages->offset)->limit($pages->limit)->all();
@@ -332,7 +332,7 @@ class SiteController extends Controller
         $slug = Yii::$app->request->get('slug');
         $category_slug = CategoryMedicine::findOne(['slug' => $slug]);
         $category_name = $category_slug->name;
-        Yii::$app->params['category'] = $category_name .' - Tận tâm chăm sóc sức khỏe, Thông tin sức khỏe, dinh dưỡng, hỗ trợ tư vấn điều trị bệnh, thông tin thuốc, chăm sóc làm đẹp tin cậy cho người Việt';
+        Yii::$app->params['category'] = substr($category_name .' - Tận tâm chăm sóc sức khỏe, Thông tin sức khỏe, dinh dưỡng, hỗ trợ tư vấn điều trị bệnh, thông tin thuốc, chăm sóc làm đẹp tin cậy cho người Việt', 0, 155);
         $model = Medicine::find()->where(['category' => $category_name]);
         $pages= new Pagination(['totalCount' => $model->count(),'pageSize' => '20']);
         $medicine = Medicine::find()->where(['category' => $category_name])->offset($pages->offset)->limit($pages->limit)->all();
