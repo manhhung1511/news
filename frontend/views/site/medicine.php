@@ -3,7 +3,7 @@
 use common\helper\Tools;
 use yii\widgets\LinkPager;
 
-$this->title = Tools::subWord($name . ' - Chuyên trang sức khỏe, dinh dưỡng, làm đẹp', 10);
+$this->title = Tools::subWord($name . ' - Chuyên trang sức khỏe, dinh dưỡng, làm đẹp', 12);
 
 function create_slug4($string)
 {
