@@ -332,7 +332,7 @@ class SiteController extends Controller
         $slug = Yii::$app->request->get('slug');
         $category_slug = CategoryMedicine::findOne(['slug' => $slug]);
         $category_name = $category_slug->name;
-        Yii::$app->params['category'] = Tools::subWord($category_name .' - Tận tâm chăm sóc sức khỏe, Thông tin sức khỏe, dinh dưỡng, hỗ trợ tư vấn điều trị bệnh, thông tin thuốc, chăm sóc làm đẹp tin cậy cho người Việt', 24);
+        Yii::$app->params['category'] = Tools::subWord($category_name .' - Tận tâm chăm sóc sức khỏe, Thông tin sức khỏe, dinh dưỡng, hỗ trợ tư vấn điều trị bệnh, thông tin thuốc, chăm sóc làm đẹp tin cậy cho người Việt', 28);
         $model = Medicine::find()->where(['category' => $category_name]);
         $pages= new Pagination(['totalCount' => $model->count(),'pageSize' => '20']);
         $medicine = Medicine::find()->where(['category' => $category_name])->offset($pages->offset)->limit($pages->limit)->all();
