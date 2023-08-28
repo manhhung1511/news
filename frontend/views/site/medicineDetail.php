@@ -3,7 +3,7 @@
 use common\helper\Tools;
 
 $title = 'Thuốc '.$detail->name.' Thành phần, liều lượng, Cách dùng, Songxanh24h.vn - Chuyên trang sức khỏe, dinh dưỡng, làm đẹp';
-$this->title = Tools::subWord($title, 10);
+$this->title = Tools::subWord($title, 8);
 function create_slug5($string)
 { 
   $search = array(
