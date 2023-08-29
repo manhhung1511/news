@@ -2,7 +2,7 @@
 
 use common\helper\Tools;
 
-$title = 'Thuốc '.$detail->name.' Thành phần, liều lượng, Cách dùng, Songxanh24h.vn - Chuyên trang sức khỏe, dinh dưỡng, làm đẹp';
+$title = 'Thuốc '.$detail->name.' Thành phần, liều lượng, Cách dùng, Tác dụng, Chỉ định, Tác dụng phụ Songxanh24h.vn - Chuyên trang sức khỏe, dinh dưỡng, làm đẹp';
 $this->title = Tools::subWord($title, 8);
 function create_slug5($string)
 { 
@@ -170,3 +170,4 @@ function create_slug5($string)
     </div>
     </div>
 </section>
+

@@ -146,6 +146,23 @@ class SiteController extends Controller {
         fclose($file); 
     }
 
+    public function actionWriteFile1() {
+        $filename = Yii::getAlias('@console').'/file/index1.csv';
+        // //get data
+        $news = Medicine::find()->all();
+        $data = [];
+        foreach($news as $new) {
+            $data[] = ['https://songxanh24h.vn/thuoc/'.$new->slug];
+        }
+        
+        $file = fopen($filename, 'w'); 
+
+        foreach ($data as $row) {
+            fputcsv($file, $row); 
+        }
+        fclose($file); 
+    }
+
     public function actionReadFile() {
         // Read URLs from CSV file
         $filename = Yii::getAlias('@console').'/file/index1.csv';
@@ -185,40 +202,8 @@ class SiteController extends Controller {
             $other_responses[] = array("url" => $url, "response" => $decoded_response);
         }
         }
-            
-        // // Display all responses
-        // echo "200 OK Responses: <br>";
-        // foreach ($ok_responses as $response) {
-        //     echo "Response: " . json_encode($response['response']) . "<br>";
-        // }
-            
-        // echo "<br> <br> Other Responses: <br>";
-        // foreach ($other_responses as $response) {
-        //     echo "URL: " . $response['url'] . " | Response: " . json_encode($response['response']) . "<br>";
-        // }   
-    }
-       
-    public function actionTest() {
-        $url = 'https://www.thuocbietduoc.com.vn/nhom-thuoc-1-0/thuoc-gay-te-me.aspx';
-        try {
-            $content = @file_get_contents($url);
-        } catch (Exception $exc) {
-            
-        }
-        $dom = new \DOMDocument();
-        @$dom->loadHTML(mb_convert_encoding($content, 'HTML-ENTITIES', 'UTF-8'));
-        $xpath = new \DOMXpath($dom);
-
-        $node = $xpath->query('//tbody/tr/td/h2/a');
-        var_dump($node);
-        foreach($node as $value) {
-            $data = $value->nodeValue;
-            var_dump($data);
-        }
     }
 
-    public function actionTest1() {
-        Medicine::deleteAll();
-    }
+ 
 }
 ?>
