@@ -351,7 +351,7 @@ class SiteController extends Controller
         $category = $detail->category;
         $categories = Medicine::find()->where(['category' => $category])->orderBy(['created_at' => SORT_ASC])->limit(10)->all();
        
-        Yii::$app->params['description'] = 'Thuốc '.$detail->name.'Thần phần, liều lượng, Cách dùng, Songxanh24h.vn - Chuyên trang sức khỏe, dinh dưỡng, làm đẹp';
+        Yii::$app->params['description'] = 'Thuốc '.$detail->name.'Thành phần, liều lượng, Cách dùng,Tác dụng, Chỉ định, Tác dụng phụ Songxanh24h.vn - Chuyên trang sức khỏe, dinh dưỡng, làm đẹp';
 
         return $this->render("medicineDetail",[
             'detail' => $detail,
