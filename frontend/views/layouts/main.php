@@ -23,9 +23,9 @@ $currentUrl = Url::current([], true);
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="robots" content="index, follow">
   <meta name="title" content="<?= $this->title ?>">
-  <meta name="description" content="<?= isset(Yii::$app->params['description']) ? Yii::$app->params['description'] : (isset(Yii::$app->params['category']) ? Yii::$app->params['category'] : 'Tận tâm chăm sóc sức khỏe, Thông tin sức khỏe, dinh dưỡng, hỗ trợ tư vấn điều trị bệnh, thông tin thuốc, chăm sóc làm đẹp tin cậy cho người Việt') ?>">
   <meta name="google-site-verification" content="_ZUx7P0qUS7RGBkYQZ9UfLTX9ADw3Gmy9TbBHO1_GKQ" />
   <link rel="canonical" href="<?= $currentUrl ?>" />
+  <link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet'>
   <?php $this->registerCsrfMetaTags() ?>
   <title><?= Html::encode($this->title) ?></title>
   <link rel="icon" type="image/png" href="/img/logo2.png">
@@ -85,7 +85,7 @@ $currentUrl = Url::current([], true);
           <?php foreach ($this->params['paramName'] as $item) : ?>
             <?php if (isset($item->category_child[0]) && $item->category_child[0]) : ?>
               <li class="menu-item menu-item-has-children">
-                <a href="<?= Yii::$app->urlManager->createAbsoluteUrl(['site/category', 'slug' => create_slug($item['name'])]) ?>">
+                <a href="<?= Yii::$app->urlManager->createAbsoluteUrl(['site/category', 'slug' => Tools::create_slug($item['name'])]) ?>">
                   <?= $item->name ?> <span class="border-menu"></span>
                   <span class="jl_menu_lb" style="
                               background: #ffe500 !important;
@@ -95,14 +95,14 @@ $currentUrl = Url::current([], true);
                 <ul class="sub-menu">
                   <?php foreach ($item->category_child as $item_child) : ?>
                     <li class="menu-item">
-                      <a href="<?= Yii::$app->urlManager->createAbsoluteUrl(['site/category-child', 'parent' => create_slug($item['name']), 'slug' => create_slug($item_child)]) ?>"><?= $item_child ?><span class="border-menu"></span></a>
+                      <a href="<?= Yii::$app->urlManager->createAbsoluteUrl(['site/category-child', 'parent' => Tools::create_slug($item['name']), 'slug' => Tools::create_slug($item_child)]) ?>"><?= $item_child ?><span class="border-menu"></span></a>
                     </li>
                   <?php endforeach; ?>
                 </ul>
               </li>
             <?php else : ?>
               <li class="menu-item current-menu-item current_page_item">
-                <a href="<?= Yii::$app->urlManager->createAbsoluteUrl(['site/category', 'slug' => create_slug($item['name'])]) ?>"><?= $item->name ?><span class="border-menu"></span></a>
+                <a href="<?= Yii::$app->urlManager->createAbsoluteUrl(['site/category', 'slug' => Tools::create_slug($item['name'])]) ?>"><?= $item->name ?><span class="border-menu"></span></a>
               </li>
             <?php endif; ?>
           <?php endforeach; ?>
@@ -118,7 +118,7 @@ $currentUrl = Url::current([], true);
                 <ul class="sub-menu">
                   <?php foreach (Yii::$app->view->params['medicine'] as $item) : ?>
                     <li class="menu-item">
-                       <a href="<?= Yii::$app->urlManager->createAbsoluteUrl(['site/medicine', 'slug'=>create_slug($item->name)]) ?>" class="sub_menu-link"><?= Tools::subTitle($item->name, 5)?></a>
+                       <a href="<?= Yii::$app->urlManager->createAbsoluteUrl(['site/medicine', 'slug'=>Tools::create_slug($item->name)]) ?>" class="sub_menu-link"><?= Tools::subTitle($item->name, 5)?></a>
                     </li>
                   <?php endforeach; ?>
                 </ul>
@@ -138,11 +138,11 @@ $currentUrl = Url::current([], true);
                 <div class="jl_m_right jl_sm_list jl_ml jl_clear_at">
                   <div class="jl_m_right_w">
                     <div class="jl_m_right_img jl_radus_e">
-                      <a href="<?= Yii::$app->urlManager->createAbsoluteUrl(['site/detail', 'slug' => create_slug($item->title)]) ?>"><img width="120" height="120" src="<?= str_contains($item->image, 'http') ? $item->image : 'https://storage.songxanh24h.vn/images' . $item->image ?>" class="attachment-sprasa_small_feature size-sprasa_small_feature wp-post-image" alt="<?= $item->title ?>" loading="lazy" /></a>
+                      <a href="<?= Yii::$app->urlManager->createAbsoluteUrl(['site/detail', 'slug' => Tools::create_slug($item->title)]) ?>"><img width="120" height="120" src="<?= str_contains($item->image, 'http') ? $item->image : 'https://storage.songxanh24h.vn/images' . $item->image ?>" class="attachment-sprasa_small_feature size-sprasa_small_feature wp-post-image" alt="<?= $item->title ?>" loading="lazy" /></a>
                     </div>
                     <div class="jl_m_right_content">
                       <h3 class="entry-title">
-                        <a href="<?= Yii::$app->urlManager->createAbsoluteUrl(['site/detail', 'slug' => create_slug($item->title)]) ?>" tabindex="-1"><?= Tools::subTitle($item->title) ?></a>
+                        <a href="<?= Yii::$app->urlManager->createAbsoluteUrl(['site/detail', 'slug' => Tools::create_slug($item->title)]) ?>" tabindex="-1"><?= Tools::subTitle($item->title) ?></a>
                       </h3>
                     </div>
                   </div>

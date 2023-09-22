@@ -1,47 +1,6 @@
 <?php
 use common\helper\Tools;
 $this->title = $detail->title;
-function create_slug4($string)
-{ 
-  $search = array(
-    '#(à|á|ạ|ả|ã|â|ầ|ấ|ậ|ẩ|ẫ|ă|ằ|ắ|ặ|ẳ|ẵ)#',
-    '#(è|é|ẹ|ẻ|ẽ|ê|ề|ế|ệ|ể|ễ)#',
-    '#(ì|í|ị|ỉ|ĩ)#',
-    '#(ò|ó|ọ|ỏ|õ|ô|ồ|ố|ộ|ổ|ỗ|ơ|ờ|ớ|ợ|ở|ỡ)#',
-    '#(ù|ú|ụ|ủ|ũ|ư|ừ|ứ|ự|ử|ữ)#',
-    '#(ỳ|ý|ỵ|ỷ|ỹ)#',
-    '#(đ)#',
-    '#(À|Á|Ạ|Ả|Ã|Â|Ầ|Ấ|Ậ|Ẩ|Ẫ|Ă|Ằ|Ắ|Ặ|Ẳ|Ẵ)#',
-    '#(È|É|Ẹ|Ẻ|Ẽ|Ê|Ề|Ế|Ệ|Ể|Ễ)#',
-    '#(Ì|Í|Ị|Ỉ|Ĩ)#',
-    '#(Ò|Ó|Ọ|Ỏ|Õ|Ô|Ồ|Ố|Ộ|Ổ|Ỗ|Ơ|Ờ|Ớ|Ợ|Ở|Ỡ)#',
-    '#(Ù|Ú|Ụ|Ủ|Ũ|Ư|Ừ|Ứ|Ự|Ử|Ữ)#',
-    '#(Ỳ|Ý|Ỵ|Ỷ|Ỹ)#',
-    '#(Đ)#',
-    "/[^a-zA-Z0-9\-\_]/",
-  );
-  $replace = array(
-    'a',
-    'e',
-    'i',
-    'o',
-    'u',
-    'y',
-    'd',
-    'A',
-    'E',
-    'I',
-    'O',
-    'U',
-    'Y',
-    'D',
-    '-',
-  );
-  $string = preg_replace($search, $replace, $string);
-  $string = preg_replace('/(-)+/', '-', $string);
-  $string = strtolower($string);
-  return $string;
-}
 
 if(isset($detail->category_child) && $detail->category_child) {
   $slug = $detail->category_child;
@@ -171,7 +130,7 @@ if(isset($detail->category_child) && $detail->category_child) {
               <div class="postnav_w">
                         <div class="postnav_left">
                           <div class="single_post_arrow_content">
-                            <a href="<?= Yii::$app->urlManager->createAbsoluteUrl(['site/detail','slug' => create_slug4($random[0]->title)]) ?>" id="prepost">
+                            <a href="<?= Yii::$app->urlManager->createAbsoluteUrl(['site/detail','slug' => Tools::create_slug($random[0]->title)]) ?>" id="prepost">
                               <span class="jl_cpost_nav">
                                 <span class="jl_post_nav_link"
                                   ><i class="jli-left-arrow"></i>Previous
@@ -185,7 +144,7 @@ if(isset($detail->category_child) && $detail->category_child) {
                         </div>
                         <div class="postnav_right">
                           <div class="single_post_arrow_content">
-                            <a href="<?= Yii::$app->urlManager->createAbsoluteUrl(['site/detail','slug' => create_slug4($random[1]->title)]) ?>" id="nextpost">
+                            <a href="<?= Yii::$app->urlManager->createAbsoluteUrl(['site/detail','slug' => Tools::create_slug($random[1]->title)]) ?>" id="nextpost">
                               <span class="jl_cpost_nav">
                                 <span class="jl_post_nav_link"
                                   >Next post<i
@@ -208,12 +167,12 @@ if(isset($detail->category_child) && $detail->category_child) {
                       <div class="jl_m_right jl_m_list jl_m_img">
                         <div class="jl_m_right_w">
                           <div class="jl_m_right_img jl_radus_e">
-                            <span class="jl_post_type_icon"><i class="jli-gallery"></i></span><a href="<?= Yii::$app->urlManager->createAbsoluteUrl(['site/detail', 'id' => (string)$item->_id, 'slug' => create_slug4($item->title)]) ?>"><img width="500" height="350" src="<?= str_contains($item->image, 'http') ? $item->image : 'https://storage.songxanh24h.vn/images'.$item->image ?>" class="attachment-sprasa_slider_grid_small size-sprasa_slider_grid_small wp-post-image" alt="<?= $item->title ?>" title="<?= $item->title ?>" loading="lazy" /></a>
+                            <span class="jl_post_type_icon"><i class="jli-gallery"></i></span><a href="<?= Yii::$app->urlManager->createAbsoluteUrl(['site/detail', 'id' => (string)$item->_id, 'slug' => Tools::create_slug($item->title)]) ?>"><img width="500" height="350" src="<?= str_contains($item->image, 'http') ? $item->image : 'https://storage.songxanh24h.vn/images'.$item->image ?>" class="attachment-sprasa_slider_grid_small size-sprasa_slider_grid_small wp-post-image" alt="<?= $item->title ?>" title="<?= $item->title ?>" loading="lazy" /></a>
                           </div>
                           <div class="jl_m_right_content">
                             <span class="jl_f_cat"><a class="post-category-color-text" style="background: #62ce5c" href="#"><?= $item->category ?></a></span>
                             <h2 class="entry-title short_text">
-                              <a href="<?= Yii::$app->urlManager->createAbsoluteUrl(['site/detail','slug' => create_slug4($item->title)]) ?>" tabindex="-1"><?= $item->title ?></a>
+                              <a href="<?= Yii::$app->urlManager->createAbsoluteUrl(['site/detail','slug' => Tools::create_slug($item->title)]) ?>" tabindex="-1"><?= $item->title ?></a>
                             </h2>
                             <p class="short_text">
                               <?= Tools::subWord(strip_tags($item->content))?>
@@ -249,7 +208,7 @@ if(isset($detail->category_child) && $detail->category_child) {
                         <div class="jl_m_right jl_sm_list jl_ml jl_clear_at">
                           <div class="jl_m_right_w">
                             <div class="jl_m_right_img jl_radus_e">
-                              <a href="<?= Yii::$app->urlManager->createAbsoluteUrl(['site/detail','slug' => create_slug4($item->title)]) ?>"
+                              <a href="<?= Yii::$app->urlManager->createAbsoluteUrl(['site/detail','slug' => Tools::create_slug($item->title)]) ?>"
                                 ><img
                                   width="120"
                                   height="120"
@@ -261,7 +220,7 @@ if(isset($detail->category_child) && $detail->category_child) {
                             </div>
                             <div class="jl_m_right_content">
                               <h2 class="entry-title">
-                                <a href="<?= Yii::$app->urlManager->createAbsoluteUrl(['site/detail','slug' => create_slug4($item->title)]) ?>" tabindex="-1"
+                                <a href="<?= Yii::$app->urlManager->createAbsoluteUrl(['site/detail','slug' => Tools::create_slug($item->title)]) ?>" tabindex="-1"
                                   ><?= $item->title ?></a
                                 >
                               </h2>

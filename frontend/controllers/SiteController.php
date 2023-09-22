@@ -8,7 +8,6 @@ use frontend\models\VerifyEmailForm;
 use Yii;
 use yii\base\InvalidArgumentException;
 use yii\web\BadRequestHttpException;
-use yii\web\Controller;
 use common\models\LoginForm;
 use common\models\News;
 use frontend\models\PasswordResetRequestForm;
@@ -18,13 +17,12 @@ use common\helper\Tools;
 use common\models\CategoryMedicine;
 use common\models\Medicine;
 use yii\data\Pagination;
-use MongoDb\BSON\ObjectId;
 use yii\web\Response;
-use yii\helpers\Json;
+use frontend\controllers\MainController;
 /**
  * Site controller
  */
-class SiteController extends Controller
+class SiteController extends MainController
 {
     /**
      * {@inheritdoc}
@@ -56,16 +54,6 @@ class SiteController extends Controller
      *
      * @return mixed
      */
-
-    public function init() {
-        parent::init();
-        $category = Category::find()->where(['status' => 1])->limit(7)->all();
-        $views = News::find()->where(['status' => 1])->andWhere(['>=','view', 1])->orderBy(['created_at' => SORT_ASC])->limit(4)->all();
-        $medicine_category = CategoryMedicine::find()->limit(30)->all();
-        Yii::$app->view->params['medicine'] = $medicine_category;
-        Yii::$app->view->params['paramName'] = $category;
-        Yii::$app->view->params['views'] = $views;
-    }
 
     public function actionIndex()
     {

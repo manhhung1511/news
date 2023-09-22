@@ -3,47 +3,10 @@ $this->title = $name_category .' - Chuyên trang sức khỏe, dinh dưỡng, l�
 use yii\widgets\LinkPager;
 use common\helper\Tools;
 
-function create_slug2($string)
-{
-    $search = array(
-        '#(à|á|ạ|ả|ã|â|ầ|ấ|ậ|ẩ|ẫ|ă|ằ|ắ|ặ|ẳ|ẵ)#',
-        '#(è|é|ẹ|ẻ|ẽ|ê|ề|ế|ệ|ể|ễ)#',
-        '#(ì|í|ị|ỉ|ĩ)#',
-        '#(ò|ó|ọ|ỏ|õ|ô|ồ|ố|ộ|ổ|ỗ|ơ|ờ|ớ|ợ|ở|ỡ)#',
-        '#(ù|ú|ụ|ủ|ũ|ư|ừ|ứ|ự|ử|ữ)#',
-        '#(ỳ|ý|ỵ|ỷ|ỹ)#',
-        '#(đ)#',
-        '#(À|Á|Ạ|Ả|Ã|Â|Ầ|Ấ|Ậ|Ẩ|Ẫ|Ă|Ằ|Ắ|Ặ|Ẳ|Ẵ)#',
-        '#(È|É|Ẹ|Ẻ|Ẽ|Ê|Ề|Ế|Ệ|Ể|Ễ)#',
-        '#(Ì|Í|Ị|Ỉ|Ĩ)#',
-        '#(Ò|Ó|Ọ|Ỏ|Õ|Ô|Ồ|Ố|Ộ|Ổ|Ỗ|Ơ|Ờ|Ớ|Ợ|Ở|Ỡ)#',
-        '#(Ù|Ú|Ụ|Ủ|Ũ|Ư|Ừ|Ứ|Ự|Ử|Ữ)#',
-        '#(Ỳ|Ý|Ỵ|Ỷ|Ỹ)#',
-        '#(Đ)#',
-        "/[^a-zA-Z0-9\-\_]/",
-    );
-    $replace = array(
-        'a',
-        'e',
-        'i',
-        'o',
-        'u',
-        'y',
-        'd',
-        'A',
-        'E',
-        'I',
-        'O',
-        'U',
-        'Y',
-        'D',
-        '-',
-    );
-    $string = preg_replace($search, $replace, $string);
-    $string = preg_replace('/(-)+/', '-', $string);
-    $string = strtolower($string);
-    return $string;
-}
+$this->registerMetaTag([
+    'name' => 'description',
+    'content' => $name_category.' Songxanh24h.vn - Tận tâm chăm sóc sức khỏe, Thông tin sức khỏe, dinh dưỡng, hỗ trợ tư vấn điều trị bệnh, thông tin thuốc, chăm sóc làm đẹp tin cậy cho người Việt'
+], 'description');
 ?>
 
 <?php if (isset($news) && $news) : ?>
@@ -58,13 +21,13 @@ function create_slug2($string)
                                     <div class="jl_m_below_c">
                                         <div class="jl_m_below_img">
                                             <div class="jl_f_img_bg jl_radus_e" style="background-image: url(<?= str_contains($news[count($news) - 1]->image, 'http') ? $news[count($news) - 1]->image : 'https://storage.songxanh24h.vn/images'.$news[count($news) - 1]->image ?>);" title="<?= $news[count($news) - 1]->title?>" alt="<?= $news[count($news) - 1]->title?>"></div>
-                                            <a href="<?= Yii::$app->urlManager->createAbsoluteUrl(['site/detail','slug' => create_slug2($news[count($news) - 1]->title)]) ?>" class="jl_f_img_link"></a>
+                                            <a href="<?= Yii::$app->urlManager->createAbsoluteUrl(['site/detail','slug' => Tools::create_slug($news[count($news) - 1]->title)]) ?>" class="jl_f_img_link"></a>
                                             <span class="jl_post_type_icon"><i class="jli-quote-2"></i></span>
                                         </div>
                                         <div class="text-box">
                                             <h1 class="jl_f_cat"><a class="post-category-color-text" style="background: #4dcf8f" href="#"><?= $news[count($news) - 1]->name_category_child ?: $news[count($news) - 1]->category  ?></a></h1>
                                             <h3 class="entry-title short_text">
-                                                <a href="<?= Yii::$app->urlManager->createAbsoluteUrl(['site/detail','slug' => create_slug2($news[count($news) - 1]->title)]) ?>" tabindex="-1"><?= $news[count($news) - 1]->title ?></a>
+                                                <a href="<?= Yii::$app->urlManager->createAbsoluteUrl(['site/detail','slug' => Tools::create_slug($news[count($news) - 1]->title)]) ?>" tabindex="-1"><?= $news[count($news) - 1]->title ?></a>
                                             </h3>
                                             <p class="short_text"><?=Tools::subWord(strip_tags($news[count($news) - 1]->content)) ?></p>
                                         </div>
@@ -93,12 +56,12 @@ function create_slug2($string)
                                             <div class="p-wraper post-2959">
                                                 <div class="jl_grid_w">
                                                     <div class="jl_img_box jl_radus_e">
-                                                        <a href="<?= Yii::$app->urlManager->createAbsoluteUrl(['site/detail','slug' => create_slug2($value->title)]) ?>">
+                                                        <a href="<?= Yii::$app->urlManager->createAbsoluteUrl(['site/detail','slug' => Tools::create_slug($value->title)]) ?>">
                                                             <span class="jl_post_type_icon"><i class="jli-gallery"></i></span><img width="500" height="350" src="<?= str_contains($value->image, 'http') ? $value->image : 'https://storage.songxanh24h.vn/images'.$value->image ?>" class="attachment-sprasa_slider_grid_small size-sprasa_slider_grid_small wp-post-image" alt="<?= $value->title ?>" title="<?= $value->title ?>" loading="lazy" /></a>
                                                     </div>
                                                     <div class="text-box">
                                                         <h4 class="short_text">
-                                                            <a href="<?= Yii::$app->urlManager->createAbsoluteUrl(['site/detail','slug' => create_slug2($value->title)]) ?>"><?= $value->title ?></a>
+                                                            <a href="<?= Yii::$app->urlManager->createAbsoluteUrl(['site/detail','slug' => Tools::create_slug($value->title)]) ?>"><?= $value->title ?></a>
                                                         </h4>
                                                         <p class="short_text">
                                                             <?= Tools::subWord(strip_tags($value->content)) ?>
@@ -131,11 +94,11 @@ function create_slug2($string)
                                             <div class="p-wraper post-2691">
                                                 <div class="jl_grid_w">
                                                     <div class="jl_img_box jl_radus_e">
-                                                        <a href="<?= Yii::$app->urlManager->createAbsoluteUrl(['site/detail', 'slug'=>create_slug2($item->title)]) ?>"><img width="500" height="350" src="<?= str_contains($item->image, 'http') ? $item->image : 'https://storage.songxanh24h.vn/images'.$item->image ?>" class="attachment-sprasa_slider_grid_small size-sprasa_slider_grid_small wp-post-image mobile-img" alt="<?= $item->title ?>" title="<?= $item->title ?>" loading="lazy" /></a>
+                                                        <a href="<?= Yii::$app->urlManager->createAbsoluteUrl(['site/detail', 'slug'=>Tools::create_slug($item->title)]) ?>"><img width="500" height="350" src="<?= str_contains($item->image, 'http') ? $item->image : 'https://storage.songxanh24h.vn/images'.$item->image ?>" class="attachment-sprasa_slider_grid_small size-sprasa_slider_grid_small wp-post-image mobile-img" alt="<?= $item->title ?>" title="<?= $item->title ?>" loading="lazy" /></a>
                                                     </div>
                                                     <div class="text-box">
                                                         <h3>
-                                                            <a href="<?= Yii::$app->urlManager->createAbsoluteUrl(['site/detail', 'slug'=>create_slug2($item->title)]) ?>"><?= Tools::subTitle( $item->title ) ?></a>
+                                                            <a href="<?= Yii::$app->urlManager->createAbsoluteUrl(['site/detail', 'slug'=>Tools::create_slug($item->title)]) ?>"><?= Tools::subTitle( $item->title ) ?></a>
                                                         </h3>
                                                     </div>
                                                 </div>
