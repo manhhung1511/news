@@ -3,6 +3,7 @@ namespace console\controllers;
 
 use common\models\Auth;
 use common\models\Category;
+use common\models\Hospital;
 use common\models\Medicine;
 use common\models\News;
 use common\models\Province;
@@ -206,7 +207,7 @@ class SiteController extends Controller {
     }
 
     public function actionTest1() {
-        Province::deleteAll();
+        Hospital::deleteAll();
     }
 
 }
