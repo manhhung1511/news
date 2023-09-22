@@ -17,7 +17,7 @@ class ApiController extends Controller
         Yii::$app->response->format = Response::FORMAT_JSON;
         $medicine = new Province();
         $medicine->name = Yii::$app->request->post()['name'];
-        $medicine->img = Yii::$app->request->post()['slug'];
+        $medicine->slug = Yii::$app->request->post()['slug'];
         $medicine->number = Yii::$app->request->post()['number'];
         $medicine->created_at =date('Y-m-d H:i:s');
         $medicine->updated_at =date('Y-m-d H:i:s');
