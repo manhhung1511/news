@@ -5,6 +5,7 @@ use common\models\Auth;
 use common\models\Category;
 use common\models\Medicine;
 use common\models\News;
+use common\models\Province;
 use Exception;
 use Google_Client;
 use Google_Service;
@@ -67,7 +68,7 @@ class SiteController extends Controller {
 
         foreach($static_url as $url) {
             $date = date('Y-m-d');
-            $pr = '0.80';
+            $pr = '0.90';
             if($url == 'https://songxanh24h.vn/') $pr = '1.00';
                 $data_xml.= "
                     <url>
@@ -85,7 +86,7 @@ class SiteController extends Controller {
                 foreach($categories_child as $item) {
                     $url = $slug->slug .'/'. self::Slug($item);
                     $date = date('Y-m-d');
-                    $pr = '0.80';
+                    $pr = '0.90';
                         $data_xml.= "
                             <url>
                                 <loc>https://songxanh24h.vn/category/$url</loc>
@@ -99,7 +100,7 @@ class SiteController extends Controller {
 
             $url = $slug->slug;
             $date = date('Y-m-d');
-            $pr = '0.80';
+            $pr = '0.90';
                 $data_xml.= "
                     <url>
                         <loc>https://songxanh24h.vn/category/$url</loc>
@@ -113,7 +114,7 @@ class SiteController extends Controller {
         foreach($news as $slug) {
             $url =  self::Slug($slug->title);
             $date = date('Y-m-d');
-            $pr = '0.64';
+            $pr = '0.90';
                 $data_xml.= "
                     <url>
                         <loc>https://songxanh24h.vn/$url</loc>
@@ -204,6 +205,9 @@ class SiteController extends Controller {
         }
     }
 
- 
+    public function actionTest1() {
+        Province::deleteAll();
+    }
+
 }
 ?>
