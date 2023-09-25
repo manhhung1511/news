@@ -79,6 +79,26 @@
 .options_dark_skin .sub_menu-link {
     color: #fff 
 }
+.options_dark_skin .main_new {
+    background-color: #1a1a1a;
+}
+
+.options_dark_skin .hospital_item{
+    background-color: #1a1a1a;
+}
+
+.options_dark_skin footer {
+    background-color: #1a1a1a !important;
+}
+
+.options_dark_skin .category_title{
+    color: #fff !important;
+}
+
+.options_dark_skin .hospital_description{
+    color: #fff;
+}
+
 .options_dark_skin .mobile_title {
     color: #fff;
 }
