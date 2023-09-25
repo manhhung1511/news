@@ -52,7 +52,18 @@ return [
                 '<slug:[\w\-]+>' => 'site/detail', 
                 '<slug:[\w\-]+>/page-<page:\w+>/per-page-<per_page:\w+>/' => 'site/category',
                 'thuoc/<slug:[\w\-]+>' => 'crawl/medicine-detail',
-                'nhom-thuoc/thuoc/<slug:[\w\-]+>' => 'crawl/medicine'
+                'thuoc/danh-muc/tat-ca' => 'crawl/full-medicine', 
+                'nhom-thuoc/thuoc/<slug:[\w\-]+>' => 'crawl/medicine',
+                'benh-vien/tat-ca' => 'crawl/full-province',
+                'benh-vien/<slug:[\w\-]+>' => 'crawl/hospital',
+                'benh/tat-ca' => 'crawl/full-sick',
+                'benh/<slug:[\w\-]+>' => 'crawl/sick-detail',
+                'nha-thuoc/tat-ca' => 'crawl/full-drugstore',
+                'nha-thuoc/<slug:[\w\-]+>' => 'crawl/drugstore',
+                'duoc-lieu/tat-ca' => 'crawl/full-drug',
+                'duoc-lieu/<slug:[\w\-]+>' => 'crawl/drug-detail',
+                'hoat-chat/tat-ca' => 'crawl/full-active',
+                'hoat-chat/<slug:[\w\-]+>' => 'crawl/active-detail'
             ], 
         ],
     

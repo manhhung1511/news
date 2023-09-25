@@ -71,6 +71,22 @@ use common\helper\Tools;
                                     <!-- begin logo --><a class="logo_link" href="<?= Yii::$app->urlManager->createAbsoluteUrl(['site/index']) ?>"><img class="jl_logo_n" width="200px" height="45px" src="/img/logo1.png" alt="songxanh24h" /><img width="200px" height="45px" class="jl_logo_w" src="/img/logo1.png" alt="songxanh24h" /></a><!-- end logo -->
                                 </div>
                             </div>
+                            <div class="header-search-wrap">
+                                <div class="search-button">
+                                <svg width="100%" height="100%" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"
+"><path d="M10.9414 1.93125C5.98269 1.93125 1.94336 5.97057 1.94336 10.9293C1.94336 15.888 5.98269 19.9352 10.9414 19.9352C13.0594 19.9352 15.0074 19.193 16.5469 17.9606L20.2949 21.7066C20.4841 21.888 20.7367 21.988 20.9987 21.9853C21.2607 21.9826 21.5112 21.8775 21.6966 21.6923C21.882 21.5072 21.9875 21.2569 21.9906 20.9949C21.9936 20.7329 21.8939 20.4801 21.7129 20.2907L17.9648 16.5427C19.1983 15.0008 19.9414 13.0498 19.9414 10.9293C19.9414 5.97057 15.9001 1.93125 10.9414 1.93125ZM10.9414 3.93128C14.8192 3.93128 17.9395 7.05148 17.9395 10.9293C17.9395 14.8071 14.8192 17.9352 10.9414 17.9352C7.06357 17.9352 3.94336 14.8071 3.94336 10.9293C3.94336 7.05148 7.06357 3.93128 10.9414 3.93128Z" fill="currentColor"></path></svg>
+                                </div>
+                            </div>
+
+                            <div class="drop_down-search">
+                                <form method="get" class="td-search-form" action="">
+                                    <div role="search" class="td-head-form-search-wrap">
+                                        <input id="td-header-search" type="text" value="" name="s" autocomplete="off">
+                                        <input class="wpb_button wpb_btn-inverse btn" type="submit" id="td-header-search-top" value="Search">
+                                    </div>
+                                </form>
+                                </div>
+                            
                             <div class="search_header_menu jl_nav_mobile">
                                 <div class="menu_mobile_icons">
                                     <div class="jlm_w">
@@ -446,4 +462,8 @@ use common\helper\Tools;
             category4.classList.add("hidden");
             category5.classList.add("hidden");
         });
+
+        $('.search-button').click(function() {
+            $('.drop_down-search').toggleClass("drop_down-search-open");
+        }) 
     </script>

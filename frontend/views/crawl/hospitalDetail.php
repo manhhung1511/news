@@ -70,7 +70,7 @@ $this->registerMetaTag([
                                         <div class="jl_m_right jl_sm_list jl_ml jl_clear_at">
                                             <div class="jl_m_right_w">
                                                 <div class="jl_m_right_img jl_radus_e">
-                                                    <a href="<?= Yii::$app->urlManager->createAbsoluteUrl(['crawl/hospital-detail', 'slug' => $item->slug, 'slug-category' => $item->slug_category]) ?>"><img width="120" height="120" src="https://storage.songxanh24h.vn/images/thuoc2/<?= $item->img ?>" class="attachment-sprasa_small_feature size-sprasa_small_feature wp-post-image" alt="<?= $item->name ?>" loading="lazy" /></a>
+                                                    <a href="<?= Yii::$app->urlManager->createAbsoluteUrl(['crawl/hospital-detail', 'slug' => $item->slug, 'slug-category' => $item->slug_category]) ?>"><img width="120" height="120" src="https://storage.songxanh24h.vn/images/hospital1/<?= $item->img ?>" class="attachment-sprasa_small_feature size-sprasa_small_feature wp-post-image" alt="<?= $item->name ?>" loading="lazy" /></a>
                                                 </div>
                                                 <div class="jl_m_right_content">
                                                     <h2 class="entry-title">

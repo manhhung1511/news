@@ -107,21 +107,27 @@ $currentUrl = Url::current([], true);
             <?php endif; ?>
           <?php endforeach; ?>
         <?php endif; ?>
-        <li class="menu-item menu-item-has-children">
-          <a href="javascript:void(0)">
-                  Thuốc <span class="border-menu"></span>
-                  <span class="jl_menu_lb" style="
-                              background: #ffe500 !important;
-                              color: red !important;
-                            "><span class="jl_lb_ar" style="border-top: 3px solid #ffe500 !important"></span>Hot</span>
-                </a>
-                <ul class="sub-menu">
-                  <?php foreach (Yii::$app->view->params['medicine'] as $item) : ?>
-                    <li class="menu-item">
-                       <a href="<?= Yii::$app->urlManager->createAbsoluteUrl(['site/medicine', 'slug'=>Tools::create_slug($item->name)]) ?>" class="sub_menu-link"><?= Tools::subTitle($item->name, 5)?></a>
-                    </li>
-                  <?php endforeach; ?>
-                </ul>
+        <li class="menu-item current-menu-item current_page_item">
+                <a href="<?= Yii::$app->urlManager->createAbsoluteUrl(['crawl/full-medicine']) ?>">Thuốc<span class="border-menu"></span></a>
+        </li>
+        <li class="menu-item current-menu-item current_page_item">
+                <a href="<?= Yii::$app->urlManager->createAbsoluteUrl(['crawl/full-province']) ?>">Bệnh Viện<span class="border-menu"></span></a>
+        </li>
+
+        <li class="menu-item current-menu-item current_page_item">
+                <a href="<?= Yii::$app->urlManager->createAbsoluteUrl(['crawl/full-sick']) ?>">Bệnh<span class="border-menu"></span></a>
+        </li>
+
+        <li class="menu-item current-menu-item current_page_item">
+                <a href="<?= Yii::$app->urlManager->createAbsoluteUrl(['crawl/full-drugstore']) ?>">Nhà Thuốc<span class="border-menu"></span></a>
+        </li>
+
+        <li class="menu-item current-menu-item current_page_item">
+                <a href="<?= Yii::$app->urlManager->createAbsoluteUrl(['crawl/full-drug']) ?>">Dược liệu<span class="border-menu"></span></a>
+        </li>
+
+        <li class="menu-item current-menu-item current_page_item">
+                <a href="<?= Yii::$app->urlManager->createAbsoluteUrl(['crawl/full-active']) ?>">Hoạt chất<span class="border-menu"></span></a>
         </li>
       </ul>
       <div id="sprasa_recent_post_text_widget-11" class="widget post_list_widget">

@@ -79,6 +79,9 @@
 .options_dark_skin .sub_menu-link {
     color: #fff 
 }
+.options_dark_skin .mobile_title {
+    color: #fff;
+}
 
 .options_dark_skin .list_infor {
     color: #fff 
@@ -143,6 +146,51 @@
 .sick_alphabet h3 {
     font-size: 17px;
 }
+
+.header-search-wrap {
+    position: absolute;
+    top: 43%;
+    right: 120px;
+    font-size: 20px;
+}
+/* start search */
+.search-button {
+    cursor: pointer;
+    height: 40px;
+    width: 29px;
+}
+.options_dark_skin .search-button {
+    color: #fff;
+}
+.drop_down-search {
+    background-color: #fff;
+    position: absolute;
+    top: 100%;
+    right: 5px;
+    transition: all 0.4s ease;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+    visibility: hidden;
+    opacity: 0;
+    -webkit-transition: all 0.4s ease;
+    transition: all 0.4s ease;
+    transform: translate3d(0, 20px, 0);
+    -webkit-box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+}
+.td-search-form {
+    margin: 20px;
+    width: 339px;
+}
+#td-header-search-top {
+    position: absolute;
+    right: 20px;
+    top: 23px;
+}
+.drop_down-search-open {
+    visibility: visible;
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+    -webkit-transform: translate3d(0, 0, 0);
+}
 /* 
 end submenu */
 @media only screen and (min-width: 600px) {
@@ -156,10 +204,13 @@ end submenu */
         height: 166px; 
         object-fit: cover;
     }
+    .drop_down-search {
+        right: 95px;
+    }
 }
 .single_post_title_main {
     padding-bottom: 20px;
-    border-bottom: 1px solid #777;
+    border-bottom: 1px solid #181717;
 }
 .home_section2 {
     margin-top: 50px
@@ -16526,6 +16577,10 @@ footer .jl_sm_list .entry-title a {
 
 .options_dark_skin a, .options_dark_skin h1, .options_dark_skin h2, .options_dark_skin h3, .options_dark_skin h4, .options_dark_skin h5, .options_dark_skin h6 {
     color: #fff !important;
+}
+
+.options_dark_skin li {
+    background-color: #1a1a1a !important;
 }
 
 .options_dark_skin p, .options_dark_skin em, .options_dark_skin p em, .options_dark_skin p span, .options_dark_skin p strong {

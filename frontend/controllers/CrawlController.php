@@ -287,5 +287,10 @@ class CrawlController extends MainController
             'categories' => $categories
         ]);
     }
+
+    // public function actionSearch() {
+    //     $find = Yii::$app->request->get('s');
+    //     $resl = 
+    // }
 }
 
