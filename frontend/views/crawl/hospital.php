@@ -34,7 +34,12 @@ $this->title = Tools::subWord($title, 8);
         padding: 38px !important;
     }
     
-    
+    @media (max-width:767.98px) {
+        .hospital_description {
+            display: none;
+        } 
+    }
+   
 </style>
 <div class="main_new">
     <div class="container">

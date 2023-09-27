@@ -42,7 +42,13 @@ $this->registerMetaTag([
     .hospital_link {
         margin-bottom: 10px;
     }
-    
+
+    @media (max-width:767.98px) {
+        .list_infor {
+        display:none;
+    }
+    }
+
 </style>
 <div class="main_new">
     <div class="container">

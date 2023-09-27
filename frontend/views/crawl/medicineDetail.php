@@ -20,7 +20,7 @@ $this->registerMetaTag([
                     <!-- start post -->
                     <div class="post-2838 post type-post status-publish format-standard has-post-thumbnail hentry category-sports tag-gaming" id="post-2838">
                         <div class="single_section_content box blog_large_post_style">
-                            <div class="ml-5">
+                            <div class="">
                                 <div class="jl_single_style2">
                                     <div class="single_post_entry_content single_bellow_left_align jl_top_single_title jl_top_title_feature">
                                         <h1 class="single_post_title_main">

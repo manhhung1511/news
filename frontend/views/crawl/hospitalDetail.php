@@ -26,7 +26,7 @@ $this->registerMetaTag([
                     <!-- start post -->
                     <div class="post-2838 post type-post status-publish format-standard has-post-thumbnail hentry category-sports tag-gaming" id="post-2838">
                         <div class="single_section_content box blog_large_post_style">
-                            <div class="ml-5">
+                            <div class="">
                                 <div class="post_content_w">
                                     <div class="post_content jl_content">
                                         <?php foreach ($detail->content as $content) : ?>
@@ -55,7 +55,7 @@ $this->registerMetaTag([
                     </div>
                 </div>
             </div>
-            <div class="col-md-4" id="sidebar">
+            <div class="col-md-4">
                 <div class="jl_sidebar_w">
                     <div id="sprasa_recent_post_text_widget-9" class="widget post_list_widget">
                         <div class="widget_jl_wrapper">
