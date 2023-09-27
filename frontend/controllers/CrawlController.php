@@ -78,9 +78,22 @@ class CrawlController extends MainController
     public function actionHospitalDetail() {
         $slug = Yii::$app->request->get('slug');
         $slug_category = Yii::$app->request->get('slug-category');
-        $detail = Hospital::findOne(['slug' => $slug, 'slug_category' => $slug_category]);
+        $detail = Hospital::findOne(['slug' => $slug, 'slug_category' => $slug_category,'type' => '1']);
         $address = $detail->address;
         $categories = Hospital::find()->where(['address' => $address, 'type' => '1'])->orderBy(['created_at' => SORT_ASC])->limit(10)->all();
+    
+        return $this->render("hospitalDetail",[
+            'detail' => $detail,
+            'categories' => $categories
+        ]);
+    }
+
+    public function actionDrugStoreDetail() {
+        $slug = Yii::$app->request->get('slug');
+        $slug_category = Yii::$app->request->get('slug-category');
+        $detail = Hospital::findOne(['slug' => $slug, 'slug_category' => $slug_category, 'type' => '2']);
+        $address = $detail->address;
+        $categories = Hospital::find()->where(['address' => $address, 'type' => '2'])->orderBy(['created_at' => SORT_ASC])->limit(10)->all();
     
         return $this->render("hospitalDetail",[
             'detail' => $detail,

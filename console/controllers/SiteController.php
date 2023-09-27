@@ -3,10 +3,12 @@ namespace console\controllers;
 
 use common\models\Auth;
 use common\models\Category;
+use common\models\CategoryMedicine;
 use common\models\Hospital;
 use common\models\Medicine;
 use common\models\News;
 use common\models\Province;
+use common\models\Sick;
 use Exception;
 use Google_Client;
 use Google_Service;
@@ -130,7 +132,7 @@ class SiteController extends Controller {
 
         file_put_contents($filePath, $data_xml);
     }
-
+    
     public function actionWriteFile() {
         $filename = Yii::getAlias('@console').'/file/index1.csv';
         // //get data
