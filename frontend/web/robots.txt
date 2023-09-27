@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+Sitemap: https://songxanh24h.vn/sitemap.xml
+Sitemap: https://songxanh24h.vn/sitemap2.xml
+Sitemap: https://songxanh24h.vn/sitemap3.xml
