@@ -117,7 +117,7 @@ use common\helper\Tools;
                             <div class="jl_mg_main">
                                 <div class="jl_mg_main_w">
                                     <div class="jl_img_box jl_radus_e">
-                                        <a href="<?= Yii::$app->urlManager->createAbsoluteUrl(['site/detail','slug'=>Tools::create_slug($news_category5[0]->title)]) ?>"><img style="width: 550px; height: 358px; object-fit: cover;"width="1000" height="500" src="<?= str_contains($news_category5[0]->image, 'http') ? $news_category5[0]->image : 'https://storage.songxanh24h.vn/images'.$news_category5[0]->image ?>" class="attachment-sprasa_feature_large size-sprasa_feature_large wp-post-image" alt="<?= $news_category5[0]->title ?>" title="<?= $news_category5[0]->title ?>" loading="lazy" /></a>
+                                        <a href="<?= Yii::$app->urlManager->createAbsoluteUrl(['site/detail','slug'=>Tools::create_slug($news_category5[0]->title)]) ?>"><img width="1000" height="500" src="<?= str_contains($news_category5[0]->image, 'http') ? $news_category5[0]->image : 'https://storage.songxanh24h.vn/images'.$news_category5[0]->image ?>" class="attachment-sprasa_feature_large size-sprasa_feature_large wp-post-image" alt="<?= $news_category5[0]->title ?>" title="<?= $news_category5[0]->title ?>" loading="lazy" /></a>
                                     </div>
                                     <div class="text-box">
                                         <h3 class="entry-title">
