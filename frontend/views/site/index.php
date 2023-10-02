@@ -22,7 +22,7 @@ use common\helper\Tools;
                             <div class="jl_m_center blog-style-one blog-small-grid">
                                 <div class="jl_m_center_w jl_radus_e">
                                     <div class="jl_f_img_bg" style="
-                              background-image: url('https://storage.songxanh24h.vn/images/2023/08/30/thump-tri-seo-scar-esthetique-1jpg.webp');
+                              background-image: url('<?= str_contains($news[count($news) - 1 ]->image, 'http') ? $news[count($news) - 1 ]->image : 'https://storage.songxanh24h.vn/images'.$news[count($news) - 1 ]->image ?>');
                             " title="<?= $news[count($news) - 1 ]->title ?>" alt="<?= $news[count($news) - 1 ]->title ?>"></div>
                                     <a href="<?= Yii::$app->urlManager->createAbsoluteUrl(['site/detail', 'slug' => Tools::create_slug($news[count($news) - 1 ]->title)]) ?>" class="jl_f_img_link"></a>
                                 </div>
