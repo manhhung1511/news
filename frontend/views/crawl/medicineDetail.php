@@ -90,7 +90,12 @@ $this->registerMetaTag([
                                                     <?= isset($content['content18']) && $content['content18'] ? $content['content18'] : '' ?>
                                                 </div>
                                             <?php endforeach; ?>
-                                        <?php endif; ?>
+                                        <?php else: ?>
+                                            <?php 
+                                                header('https://songxanh24h.vn/');
+                                                exit();
+                                            ?>
+                                        <?php endif; ?>   
                                     </div>
                                 </div>
                                 <div class="clearfix"></div>
