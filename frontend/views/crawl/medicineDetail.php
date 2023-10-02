@@ -32,63 +32,65 @@ $this->registerMetaTag([
                                 </div>
                                 <div class="post_content_w">
                                     <div class="post_content jl_content">
-                                        <?php foreach ($detail->content as $content) : ?>
-                                            <img src="https://storage.songxanh24h.vn/images/thuoc2/<?= $detail->img ?>" />
-                                            <div class="mt-3">
-                                                <?= isset($content['value1']) && $content['value1'] ? $content['value1'] : '' ?>
-                                            </div>
-                                            <div class="mt-3">
-                                                <?= isset($content['value2']) && $content['value2'] ? $content['value2'] : '' ?>
-                                            </div>
-                                            <div class="mt-3">
-                                                <?= isset($content['value3']) && $content['value3'] ? $content['value3'] : '' ?>
-                                            </div>
-                                            <div class="mt-3">
-                                                <?= isset($content['value4']) && $content['value4'] ? $content['value4'] : '' ?>
-                                            </div>
-                                            <div class="mt-3">
-                                                <?= isset($content['value5']) && $content['value5'] ? $content['value5'] : '' ?>
-                                            </div>
-                                            <div class="mt-3">
-                                                <?= isset($content['content6']) && $content['content6'] ? $content['content6'] : '' ?>
-                                            </div>
-                                            <h3 class="mt-3">
-                                                <?= isset($content['content7']) && $content['content7'] ? $content['content7'] : '' ?>
-                                            </h3>
-                                            <div class="mt-3">
-                                                <?= isset($content['content8']) && $content['content8'] ? $content['content8'] : '' ?>
-                                            </div>
-                                            <div class="mt-3">
-                                                <?= isset($content['content9']) && $content['content9'] ? $content['content9'] : '' ?>
-                                            </div>
-                                            <div class="mt-3">
-                                                <?= isset($content['content10']) && $content['content10'] ? $content['content10'] : '' ?>
-                                            </div>
-                                            <div class="mt-3">
-                                                <?= isset($content['content11']) && $content['content11'] ? $content['content11'] : '' ?>
-                                            </div>
-                                            <div class="mt-3">
-                                                <?= isset($content['content12']) && $content['content12'] ? $content['content12'] : '' ?>
-                                            </div>
-                                            <div class="mt-3">
-                                                <?= isset($content['content13']) && $content['content13'] ? $content['content13'] : '' ?>
-                                            </div>
-                                            <div class="mt-3">
-                                                <?= isset($content['content14']) && $content['content14'] ? $content['content14'] : '' ?>
-                                            </div>
-                                            <div class="mt-3">
-                                                <?= isset($content['content15']) && $content['content15'] ? $content['content15'] : '' ?>
-                                            </div>
-                                            <div class="mt-3">
-                                                <?= isset($content['content16']) && $content['content16'] ? $content['content16'] : '' ?>
-                                            </div>
-                                            <div class="mt-3">
-                                                <?= isset($content['content17']) && $content['content17'] ? $content['content17'] : '' ?>
-                                            </div>
-                                            <div class="mt-3">
-                                                <?= isset($content['content18']) && $content['content18'] ? $content['content18'] : '' ?>
-                                            </div>
-                                        <?php endforeach; ?>
+                                        <?php if(isset($detail->content) && $detail->content): ?>
+                                            <?php foreach ($detail->content as $content) : ?>
+                                                <img src="https://storage.songxanh24h.vn/images/thuoc2/<?= $detail->img ?>" />
+                                                <div class="mt-3">
+                                                    <?= isset($content['value1']) && $content['value1'] ? $content['value1'] : '' ?>
+                                                </div>
+                                                <div class="mt-3">
+                                                    <?= isset($content['value2']) && $content['value2'] ? $content['value2'] : '' ?>
+                                                </div>
+                                                <div class="mt-3">
+                                                    <?= isset($content['value3']) && $content['value3'] ? $content['value3'] : '' ?>
+                                                </div>
+                                                <div class="mt-3">
+                                                    <?= isset($content['value4']) && $content['value4'] ? $content['value4'] : '' ?>
+                                                </div>
+                                                <div class="mt-3">
+                                                    <?= isset($content['value5']) && $content['value5'] ? $content['value5'] : '' ?>
+                                                </div>
+                                                <div class="mt-3">
+                                                    <?= isset($content['content6']) && $content['content6'] ? $content['content6'] : '' ?>
+                                                </div>
+                                                <h3 class="mt-3">
+                                                    <?= isset($content['content7']) && $content['content7'] ? $content['content7'] : '' ?>
+                                                </h3>
+                                                <div class="mt-3">
+                                                    <?= isset($content['content8']) && $content['content8'] ? $content['content8'] : '' ?>
+                                                </div>
+                                                <div class="mt-3">
+                                                    <?= isset($content['content9']) && $content['content9'] ? $content['content9'] : '' ?>
+                                                </div>
+                                                <div class="mt-3">
+                                                    <?= isset($content['content10']) && $content['content10'] ? $content['content10'] : '' ?>
+                                                </div>
+                                                <div class="mt-3">
+                                                    <?= isset($content['content11']) && $content['content11'] ? $content['content11'] : '' ?>
+                                                </div>
+                                                <div class="mt-3">
+                                                    <?= isset($content['content12']) && $content['content12'] ? $content['content12'] : '' ?>
+                                                </div>
+                                                <div class="mt-3">
+                                                    <?= isset($content['content13']) && $content['content13'] ? $content['content13'] : '' ?>
+                                                </div>
+                                                <div class="mt-3">
+                                                    <?= isset($content['content14']) && $content['content14'] ? $content['content14'] : '' ?>
+                                                </div>
+                                                <div class="mt-3">
+                                                    <?= isset($content['content15']) && $content['content15'] ? $content['content15'] : '' ?>
+                                                </div>
+                                                <div class="mt-3">
+                                                    <?= isset($content['content16']) && $content['content16'] ? $content['content16'] : '' ?>
+                                                </div>
+                                                <div class="mt-3">
+                                                    <?= isset($content['content17']) && $content['content17'] ? $content['content17'] : '' ?>
+                                                </div>
+                                                <div class="mt-3">
+                                                    <?= isset($content['content18']) && $content['content18'] ? $content['content18'] : '' ?>
+                                                </div>
+                                            <?php endforeach; ?>
+                                        <?php endif; ?>
                                     </div>
                                 </div>
                                 <div class="clearfix"></div>
