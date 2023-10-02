@@ -92,8 +92,7 @@ $this->registerMetaTag([
                                             <?php endforeach; ?>
                                         <?php else: ?>
                                             <?php 
-                                                header('https://songxanh24h.vn/');
-                                                exit();
+                                               return Yii::$app->response->redirect('https://songxanh24h.vn/');
                                             ?>
                                         <?php endif; ?>   
                                     </div>
