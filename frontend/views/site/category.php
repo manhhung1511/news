@@ -161,7 +161,6 @@ $(document).ready(function() {
             },
             success: function (result) {
                 if(result.trim() == 1) {
-                    console.log('11');
                     $('.load-end-data').removeClass('hidden');
                     $('.load-data').addClass('hidden');
                 } else {

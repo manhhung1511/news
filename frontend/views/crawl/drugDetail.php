@@ -62,6 +62,30 @@ $this->registerMetaTag([
                                         </div>
                                     <?php endforeach; ?>
                             </div>
+
+                            <div class="ettitle">
+                        <div class="widget-title title_content">
+                          <h2 class="jl_title_c jl_title_content">Hoạt chất</h2>
+                          <a class="link_content-full"href="<?= Yii::$app->urlManager->createAbsoluteUrl(['crawl/full-active']) ?>">Xem tất cả</a> 
+                        </div>
+                      </div>
+                      <div class="bt_post_widget">
+                      <?php if (isset($actives) && $actives) : ?>
+                        <?php foreach ($actives as $item) : ?>
+                        <div class="jl_m_right jl_sm_list jl_ml jl_clear_at">
+                          <div class="jl_m_right_w">
+                            <div class="jl_m_right_content">
+                              <h2 class="entry-title">
+                                <a href="<?= Yii::$app->urlManager->createAbsoluteUrl(['crawl/active-detail', 'slug' => $item->slug]) ?>" tabindex="-1"
+                                  ><?= $item->name ?></a
+                                >
+                              </h2>
+                            </div>
+                          </div>
+                        </div>
+                        <?php endforeach; ?>
+                    <?php endif; ?>
+                      </div>
                         </div>
                     </div>
                 </div>

@@ -16,6 +16,7 @@ use frontend\models\SignupForm;
 use common\helper\Tools;
 use common\models\CategoryMedicine;
 use common\models\Medicine;
+use common\models\Sick;
 use yii\data\Pagination;
 use yii\web\Response;
 use frontend\controllers\MainController;
@@ -160,7 +161,6 @@ class SiteController extends MainController
     public function actionDetail()
     {
         $slug = Yii::$app->request->get('slug');
-        $id = Yii::$app->request->get('id');
         $detail = News::findOne(['slug' => $slug]);
         if(empty($detail->category_child)) {
             $category = $detail->category;
@@ -180,13 +180,17 @@ class SiteController extends MainController
                               ->limit(2)
                                ->all();
 
-        $views = News::find()->where(['status' => 1])->andWhere(['>=','view', 1])->orderBy(['created_at' => SORT_ASC])->limit(6)->all();
+        $views = News::find()->where(['status' => 1])->andWhere(['>=','view', 1])->orderBy(['created_at' => SORT_ASC])->limit(3)->all();
       
+        $medicine = Medicine::find()->where(['category' => 'Thiết bị y tế'])->orderBy(['created_at' => SORT_ASC])->limit(3)->all();
+        $sicks = Sick::find()->where(['type' => '3'])->orderBy(['created_at' => SORT_ASC])->limit(3)->all();
         return $this->render('detail', [
             'detail' => $detail,
             'relate' => $relate,
             'random' => $random,
-            'views' => $views
+            'views' => $views,
+            'sicks' => $sicks,
+            'medicine' => $medicine
         ]);
     }
 

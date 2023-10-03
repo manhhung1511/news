@@ -1,5 +1,7 @@
 <?php
 
+use common\helper\Tools;
+
 $title = $contents->name.' | Songxanh24h.vn';
 $this->title = $title;
 
@@ -55,6 +57,42 @@ $this->registerMetaTag([
                                         </div>
                                     <?php endforeach; ?>
                             </div>
+
+
+                            <div class="ettitle">
+                        <div class="widget-title title_content">
+                          <h2 class="jl_title_c jl_title_content">Thuốc</h2>
+                          <a class="link_content-full"href="<?= Yii::$app->urlManager->createAbsoluteUrl(['crawl/full-medicine']) ?>">Xem tất cả</a> 
+                        </div>
+                      </div>
+                      <div class="bt_post_widget">
+                      <?php if (isset($medicine) && $medicine) : ?>
+                        <?php foreach ($medicine as $item) : ?>
+                        <div class="jl_m_right jl_sm_list jl_ml jl_clear_at">
+                          <div class="jl_m_right_w">
+                            <div class="jl_m_right_img jl_radus_e">
+                              <a href="<?= Yii::$app->urlManager->createAbsoluteUrl(['crawl/medicine-detail', 'slug' => Tools::create_slug($item->name)]) ?>"
+                                ><img
+                                  width="120"
+                                  height="120"
+                                  src="https://storage.songxanh24h.vn/images/thuoc2/<?= $item->img ?>"
+                                  class="attachment-sprasa_small_feature size-sprasa_small_feature wp-post-image"
+                                  alt="<?= $item->name ?>"
+                                  loading="lazy"
+                              /></a>
+                            </div>
+                            <div class="jl_m_right_content">
+                              <h2 class="entry-title">
+                                <a href="<?= Yii::$app->urlManager->createAbsoluteUrl(['crawl/medicine-detail', 'slug' => Tools::create_slug($item->name)]) ?>" tabindex="-1"
+                                  ><?= $item->name ?></a
+                                >
+                              </h2>
+                            </div>
+                          </div>
+                        </div>
+                        <?php endforeach; ?>
+                    <?php endif; ?>
+                      </div>
                         </div>
                     </div>
                 </div>

@@ -40,7 +40,7 @@ use yii\widgets\LinkPager;
         <div class="row">
             <?php if(isset($drugstore) && $drugstore): ?>
                 <?php foreach($drugstore as $item): ?>
-                    <div class="col-md-3">
+                    <div class="col-md-3 col-mb-6">
                         <div class="hospital_item">
                             <div class="hospital_link">
                                 <a title="" href="<?= Yii::$app->urlManager->createAbsoluteUrl(['crawl/drug-store-detail', 'slug' => $item->slug,'slug-category' => $item->slug_category]) ?>"> <?= $item->name ?> </a>
@@ -105,12 +105,12 @@ $(document).ready(function() {
                 name_category
             },
             success: function (result) {
-            if(result) {
-                $(`.data${click}`).html(result);
-            } else {
-                $('.load-end-data').removeClass('hidden');
-                $('.load-data').addClass('hidden');
-            }
+                if(result.trim() == 1) {
+                    $('.load-end-data').removeClass('hidden');
+                    $('.load-data').addClass('hidden');
+                } else {
+                    $(`.data${click}`).html(result);
+                }
             }
         });
     });

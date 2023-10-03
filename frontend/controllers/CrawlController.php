@@ -38,10 +38,12 @@ class CrawlController extends MainController
         $detail = Medicine::findOne(['slug' => $slug]);
         $category = $detail->category;
         $categories = Medicine::find()->where(['category' => $category])->orderBy(['created_at' => SORT_ASC])->limit(10)->all();
+        $sicks = Sick::find()->where(['type' => '3'])->orderBy(['created_at' => SORT_ASC])->limit(5)->all();
     
         return $this->render("medicineDetail",[
             'detail' => $detail,
-            'categories' => $categories
+            'categories' => $categories,
+            'sicks' => $sicks
         ]);
     }
 
@@ -87,11 +89,13 @@ class CrawlController extends MainController
         $slug_category = Yii::$app->request->get('slug-category');
         $detail = Hospital::findOne(['slug' => $slug, 'slug_category' => $slug_category,'type' => '1']);
         $address = $detail->address;
-        $categories = Hospital::find()->where(['address' => $address, 'type' => '1'])->orderBy(['created_at' => SORT_ASC])->limit(10)->all();
+        $categories = Hospital::find()->where(['address' => $address, 'type' => '1'])->orderBy(['created_at' => SORT_ASC])->limit(5)->all();
+        $sicks = Sick::find()->where(['type' => '1'])->orderBy(['created_at' => SORT_ASC])->limit(5)->all();
     
         return $this->render("hospitalDetail",[
             'detail' => $detail,
-            'categories' => $categories
+            'categories' => $categories,
+            'sicks' => $sicks
         ]);
     }
 
@@ -101,10 +105,11 @@ class CrawlController extends MainController
         $detail = Hospital::findOne(['slug' => $slug, 'slug_category' => $slug_category, 'type' => '2']);
         $address = $detail->address;
         $categories = Hospital::find()->where(['address' => $address, 'type' => '2'])->orderBy(['created_at' => SORT_ASC])->limit(10)->all();
-    
+        $sicks = Sick::find()->where(['type' => '1'])->orderBy(['created_at' => SORT_ASC])->limit(5)->all();
         return $this->render("hospitalDetail",[
             'detail' => $detail,
-            'categories' => $categories
+            'categories' => $categories,
+            'sicks'  => $sicks
         ]);
     }
 
@@ -159,10 +164,12 @@ class CrawlController extends MainController
     public function actionSickDetail() {
         $slug = Yii::$app->request->get('slug');
         $contents = Sick::findOne(['slug' => $slug]);
-        $categories = Sick::find()->where(['type' => '1'])->orderBy(['created_at' => SORT_ASC])->limit(20)->all();
+        $categories = Sick::find()->where(['type' => '1'])->orderBy(['created_at' => SORT_ASC])->limit(5)->all();
+        $hospital = Hospital::find()->where(['slug_category' => 'ha-noi', 'type' => '1'])->orderBy(['created_at' => SORT_ASC])->limit(5)->all();
         return $this->render("sickDetail",[
             'contents' => $contents,
-            'categories' => $categories
+            'categories' => $categories,
+            'hospital' => $hospital
         ]);
     }
 
@@ -237,10 +244,13 @@ class CrawlController extends MainController
     public function actionDrugDetail() {
         $slug = Yii::$app->request->get('slug');
         $contents = Sick::findOne(['slug' => $slug]);
-        $categories = Sick::find()->where(['type' => '2'])->orderBy(['created_at' => SORT_ASC])->limit(20)->all();
+        $categories = Sick::find()->where(['type' => '2'])->orderBy(['created_at' => SORT_ASC])->limit(5)->all();
+        $actives = Sick::find()->where(['type' => '3'])->orderBy(['created_at' => SORT_ASC])->limit(5)->all();
+    
         return $this->render("drugDetail",[
             'contents' => $contents,
-            'categories' => $categories
+            'categories' => $categories,
+            'actives' => $actives
         ]);
     }
 
@@ -298,9 +308,11 @@ class CrawlController extends MainController
         $slug = Yii::$app->request->get('slug');
         $contents = Sick::findOne(['slug' => $slug]);
         $categories = Sick::find()->where(['type' => '3'])->orderBy(['created_at' => SORT_ASC])->limit(20)->all();
+        $medicine = Medicine::find()->where(['category' => 'Huyết thanh & Globulin miễn dịch'])->orderBy(['created_at' => SORT_ASC])->limit(3)->all();
         return $this->render("activeDetail",[
             'contents' => $contents,
-            'categories' => $categories
+            'categories' => $categories,
+            'medicine' => $medicine
         ]);
     }
 

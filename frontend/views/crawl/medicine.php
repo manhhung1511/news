@@ -58,7 +58,7 @@ $this->registerMetaTag([
         <div class="row">
             <?php if(isset($medicine) && $medicine): ?>
                 <?php foreach($medicine as $item): ?>
-                    <div class="col-md-3">
+                    <div class="col-md-3 col-mb-6">
                         <div class="hospital_item">
                             <div class="hospital_link">
                                 <a style="font-weight: 600; font-size:17px;"title="<?= $item->name ?>" href="<?= Yii::$app->urlManager->createAbsoluteUrl(['crawl/medicine-detail','slug' => Tools::create_slug($item->name)]) ?>"> <?= $item->name ?> </a>

@@ -1,7 +1,7 @@
 <?php if(isset($hospital) && $hospital): ?>
 <div class="row">
                 <?php foreach($hospital as $item): ?>
-                    <div class="col-md-3">
+                    <div class="col-md-3 col-mb-6">
                         <div class="hospital_item">
                             <div class="hospital_link">
                                 <a title="" href="<?= Yii::$app->urlManager->createAbsoluteUrl(['crawl/hospital-detail', 'slug' => $item->slug,'slug-category' => $item->slug_category]) ?>"> <?= $item->name ?> </a>

@@ -35,7 +35,7 @@ $this->registerMetaTag([
             
             <?php if(isset($provinces) && $provinces): ?>
                 <?php foreach($provinces as $item): ?>
-                    <div class="col-md-3">
+                    <div class="col-md-3 col-mb-6">
                         <div class="provinces_content">
                             <a href="<?= Yii::$app->urlManager->createAbsoluteUrl(['crawl/hospital', 'slug' => $item->slug]) ?>">
                                 <?= $item->name ?>  

@@ -9646,6 +9646,20 @@ h1.has-background, h2.has-background, h3.has-background, h4.has-background, h5.h
     .sick_alphabet ul {
         display: none !important;
     }
+
+    .load-data {
+        left: 28%;
+    }
+    .load-end-data {
+        left: 17%;
+    }
+
+    .col-mb-6 {
+        position: relative;
+        width: 50%;
+        padding-right: 15px;
+        padding-left: 15px
+    }
 }
   
 .mobile_title span {
@@ -14429,6 +14443,21 @@ a img.aligncenter {
     -webkit-box-align: center;
     -ms-flex-align: center;
     align-items: center
+}
+
+.jl_title_content {
+    width: 58% !important;
+}
+
+.title_content {
+    display: flex;
+    margin-top: 22px;
+}
+.link_content-full {
+    font-weight: bold;
+}
+.link_content-full:hover {
+    color: #237c50;
 }
 
 .widget-title .jl_title_c, .widget_jl_wrapper h5 {

@@ -65,6 +65,39 @@ $this->registerMetaTag([
                                         </div>
                                     <?php endforeach; ?>
                             </div>
+
+                    <div class="ettitle">
+                        <div class="widget-title title_content">
+                          <h2 class="jl_title_c jl_title_content">Bệnh viện</h2>
+                          <a class="link_content-full"href="<?= Yii::$app->urlManager->createAbsoluteUrl(['crawl/full-province']) ?>">Xem tất cả</a> 
+                        </div>
+                      </div>
+                      <div class="bt_post_widget">
+                      <?php if (isset($hospital) && $hospital) : ?>
+                        <?php foreach ($hospital as $item) : ?>
+                        <div class="jl_m_right jl_sm_list jl_ml jl_clear_at">
+                          <div class="jl_m_right_w">
+                            <div class="jl_m_right_img jl_radus_e">
+                                <a href="<?= Yii::$app->urlManager->createAbsoluteUrl(['crawl/hospital-detail', 'slug' => $item->slug, 'slug-category' => $item->slug_category]) ?>">
+                                    <?php if($item->img != '#'): ?>
+                                        <img src="https://storage.songxanh24h.vn/images/hospital1/<?= $item->img ?>" alt="<?= $item->name ?>">
+                                    <?php else: ?>
+                                        <img src="https://storage.songxanh24h.vn/images/2023/09/15/hospitalwebp.webp" alt="<?= $item->name ?>">
+                                    <?php endif; ?>
+                                </a>
+                            </div>
+                            <div class="jl_m_right_content">
+                              <h2 class="entry-title">
+                                <a href="<?= Yii::$app->urlManager->createAbsoluteUrl(['crawl/hospital-detail', 'slug' => $item->slug, 'slug-category' => $item->slug_category]) ?>" tabindex="-1"
+                                  ><?= $item->name ?></a
+                                >
+                              </h2>
+                            </div>
+                          </div>
+                        </div>
+                        <?php endforeach; ?>
+                    <?php endif; ?>
+                      </div>
                         </div>
                     </div>
                 </div>
