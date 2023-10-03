@@ -38,6 +38,36 @@
 .has-navbar:hover .sub_menu {
     display: block;
 }
+/* button */
+
+.load-data {
+    background-color: #fff;
+    color: #000;
+    position:absolute;
+    left: 44%;
+   outline: none;
+}
+
+.load-end-data {
+    background-color: #fff;
+    color: #000;
+    position:absolute;
+    left: 41%;
+    outline: none;
+}
+    
+.load-data span {
+    width: 88px;
+    font-size: 16px;
+}
+
+.data-col1,
+.data-col2,
+.data-col3,
+.data-col4 {
+    width: 33.333%;
+    padding: 0 20px;
+}
 
 .has-navbar::after {
     display: inline-block;

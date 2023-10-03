@@ -12,7 +12,7 @@ use common\models\Sick;
 use yii\data\Pagination;
 use frontend\controllers\MainController;
 /**
- * Site controller
+ * Crawl controller
  */
 class CrawlController extends MainController
 {
@@ -21,13 +21,13 @@ class CrawlController extends MainController
         $category_slug = CategoryMedicine::findOne(['slug' => $slug]);
         $category_name = $category_slug->name;
         Yii::$app->params['category'] = Tools::subWord($category_name .' - Tận tâm chăm sóc sức khỏe, Thông tin sức khỏe, dinh dưỡng, hỗ trợ tư vấn điều trị bệnh, thông tin thuốc, chăm sóc làm đẹp tin cậy cho người Việt', 33);
-        $model = Medicine::find()->where(['category' => $category_name]);   
-        $pages= new Pagination(['totalCount' => $model->count(),'pageSize' => '20']);
-        $medicine = Medicine::find()->where(['category' => $category_name])->offset($pages->offset)->limit($pages->limit)->all();
+        // $model = Medicine::find()->where(['category' => $category_name]);   
+        // $pages= new Pagination(['totalCount' => $model->count(),'pageSize' => '20']);
+        $medicine = Medicine::find()->where(['category' => $category_name])->limit(20)->all();
         $categories = CategoryMedicine::find()->all();
         return $this->render('medicine', [
             'medicine' => $medicine,
-            'pages' => $pages,
+            // 'pages' => $pages,
             'categories' => $categories,
             'name' => $category_name
         ]);
@@ -63,16 +63,23 @@ class CrawlController extends MainController
         $slug = Yii::$app->request->get('slug');
         $province = Province::findOne(['slug' => $slug]);
         $name_category = $province->name;
-        // $hospital = Hospital::findAll(['slug_category' => $slug]);
-        $model = Hospital::find()->where(['slug_category' => $slug, 'type' => '1']);
-        $pages= new Pagination(['totalCount' => $model->count(),'pageSize' => '20']);
-        $hospital = Hospital::find()->where(['slug_category' => $slug, 'type' => '1'])->offset($pages->offset)->limit($pages->limit)->all();
+        $hospital = Hospital::find()->where(['slug_category' => $slug, 'type' => '1'])->limit(20)->all();
 
         return $this->render('hospital', [
             'hospital' => $hospital,
-            'pages' => $pages,
             'name_category' => $name_category
         ]);
+    }
+
+    public function actionLoadHospital() {
+        if(Yii::$app->request->isAjax) {
+            $offset = Yii::$app->request->post()['offset'];
+            $name_category = Yii::$app->request->post()['name_category'];
+            $medicine = Medicine::find()->where(['category' => $name_category])->offset($offset)->limit(20)->all();
+            return $this->renderAjax('', [
+                'medicine' => $medicine
+            ]);
+        }
     }
 
     public function actionHospitalDetail() {
@@ -170,13 +177,9 @@ class CrawlController extends MainController
         $slug = Yii::$app->request->get('slug');
         $province = Province::findOne(['slug' => $slug]);
         $name_category = $province->name;
-        // $hospital = Hospital::findAll(['slug_category' => $slug]);
-        $model = Hospital::find()->where(['slug_category' => $slug, 'type' => '2']);
-        $pages= new Pagination(['totalCount' => $model->count(),'pageSize' => '20']);
-        $drugstore = Hospital::find()->where(['slug_category' => $slug, 'type' => '2'])->offset($pages->offset)->limit($pages->limit)->all();
+        $drugstore = Hospital::find()->where(['slug_category' => $slug, 'type' => '2'])->limit(20)->all();
         return $this->render('drugstore', [
             'drugstore' => $drugstore,
-            'pages' => $pages,
             'name_category' => $name_category
         ]);
     }

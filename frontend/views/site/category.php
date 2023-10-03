@@ -49,30 +49,54 @@ $this->registerMetaTag([
                                     <h2 class="jl_title_c">
                                         <span>Dành riêng cho bạn</span>
                                     </h2>
+                                    <div class="name_category hidden">
+                                        <?= $name_category ?>
+                                    </div>
                                 </div>
                                 <?php if (isset($news) && $news) : ?>
-                                    <?php foreach ($news as $value) : ?>
-                                        <div class="jl-grid-cols">
-                                            <div class="p-wraper post-2959">
-                                                <div class="jl_grid_w">
-                                                    <div class="jl_img_box jl_radus_e">
-                                                        <a href="<?= Yii::$app->urlManager->createAbsoluteUrl(['site/detail','slug' => Tools::create_slug($value->title)]) ?>">
-                                                            <span class="jl_post_type_icon"><i class="jli-gallery"></i></span><img width="500" height="350" src="<?= str_contains($value->image, 'http') ? $value->image : 'https://storage.songxanh24h.vn/images'.$value->image ?>" class="attachment-sprasa_slider_grid_small size-sprasa_slider_grid_small wp-post-image" alt="<?= $value->title ?>" title="<?= $value->title ?>" loading="lazy" /></a>
-                                                    </div>
-                                                    <div class="text-box">
-                                                        <h4 class="short_text">
-                                                            <a href="<?= Yii::$app->urlManager->createAbsoluteUrl(['site/detail','slug' => Tools::create_slug($value->title)]) ?>"><?= $value->title ?></a>
-                                                        </h4>
-                                                        <p class="short_text">
-                                                            <?= Tools::subWord(strip_tags($value->content)) ?>
-                                                        </p>
+                                    <div class="row">
+                                        <?php foreach ($news as $value) : ?>
+                                            <div class="jl-grid-cols">
+                                                <div class="p-wraper post-2959">
+                                                    <div class="jl_grid_w">
+                                                        <div class="jl_img_box jl_radus_e">
+                                                            <a href="<?= Yii::$app->urlManager->createAbsoluteUrl(['site/detail','slug' => Tools::create_slug($value->title)]) ?>">
+                                                                <span class="jl_post_type_icon"><i class="jli-gallery"></i></span><img width="500" height="350" src="<?= str_contains($value->image, 'http') ? $value->image : 'https://storage.songxanh24h.vn/images'.$value->image ?>" class="attachment-sprasa_slider_grid_small size-sprasa_slider_grid_small wp-post-image" alt="<?= $value->title ?>" title="<?= $value->title ?>" loading="lazy" /></a>
+                                                        </div>
+                                                        <div class="text-box">
+                                                            <h4 class="short_text">
+                                                                <a href="<?= Yii::$app->urlManager->createAbsoluteUrl(['site/detail','slug' => Tools::create_slug($value->title)]) ?>"><?= $value->title ?></a>
+                                                            </h4>
+                                                            <p class="short_text">
+                                                                <?= Tools::subWord(strip_tags($value->content)) ?>
+                                                            </p>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
+                                        <?php endforeach; ?>
+
+                                        <div class="data1">
                                         </div>
-                                    <?php endforeach; ?>
+                                        <div class="data2">
+                                        </div>
+                                        <div class="data3">
+                                        </div>
+                                        <div class="data4">
+                                        </div>
+                                        <div class="data5">
+                                        </div>
+                                        <div class="data6">
+                                        </div>
+                                         </div>
                                 <?php endif; ?>
                             </div>
+
+                            <button class="load-data">
+                                <svg style="width: 20px;height: 16px;" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M18.9516 10.4793C19.2944 10.8392 19.2806 11.4088 18.9207 11.7517L12.6201 17.7533C12.2725 18.0844 11.7262 18.0844 11.3786 17.7533L5.07808 11.7517C4.71818 11.4088 4.70433 10.8392 5.04716 10.4793C5.38999 10.1193 5.95967 10.1055 6.31958 10.4483L11.9994 15.8586L17.6792 10.4483C18.0391 10.1055 18.6088 10.1193 18.9516 10.4793ZM18.9516 5.67926C19.2944 6.03916 19.2806 6.60884 18.9207 6.95167L12.6201 12.9533C12.2725 13.2844 11.7262 13.2844 11.3786 12.9533L5.07808 6.95167C4.71818 6.60884 4.70433 6.03916 5.04716 5.67926C5.38999 5.31935 5.95967 5.3055 6.31958 5.64833L11.9994 11.0586L17.6792 5.64833C18.0391 5.30551 18.6088 5.31935 18.9516 5.67926Z" fill="currentColor"></path></svg>
+                                    <span>Xem thêm</span>
+                                </button>
+                            <button class="load-end-data hidden" style="font-size: 16px;">Bạn đã xem hết</button>
                         </div>
                     </div>
                 </div>
@@ -113,17 +137,39 @@ $this->registerMetaTag([
             </div>
         </div>
         </section>
-      <!-- pagination -->
-      <div class="d-flex justify-content-around mt-4 jellywp_pagination">
-                        <?php
-                        echo LinkPager::widget([
-                            'pagination' => $pages,
-                            'linkOptions' => ['class' => 'page-link'],
-                            'pageCssClass' => ['class' => 'page-item'],
-                            'maxButtonCount' => 5
-                        ])
-                        ?>
-                    </div>
     </div>
 
 <?php endif; ?>
+
+<script>
+$(document).ready(function() {
+    let offset = 0;
+    let click = 0;
+    $('.load-data').click(function() {
+        let name_category = $('.name_category').text();
+        offset += 3;
+        click++;
+
+        $.ajax({
+            url: '/ajax/category',
+            type: 'POST',
+            dataType: 'text',
+            _csrf: yii.getCsrfToken(),
+            data: {
+                offset,
+                name_category
+            },
+            success: function (result) {
+                if(result.trim() == 1) {
+                    console.log('11');
+                    $('.load-end-data').removeClass('hidden');
+                    $('.load-data').addClass('hidden');
+                } else {
+                    $(`.data${click}`).html(result);
+                }
+            }
+        });
+    });
+});
+    
+</script>

@@ -132,13 +132,11 @@ class SiteController extends MainController
         if(isset($model->category_child[0]) && $model->category_child[0]) {
             return $this->render('empty');
         }
-        $pages= new Pagination(['totalCount' => $model->count(),'pageSize' => '6']);
         $views = News::find()->where(['status' => 1])->andWhere(['>','view', 1])->orderBy(['created_at' => SORT_ASC])->limit(4)->all();
-        $news = News::find()->where(['category_id' => $id, 'status'=> 1, 'category_child' => ''])->orderBy(['created_at' => SORT_ASC])->offset($pages->offset)->limit($pages->limit)->all();
+        $news = News::find()->where(['category_id' => $id, 'status'=> 1, 'category_child' => ''])->orderBy(['created_at' => SORT_ASC])->limit(3)->all();
     
         return $this->render('category', [
             'news' => $news,
-            'pages' => $pages,
             'views' => $views,
             'name_category' => $name_category
         ]);
@@ -149,14 +147,11 @@ class SiteController extends MainController
         $category = Category::findOne(['slug' => $slug]);
         $name_category = $category->name;
         Yii::$app->params['category'] = Tools::subWord($name_category .' - Tận tâm chăm sóc sức khỏe, Thông tin sức khỏe, dinh dưỡng, hỗ trợ tư vấn điều trị bệnh, thông tin thuốc, chăm sóc làm đẹp tin cậy cho người Việt', 24);
-        $model = News::find()->where(['category_child' => $slug, 'status' => 1]);
-        $pages= new Pagination(['totalCount' => $model->count(),'pageSize' => '6']);
-        $news = News::find()->where(['category_child' => $slug, 'status'=> 1])->orderBy(['created_at' => SORT_ASC])->offset($pages->offset)->limit($pages->limit)->all();
+        $news = News::find()->where(['category_child' => $slug, 'status'=> 1])->orderBy(['created_at' => SORT_ASC])->limit(3)->all();
         $views = News::find()->where(['status' => 1])->andWhere(['>','view', 1])->orderBy(['created_at' => SORT_ASC])->limit(4)->all();
 
         return $this->render('category', [
             'news' => $news,
-            'pages' => $pages,
             'views' => $views,
             'name_category' => $name_category
         ]);
