@@ -21,9 +21,9 @@ class AjaxController extends MainController
         if(Yii::$app->request->isAjax) {
             $offset = Yii::$app->request->post()['offset'];
             $name_category = trim(Yii::$app->request->post()['name_category']);
-            $news = News::find()->where(['category' => $name_category, 'status'=> 1, 'category_child' => ''])->offset($offset)->orderBy(['created_at' => SORT_ASC])->limit(3)->all();
+            $news = News::find()->where(['category' => $name_category, 'status'=> 1, 'category_child' => ''])->offset($offset)->orderBy(['created_at' => SORT_ASC])->limit(6)->all();
             if(!$news) {
-                $news = News::find()->where(['category_child' => Tools::create_slug($name_category), 'status'=> 1])->offset($offset)->orderBy(['created_at' => SORT_ASC])->limit(3)->all();
+                $news = News::find()->where(['category_child' => Tools::create_slug($name_category), 'status'=> 1])->offset($offset)->orderBy(['created_at' => SORT_ASC])->limit(6)->all();
             }
             return $this->renderAjax('category', [
                 'news' => $news
