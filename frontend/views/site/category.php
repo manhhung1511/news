@@ -147,7 +147,7 @@ $(document).ready(function() {
     let click = 0;
     $('.load-data').click(function() {
         let name_category = $('.name_category').text();
-        offset += 3;
+        offset += 6;
         click++;
 
         $.ajax({
