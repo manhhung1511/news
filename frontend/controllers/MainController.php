@@ -30,11 +30,20 @@ class MainController extends Controller
         Yii::$app->view->params['active'] = $active;
 
 
+        // $response = Yii::$app->response;
+        // // Check if the request returns a 404 status code
+        // if ($response->statusCode === 404) {
+        // // Redirect to the home page
+        //     Yii::$app->getResponse()->redirect(Yii::$app->urlManager->createAbsoluteUrl('site/index'));
+        // }
+    }
+
+    public function actionError() {
         $response = Yii::$app->response;
-        // Check if the request returns a 404 status code
+        // Check if the exception is a 404 error
         if ($response->statusCode === 404) {
-        // Redirect to the home page
-            Yii::$app->getResponse()->redirect(Yii::$app->urlManager->createAbsoluteUrl('site/index'));
+            // Redirect to the home page
+            return $this->redirect(['/site/index']);
         }
     }
 }

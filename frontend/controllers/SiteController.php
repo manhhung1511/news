@@ -17,7 +17,6 @@ use common\helper\Tools;
 use common\models\CategoryMedicine;
 use common\models\Medicine;
 use common\models\Sick;
-use yii\data\Pagination;
 use yii\web\Response;
 use frontend\controllers\MainController;
 /**
@@ -314,38 +313,6 @@ class SiteController extends MainController
             'model' => $model
         ]);
     }
-
-    public function actionMedicine() {
-        $slug = Yii::$app->request->get('slug');
-        $category_slug = CategoryMedicine::findOne(['slug' => $slug]);
-        $category_name = $category_slug->name;
-        Yii::$app->params['category'] = Tools::subWord($category_name .' - Tận tâm chăm sóc sức khỏe, Thông tin sức khỏe, dinh dưỡng, hỗ trợ tư vấn điều trị bệnh, thông tin thuốc, chăm sóc làm đẹp tin cậy cho người Việt', 33);
-        $model = Medicine::find()->where(['category' => $category_name]);
-        $pages= new Pagination(['totalCount' => $model->count(),'pageSize' => '20']);
-        $medicine = Medicine::find()->where(['category' => $category_name])->offset($pages->offset)->limit($pages->limit)->all();
-        $categories = CategoryMedicine::find()->all();
-        return $this->render('medicine', [
-            'medicine' => $medicine,
-            'pages' => $pages,
-            'categories' => $categories,
-            'name' => $category_name
-        ]);
-    }
-
-    public function actionMedicineDetail() {
-        $slug = Yii::$app->request->get('slug');
-        $detail = Medicine::findOne(['slug' => $slug]);
-        $category = $detail->category;
-        $categories = Medicine::find()->where(['category' => $category])->orderBy(['created_at' => SORT_ASC])->limit(10)->all();
-       
-        Yii::$app->params['description'] = 'Thuốc '.$detail->name.'Thành phần, liều lượng, Cách dùng,Tác dụng, Chỉ định, Tác dụng phụ, Chú ý đề phòng Songxanh24h.vn - Chuyên trang sức khỏe, dinh dưỡng, làm đẹp';
-
-        return $this->render("medicineDetail",[
-            'detail' => $detail,
-            'categories' => $categories
-        ]);
-    }
-
     //api update from nodejs
     public function actionApiMedicine() {
         Yii::$app->response->format = Response::FORMAT_JSON;

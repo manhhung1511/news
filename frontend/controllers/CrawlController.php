@@ -9,7 +9,6 @@ use common\models\Hospital;
 use common\models\Medicine;
 use common\models\Province;
 use common\models\Sick;
-use yii\data\Pagination;
 use frontend\controllers\MainController;
 /**
  * Crawl controller
@@ -21,13 +20,10 @@ class CrawlController extends MainController
         $category_slug = CategoryMedicine::findOne(['slug' => $slug]);
         $category_name = $category_slug->name;
         Yii::$app->params['category'] = Tools::subWord($category_name .' - Tận tâm chăm sóc sức khỏe, Thông tin sức khỏe, dinh dưỡng, hỗ trợ tư vấn điều trị bệnh, thông tin thuốc, chăm sóc làm đẹp tin cậy cho người Việt', 33);
-        // $model = Medicine::find()->where(['category' => $category_name]);   
-        // $pages= new Pagination(['totalCount' => $model->count(),'pageSize' => '20']);
         $medicine = Medicine::find()->where(['category' => $category_name])->limit(20)->all();
         $categories = CategoryMedicine::find()->all();
         return $this->render('medicine', [
             'medicine' => $medicine,
-            // 'pages' => $pages,
             'categories' => $categories,
             'name' => $category_name
         ]);
