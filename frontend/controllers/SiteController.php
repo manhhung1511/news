@@ -181,8 +181,8 @@ class SiteController extends MainController
 
         $views = News::find()->where(['status' => 1])->andWhere(['>=','view', 1])->orderBy(['created_at' => SORT_ASC])->limit(3)->all();
       
-        $medicine = Medicine::find()->where(['category' => 'Thiết bị y tế'])->orderBy(['created_at' => SORT_ASC])->limit(3)->all();
-        $sicks = Sick::find()->where(['type' => '3'])->orderBy(['created_at' => SORT_ASC])->limit(3)->all();
+        $medicine = Medicine::find()->where(['category' => 'Thiết bị y tế'])->orderBy(['created_at' => SORT_ASC])->limit(5)->all();
+        $sicks = Sick::find()->where(['type' => '3'])->orderBy(['created_at' => SORT_ASC])->limit(5)->all();
         return $this->render('detail', [
             'detail' => $detail,
             'relate' => $relate,

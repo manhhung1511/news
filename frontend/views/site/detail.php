@@ -233,7 +233,7 @@ if(isset($detail->category_child) && $detail->category_child) {
                       <div class="ettitle">
                         <div class="widget-title title_content">
                           <h2 class="jl_title_c jl_title_content">Thuốc</h2>
-                          <a class="link_content-full"href="<?= Yii::$app->urlManager->createAbsoluteUrl(['crawl/full-medicine']) ?>">Xem tất cả</a> 
+                          <a class="link_content-full"href="<?= Yii::$app->urlManager->createAbsoluteUrl(['crawl/full-medicine']) ?>">Tra cứu thuốc</a> 
                         </div>
                       </div>
                       <div class="bt_post_widget">
@@ -241,17 +241,6 @@ if(isset($detail->category_child) && $detail->category_child) {
                         <?php foreach ($medicine as $item) : ?>
                         <div class="jl_m_right jl_sm_list jl_ml jl_clear_at">
                           <div class="jl_m_right_w">
-                            <div class="jl_m_right_img jl_radus_e">
-                              <a href="<?= Yii::$app->urlManager->createAbsoluteUrl(['crawl/medicine-detail', 'slug' => Tools::create_slug($item->name)]) ?>"
-                                ><img
-                                  width="120"
-                                  height="120"
-                                  src="<?'https://storage.songxanh24h.vn/images'.$item->img ?>"
-                                  class="attachment-sprasa_small_feature size-sprasa_small_feature wp-post-image"
-                                  alt="<?= $item->name ?>"
-                                  loading="lazy"
-                              /></a>
-                            </div>
                             <div class="jl_m_right_content">
                               <h2 class="entry-title">
                                 <a href="<?= Yii::$app->urlManager->createAbsoluteUrl(['crawl/medicine-detail', 'slug' => Tools::create_slug($item->name)]) ?>" tabindex="-1"
@@ -268,7 +257,7 @@ if(isset($detail->category_child) && $detail->category_child) {
                       <div class="ettitle">
                         <div class="widget-title title_content">
                           <h2 class="jl_title_c jl_title_content">Hoạt chất</h2>
-                          <a class="link_content-full"href="<?= Yii::$app->urlManager->createAbsoluteUrl(['crawl/full-active']) ?>">Xem tất cả</a> 
+                          <a class="link_content-full"href="<?= Yii::$app->urlManager->createAbsoluteUrl(['crawl/full-active']) ?>">Tra cứu hoạt chất</a> 
                         </div>
                       </div>
                       <div class="bt_post_widget">
