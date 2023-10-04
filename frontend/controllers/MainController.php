@@ -28,6 +28,14 @@ class MainController extends Controller
         Yii::$app->view->params['sicks'] = $sicks;
         Yii::$app->view->params['drug'] = $drugs;
         Yii::$app->view->params['active'] = $active;
+
+
+        $response = Yii::$app->response;
+        // Check if the request returns a 404 status code
+        if ($response->statusCode === 404) {
+        // Redirect to the home page
+        return $this->redirect(['/site/index']);
+        }
     }
 }
 
