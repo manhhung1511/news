@@ -34,7 +34,7 @@ class MainController extends Controller
         // Check if the request returns a 404 status code
         if ($response->statusCode === 404) {
         // Redirect to the home page
-        return $this->redirect(['/site/index']);
+            Yii::$app->getResponse()->redirect(Yii::$app->urlManager->createAbsoluteUrl('site/index'));
         }
     }
 }
