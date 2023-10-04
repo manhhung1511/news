@@ -29,13 +29,13 @@ class MainController extends Controller
         Yii::$app->view->params['drug'] = $drugs;
         Yii::$app->view->params['active'] = $active;
 
+        $request = Yii::$app->request;
 
-        // $response = Yii::$app->response;
-        // // Check if the request returns a 404 status code
-        // if ($response->statusCode === 404) {
-        // // Redirect to the home page
-        //     Yii::$app->getResponse()->redirect(Yii::$app->urlManager->createAbsoluteUrl('site/index'));
-        // }
+        // Check if the URL request contains a question mark
+        if (strpos($request->url, '?') !== false) {
+        // Redirect to the home page
+        return $this->redirect(['/site/index']);
+}
     }
 
     public function actionError() {
