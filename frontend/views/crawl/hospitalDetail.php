@@ -40,10 +40,6 @@ $this->registerMetaTag([
                                             <div class="mt-3">
                                                 <?= isset($content['content2']) && $content['content2'] ? $content['content2'] : '' ?>
                                             </div>
-
-                                            <div class="mt-3">
-                                                <?= isset($content['content3']) && $content['content3'] ? $content['content3'] : '' ?>
-                                            </div>
                                         <?php endforeach; ?>
                                     </div>
                                 </div>
