@@ -265,17 +265,6 @@ if(isset($detail->category_child) && $detail->category_child) {
                         <?php foreach ($sicks as $item) : ?>
                         <div class="jl_m_right jl_sm_list jl_ml jl_clear_at">
                           <div class="jl_m_right_w">
-                            <div class="jl_m_right_img jl_radus_e">
-                              <a href="<?= Yii::$app->urlManager->createAbsoluteUrl(['crawl/medicine-detail', 'slug' => Tools::create_slug($item->name)]) ?>"
-                                ><img
-                                  width="120"
-                                  height="120"
-                                  src="<?'https://storage.songxanh24h.vn/images'.$item->img ?>"
-                                  class="attachment-sprasa_small_feature size-sprasa_small_feature wp-post-image"
-                                  alt="<?= $item->name ?>"
-                                  loading="lazy"
-                              /></a>
-                            </div>
                             <div class="jl_m_right_content">
                               <h2 class="entry-title">
                                 <a href="<?= Yii::$app->urlManager->createAbsoluteUrl(['crawl/active-detail', 'slug' => $item->slug]) ?>" tabindex="-1"

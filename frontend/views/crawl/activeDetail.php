@@ -62,7 +62,7 @@ $this->registerMetaTag([
                             <div class="ettitle">
                         <div class="widget-title title_content">
                           <h2 class="jl_title_c jl_title_content">Thuốc</h2>
-                          <a class="link_content-full"href="<?= Yii::$app->urlManager->createAbsoluteUrl(['crawl/full-medicine']) ?>">Xem tất cả</a> 
+                          <a class="link_content-full"href="<?= Yii::$app->urlManager->createAbsoluteUrl(['crawl/full-medicine']) ?>">Tra cứu thuốc</a> 
                         </div>
                       </div>
                       <div class="bt_post_widget">

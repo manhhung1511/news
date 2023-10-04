@@ -66,7 +66,7 @@ $this->registerMetaTag([
                             <div class="ettitle">
                         <div class="widget-title title_content">
                           <h2 class="jl_title_c jl_title_content">Hoạt chất</h2>
-                          <a class="link_content-full"href="<?= Yii::$app->urlManager->createAbsoluteUrl(['crawl/full-active']) ?>">Xem tất cả</a> 
+                          <a class="link_content-full"href="<?= Yii::$app->urlManager->createAbsoluteUrl(['crawl/full-active']) ?>">Tra cứu hoạt chất</a> 
                         </div>
                       </div>
                       <div class="bt_post_widget">
