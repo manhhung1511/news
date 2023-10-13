@@ -27,22 +27,22 @@ $this->registerMetaTag([
                     <span><strong>Danh mục: </strong></span>
                 </li>
                 <li class="search_category_item">
-                    <a class="search_category_link" href="http://frontend-techway1.com/bai-viet/tim-kiem?s=<?=$keyword?>">
+                    <a class="search_category_link" href="https://songxanh24h.vn/bai-viet/tim-kiem?s=<?=$keyword?>">
                         Bài viết (<?= $count_news ?>)
                     </a>
                 </li>
                 <li class="search_category_item">
-                    <a class="search_category_link" href="http://frontend-techway1.com/thuoc/tim-kiem?s=<?=$keyword?>">
+                    <a class="search_category_link" href="https://songxanh24h.vn/thuoc/tim-kiem?s=<?=$keyword?>">
                         Thuốc (<?= $count_medicines ?>)
                     </a>
                 </li>
                 <li class="search_category_item">
-                    <a class="search_category_link" href="http://frontend-techway1.com/benh-tat/tim-kiem?s=<?=$keyword?>">
+                    <a class="search_category_link" href="https://songxanh24h.vn/benh-tat/tim-kiem?s=<?=$keyword?>">
                         Bệnh tật (<?= $count_sicks ?>)
                     </a>
                 </li>
                 <li class="search_category_item">
-                    <a class="search_category_link" href="http://frontend-techway1.com/co-so-y-te/tim-kiem?s=<?=$keyword?>">
+                    <a class="search_category_link" href="https://songxanh24h.vn/co-so-y-te/tim-kiem?s=<?=$keyword?>">
                         Cơ sở y tế (<?= $count_hospitals ?>)
                     </a>
                 </li>
