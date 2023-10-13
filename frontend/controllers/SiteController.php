@@ -19,6 +19,8 @@ use common\models\Medicine;
 use common\models\Sick;
 use yii\web\Response;
 use frontend\controllers\MainController;
+use yii\mongodb\Query;
+use yii\data\Pagination;
 /**
  * Site controller
  */
@@ -198,9 +200,220 @@ class SiteController extends MainController
      *
      * @return mixed
      */
-    public function actionAbout()
+    public function actionSearch()
     {
-        return $this->render('about');
+        $keyword = Yii::$app->request->get('s');
+        $query = new Query();
+
+        $query->from('medicines')
+            ->orWhere(['REGEX', 'name', $keyword])
+            ->orWhere(['REGEX', 'subscribe', $keyword])
+            ->orWhere(['REGEX', 'category', $keyword]);
+
+        $medicines = $query->all();
+        $count_medicines = count($medicines);
+
+        $query->from('hospitals')
+            ->Where(['REGEX', 'name', $keyword])
+            ->andWhere(['type' => '1'])
+            ->orWhere(['REGEX', 'description', $keyword])
+            ->andWhere(['type' => '1'])
+            ->orWhere(['REGEX', 'address', $keyword])
+            ->andWhere(['type' => '1'])
+            ->orWhere(['REGEX', 'branch', $keyword])
+            ->andWhere(['type' => '1']);
+
+        $hospitals = $query->all();
+        $count_hospitals = count($hospitals);
+
+        $query->from('sicks')
+        ->Where(['REGEX', 'name', $keyword])
+        ->andWhere(['type' => '1'])
+        ->orWhere(['REGEX', 'content', $keyword])
+        ->andWhere(['type' => '1']);
+
+        $sicks = $query->all();
+        $count_sicks = count($sicks);
+
+        $model = $query->from('news')
+        ->orWhere(['REGEX', 'content', $keyword])
+        ->orWhere(['REGEX', 'title', $keyword]);
+    
+        $pages = new Pagination(['totalCount' => $model->count(),'pageSize' => '20']);
+        $results = $query->all();
+        $limits = $query->offset($pages->offset)->limit($pages->limit)->all();
+        $count_news = count($results);
+
+        return $this->render('search', [
+            'keyword' => $keyword,
+            'results' => $limits,
+            'count_medicines' => $count_medicines,
+            'count_news' => $count_news,
+            'count_hospitals' => $count_hospitals,
+            'count_sicks' => $count_sicks,
+            'pages' => $pages
+        ]);
+    }
+
+    public function actionSearchMedicine()
+    {
+        $keyword = Yii::$app->request->get('s');
+        $query = new Query();
+        $query->from('news')
+            ->orWhere(['REGEX', 'content', $keyword])
+            ->orWhere(['REGEX', 'title', $keyword]);
+        $results = $query->all();
+        $count_news = count($results);
+
+        $query->from('hospitals')
+            ->Where(['REGEX', 'name', $keyword])
+            ->andWhere(['type' => '1'])
+            ->orWhere(['REGEX', 'description', $keyword])
+            ->andWhere(['type' => '1'])
+            ->orWhere(['REGEX', 'address', $keyword])
+            ->andWhere(['type' => '1'])
+            ->orWhere(['REGEX', 'branch', $keyword])
+            ->andWhere(['type' => '1']);
+        $hospitals = $query->all();
+        $count_hospitals = count($hospitals);
+
+        $query->from('sicks')
+            ->Where(['REGEX', 'name', $keyword])
+            ->andWhere(['type' => '1'])
+            ->orWhere(['REGEX', 'content', $keyword])
+            ->andWhere(['type' => '1']);
+
+        $sicks = $query->all();
+        $count_sicks = count($sicks);
+
+        $model = $query->from('medicines')
+        ->orWhere(['REGEX', 'name', $keyword])
+        ->orWhere(['REGEX', 'subscribe', $keyword])
+        ->orWhere(['REGEX', 'category', $keyword]);
+
+        $pages = new Pagination(['totalCount' => $model->count(),'pageSize' => '20']);
+        
+        $medicines = $query->all();
+        $limits = $query->offset($pages->offset)->limit($pages->limit)->all();
+        $count_medicines = count($medicines);
+       
+        return $this->render('search-medicine', [
+            'keyword' => $keyword,
+            'results' => $limits,
+            'count_medicines' => $count_medicines,
+            'count_news' => $count_news,
+            'count_hospitals' => $count_hospitals,
+            'count_sicks' => $count_sicks,
+            'pages' => $pages
+        ]);
+    }
+
+    public function actionSearchHospital()
+    {
+        $keyword = Yii::$app->request->get('s');
+        $query = new Query();
+        $query->from('news')
+            ->orWhere(['REGEX', 'content', $keyword])
+            ->orWhere(['REGEX', 'title', $keyword]);
+        $results = $query->all();
+        $count_news = count($results);
+
+        $query->from('medicines')
+            ->orWhere(['REGEX', 'name', $keyword])
+            ->orWhere(['REGEX', 'subscribe', $keyword])
+            ->orWhere(['REGEX', 'category', $keyword]);
+
+        $medicines = $query->all();
+        $count_medicines = count($medicines);
+
+        $sicks = $query->from('sicks')
+            ->Where(['REGEX', 'name', $keyword])
+            ->andWhere(['type' => '1'])
+            ->orWhere(['REGEX', 'content', $keyword])
+            ->andWhere(['type' => '1'])->all();
+
+        $count_sicks = count($sicks);
+
+
+        $model = $query->from('hospitals')
+            ->Where(['REGEX', 'name', $keyword])
+            ->andWhere(['type' => '1'])
+            ->orWhere(['REGEX', 'description', $keyword])
+            ->andWhere(['type' => '1'])
+            ->orWhere(['REGEX', 'address', $keyword])
+            ->andWhere(['type' => '1'])
+            ->orWhere(['REGEX', 'branch', $keyword])
+            ->andWhere(['type' => '1']);
+
+        $pages = new Pagination(['totalCount' => $model->count(),'pageSize' => '20']);
+
+        $hospitals = $query->all();
+        $limit = $query->offset($pages->offset)->limit($pages->limit)->all();
+        $count_hospitals = count($hospitals);
+       
+        return $this->render('search-hospital', [
+            'keyword' => $keyword,
+            'results' => $limit,
+            'count_medicines' => $count_medicines,
+            'count_news' => $count_news,
+            'count_hospitals' => $count_hospitals,
+            'count_sicks' => $count_sicks,
+            'pages' => $pages
+        ]);
+    }
+
+    public function actionSearchSick()
+    {
+        $keyword = Yii::$app->request->get('s');
+        $query = new Query();
+        $query->from('news')
+            ->orWhere(['REGEX', 'content', $keyword])
+            ->orWhere(['REGEX', 'title', $keyword]);
+        $results = $query->all();
+        $count_news = count($results);
+
+        $query->from('medicines')
+            ->orWhere(['REGEX', 'name', $keyword])
+            ->orWhere(['REGEX', 'subscribe', $keyword])
+            ->orWhere(['REGEX', 'category', $keyword]);
+
+        $medicines = $query->all();
+        $count_medicines = count($medicines);
+
+        $query->from('hospitals')
+            ->Where(['REGEX', 'name', $keyword])
+            ->andWhere(['type' => '1'])
+            ->orWhere(['REGEX', 'description', $keyword])
+            ->andWhere(['type' => '1'])
+            ->orWhere(['REGEX', 'address', $keyword])
+            ->andWhere(['type' => '1'])
+            ->orWhere(['REGEX', 'branch', $keyword])
+            ->andWhere(['type' => '1']);
+
+        $hospitals = $query->all();
+        $count_hospitals = count($hospitals);
+
+        $model = $query->from('sicks')
+            ->Where(['REGEX', 'name', $keyword])
+            ->andWhere(['type' => '1'])
+            ->orWhere(['REGEX', 'content', $keyword])
+            ->andWhere(['type' => '1']);
+
+        $pages = new Pagination(['totalCount' => $model->count(),'pageSize' => '20']);
+
+        $sicks = $query->all();
+        $limit = $query->offset($pages->offset)->limit($pages->limit)->all();
+        $count_sicks = count($sicks);
+       
+        return $this->render('search-sick', [
+            'keyword' => $keyword,
+            'results' => $limit,
+            'count_medicines' => $count_medicines,
+            'count_news' => $count_news,
+            'count_hospitals' => $count_hospitals,
+            'count_sicks' => $count_sicks,
+            'pages' => $pages
+        ]);
     }
 
     /**

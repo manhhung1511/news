@@ -22,7 +22,7 @@ return [
         ],
         'session' => [
             // this is the name of the session cookie used for login on the frontend
-            'name' => 'advanced-frontend',
+            'name' => 'advanced-frontend'
         ],
         'log' => [
             'traceLevel' => YII_DEBUG ? 3 : 0,
@@ -48,6 +48,10 @@ return [
             'rules' => [
                 ''=>'site/index',
                 'category/<slug:[\w\-]+>' => 'site/category',   
+                'bai-viet/tim-kiem' => 'site/search',   
+                'thuoc/tim-kiem' => 'site/search-medicine',   
+                'benh-tat/tim-kiem' => 'site/search-sick',   
+                'co-so-y-te/tim-kiem' => 'site/search-hospital',   
                 'category/<parent:[\w\-]+>/<slug:[\w\-]+>/' => 'site/category-child',   
                 '<slug:[\w\-]+>' => 'site/detail', 
                 '<slug:[\w\-]+>/page-<page:\w+>/per-page-<per_page:\w+>/' => 'site/category',

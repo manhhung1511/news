@@ -32,10 +32,13 @@ class MainController extends Controller
         $request = Yii::$app->request;
 
         // Check if the URL request contains a question mark
-        if (strpos($request->url, '?') !== false) {
+        if (strpos($request->url, '?') !== false ) {
+            if(strpos($request->url, 'tim-kiem?s') !== true ) {
+                return true;
+            }
         // Redirect to the home page
         return $this->redirect(['/site/index']);
-}
+        }
     }
 
     public function actionError() {

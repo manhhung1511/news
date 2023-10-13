@@ -32,6 +32,34 @@ class Tools
         return implode(' ', $str) . $add;
     }
 
+    public static function subWordLength($stringText, $space = 220, $add = '...') {
+        $charters = array_map('trim', explode(" ", $stringText));
+        if (count($charters) < $space) {
+            return $stringText;
+        }
+        $str = [];
+        for ($i = 0; $i < count($charters); $i++) {
+            if ($i < $space) {
+                $str[] = $charters[$i];
+            }
+        }
+        return implode(' ', $str) . $add;
+    }
+
+    public static function subWordContent($stringText, $space = 50, $add = '...') {
+        $charters = array_map('trim', explode(" ", $stringText));
+        if (count($charters) < $space) {
+            return $stringText;
+        }
+        $str = [];
+        for ($i = 0; $i < count($charters); $i++) {
+            if ($i < $space) {
+                $str[] = $charters[$i];
+            }
+        }
+        return implode(' ', $str) . $add;
+    }
+
     public static function convertTitle($text)
     {
         $text = trim(strip_tags($text));

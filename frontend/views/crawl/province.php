@@ -1,8 +1,6 @@
 
 <?php
 
-use common\helper\Tools;
-
 $this->title = 'Tỉnh / Thành phố';
 
 $this->registerMetaTag([

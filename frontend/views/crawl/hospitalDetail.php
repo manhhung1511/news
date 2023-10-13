@@ -29,18 +29,20 @@ $this->registerMetaTag([
                             <div class="">
                                 <div class="post_content_w">
                                     <div class="post_content jl_content">
-                                        <?php foreach ($detail->content as $content) : ?>
-                                            <?= (!is_array($content))? $content : ''?>
-                                            <div class="mt-3">
-                                                <?= isset($content['content0']) && $content['content0'] ? $content['content0'] : '' ?>
-                                            </div>
-                                            <div class="mt-3">
-                                                <?= isset($content['content1']) && $content['content1'] ? $content['content1'] : '' ?>
-                                            </div>
-                                            <div class="mt-3">
-                                                <?= isset($content['content2']) && $content['content2'] ? $content['content2'] : '' ?>
-                                            </div>
-                                        <?php endforeach; ?>
+                                        <?php if(isset($detail->content) && $detail->content): ?>
+                                            <?php foreach ($detail->content as $content) : ?>
+                                                <?= (!is_array($content))? $content : ''?>
+                                                <div class="mt-3">
+                                                    <?= isset($content['content0']) && $content['content0'] ? $content['content0'] : '' ?>
+                                                </div>
+                                                <div class="mt-3">
+                                                    <?= isset($content['content1']) && $content['content1'] ? $content['content1'] : '' ?>
+                                                </div>
+                                                <div class="mt-3">
+                                                    <?= isset($content['content2']) && $content['content2'] ? $content['content2'] : '' ?>
+                                                </div>
+                                            <?php endforeach; ?>
+                                        <?php endif; ?>
                                     </div>
                                 </div>
                                 <div class="clearfix"></div>

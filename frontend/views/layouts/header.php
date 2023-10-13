@@ -79,13 +79,13 @@ use common\helper\Tools;
                             </div>
 
                             <div class="drop_down-search">
-                                <form method="get" class="td-search-form" action="">
+                                <form id="form_search" method="get" class="td-search-form" action="<?= Yii::$app->urlManager->createAbsoluteUrl(['site/search']) ?>">
                                     <div role="search" class="td-head-form-search-wrap">
                                         <input id="td-header-search" type="text" value="" name="s" autocomplete="off">
                                         <input class="wpb_button wpb_btn-inverse btn" type="submit" id="td-header-search-top" value="Search">
                                     </div>
                                 </form>
-                                </div>
+                            </div>
                             
                             <div class="search_header_menu jl_nav_mobile">
                                 <div class="menu_mobile_icons">
