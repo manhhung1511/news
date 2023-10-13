@@ -205,6 +205,7 @@ class SiteController extends MainController
     {
         $keyword = Yii::$app->request->get('s');
         $medicines = Medicine::find()
+            ->Where(['like', 'name', $keyword])
             ->orWhere(['REGEX', 'name', $keyword])
             ->orWhere(['REGEX', 'subscribe', $keyword])
             ->orWhere(['REGEX', 'category', $keyword])->all();
@@ -212,7 +213,8 @@ class SiteController extends MainController
         $count_medicines = count($medicines);
 
         $hospitals = Hospital::find()
-            ->Where(['REGEX', 'name', $keyword])
+            ->Where(['like', 'name', $keyword])
+            ->orWhere(['REGEX', 'name', $keyword])
             ->andWhere(['type' => '1'])
             ->orWhere(['REGEX', 'description', $keyword])
             ->andWhere(['type' => '1'])
@@ -224,6 +226,8 @@ class SiteController extends MainController
         $count_hospitals = count($hospitals);
 
         $sicks = Sick::find()
+        ->Where(['like', 'name', $keyword])
+        ->andWhere(['type' => '1'])
         ->Where(['REGEX', 'name', $keyword])
         ->andWhere(['type' => '1'])
         ->orWhere(['REGEX', 'content', $keyword])
@@ -232,6 +236,7 @@ class SiteController extends MainController
         $count_sicks = count($sicks);
 
         $model = News::find()
+        ->where(['like', 'title', $keyword])
         ->orWhere(['REGEX', 'content', $keyword])
         ->orWhere(['REGEX', 'title', $keyword]);
     
@@ -255,12 +260,14 @@ class SiteController extends MainController
     {
         $keyword = Yii::$app->request->get('s');
         $news = News::find()
+        ->where(['like', 'title', $keyword])
         ->orWhere(['REGEX', 'content', $keyword])
         ->orWhere(['REGEX', 'title', $keyword])->all();
 
         $count_news = count($news);
 
         $hospitals = Hospital::find()
+            ->Where(['like', 'name', $keyword])
             ->Where(['REGEX', 'name', $keyword])
             ->andWhere(['type' => '1'])
             ->orWhere(['REGEX', 'description', $keyword])
@@ -273,6 +280,7 @@ class SiteController extends MainController
         $count_hospitals = count($hospitals);
 
         $sicks = Sick::find()
+        ->Where(['like', 'name', $keyword])
         ->Where(['REGEX', 'name', $keyword])
         ->andWhere(['type' => '1'])
         ->orWhere(['REGEX', 'content', $keyword])
@@ -281,6 +289,7 @@ class SiteController extends MainController
         $count_sicks = count($sicks);
 
         $model = Medicine::find()
+        ->Where(['like', 'name', $keyword])
         ->orWhere(['REGEX', 'name', $keyword])
         ->orWhere(['REGEX', 'subscribe', $keyword])
         ->orWhere(['REGEX', 'category', $keyword]);
@@ -305,6 +314,7 @@ class SiteController extends MainController
     {
         $keyword = Yii::$app->request->get('s');
         $news = News::find()
+        ->where(['like', 'title', $keyword])
         ->orWhere(['REGEX', 'content', $keyword])
         ->orWhere(['REGEX', 'title', $keyword])->all();
 
@@ -318,6 +328,7 @@ class SiteController extends MainController
         $count_medicines = count($medicines);
 
         $sicks = Sick::find()
+        ->Where(['like', 'name', $keyword])
         ->Where(['REGEX', 'name', $keyword])
         ->andWhere(['type' => '1'])
         ->orWhere(['REGEX', 'content', $keyword])
@@ -326,11 +337,13 @@ class SiteController extends MainController
         $count_sicks = count($sicks);
 
         $model = Medicine::find()
+        ->Where(['like', 'name', $keyword])
         ->orWhere(['REGEX', 'name', $keyword])
         ->orWhere(['REGEX', 'subscribe', $keyword])
         ->orWhere(['REGEX', 'category', $keyword]);
     
         $model = Hospital::find()
+            ->Where(['like', 'name', $keyword])
             ->Where(['REGEX', 'name', $keyword])
             ->andWhere(['type' => '1'])
             ->orWhere(['REGEX', 'description', $keyword])
@@ -360,12 +373,14 @@ class SiteController extends MainController
     {
         $keyword = Yii::$app->request->get('s');
         $news = News::find()
+        ->where(['like', 'title', $keyword])
         ->orWhere(['REGEX', 'content', $keyword])
         ->orWhere(['REGEX', 'title', $keyword])->all();
 
         $count_news = count($news);
 
         $medicines = Medicine::find()
+        ->Where(['like', 'name', $keyword])
         ->orWhere(['REGEX', 'name', $keyword])
         ->orWhere(['REGEX', 'subscribe', $keyword])
         ->orWhere(['REGEX', 'category', $keyword])->all();
@@ -373,6 +388,7 @@ class SiteController extends MainController
         $count_medicines = count($medicines);
 
         $hospitals = Hospital::find()
+        ->Where(['like', 'name', $keyword])
         ->Where(['REGEX', 'name', $keyword])
         ->andWhere(['type' => '1'])
         ->orWhere(['REGEX', 'description', $keyword])
@@ -390,6 +406,7 @@ class SiteController extends MainController
         ->orWhere(['REGEX', 'category', $keyword]);
     
         $model = Sick::find()
+        ->Where(['like', 'name', $keyword])
         ->Where(['REGEX', 'name', $keyword])
         ->andWhere(['type' => '1'])
         ->orWhere(['REGEX', 'content', $keyword])
