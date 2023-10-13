@@ -259,6 +259,9 @@
     border-bottom: 3px solid #237c50;
     color:#237c50;
 }
+#td-header-search-top {
+    background-color: #237c50 !important;
+}
 @media (max-width: 900px) {
     .search_category_link {
         font-size: 14px;

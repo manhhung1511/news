@@ -82,7 +82,7 @@ use common\helper\Tools;
                                 <form id="form_search" method="get" class="td-search-form" action="<?= Yii::$app->urlManager->createAbsoluteUrl(['site/search']) ?>">
                                     <div role="search" class="td-head-form-search-wrap">
                                         <input id="td-header-search" type="text" value="" name="s" autocomplete="off">
-                                        <input class="wpb_button wpb_btn-inverse btn" type="submit" id="td-header-search-top" value="Search">
+                                        <input class="wpb_button wpb_btn-inverse btn" type="submit" id="td-header-search-top" value="Tìm kiếm">
                                     </div>
                                 </form>
                             </div>
