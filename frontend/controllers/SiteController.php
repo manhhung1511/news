@@ -339,7 +339,7 @@ class SiteController extends MainController
 
         $model = Hospital::find()
             ->Where(['like', 'name', $keyword])
-            ->Where(['REGEX', 'name', $keyword])
+            ->orWhere(['REGEX', 'name', $keyword])
             ->andWhere(['type' => '1'])
             ->orWhere(['REGEX', 'description', $keyword])
             ->andWhere(['type' => '1'])
