@@ -58,11 +58,7 @@ $this->registerMetaTag([
                                             <?php 
                                                 $html = $item['content'][0];
                                                 if(!is_array($html)) {
-                                                    $pattern = '/<span>(.*?)<\/span>/i';
-                                                    $modifiedString = preg_replace($pattern, '', $html);
-                                                    $pattern1 = '/<strong>(.*?)<\/strong>/i';
-                                                    $modifiedString = preg_replace($pattern1, '', $modifiedString);
-                                                    echo Tools::subWordLength($modifiedString);
+                                                    echo strip_tags(Tools::subWordLength($html));
                                                 }
                                                 
                                             ?>

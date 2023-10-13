@@ -62,8 +62,8 @@ $this->registerMetaTag([
                                     <h3 style="font-size: 20px; font-weight: 500; line-height: 26px;"><a href="<?= Yii::$app->urlManager->createAbsoluteUrl(['site/detail', 'slug'=>Tools::create_slug($item['title'])]) ?>"><?= $item['title'] ?></a></h3>
                                     <div class="post-meta-data"><span>
                                             Chuyên khoa: <a href="" title=""><?= $item['category'] ?></a></span></div>
-                                    <div class="body" style="">
-                                         <?= Tools::subWordContent($item['content']) ?>
+                                    <div class="body">
+                                         <?= strip_tags(Tools::subWordContent($item['content'])) ?>
                                     </div>
                                 </article>
                             </li>
