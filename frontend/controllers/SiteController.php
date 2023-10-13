@@ -205,36 +205,40 @@ class SiteController extends MainController
         $keyword = Yii::$app->request->get('s');
         $query = new Query();
 
-        $query->from('medicines')
-            ->orWhere(['REGEX', 'name', $keyword])
-            ->orWhere(['REGEX', 'subscribe', $keyword])
-            ->orWhere(['REGEX', 'category', $keyword]);
+        // $query->from('medicines')
+        //     ->orWhere(['REGEX', 'name', $keyword])
+        //     ->orWhere(['REGEX', 'subscribe', $keyword])
+        //     ->orWhere(['REGEX', 'category', $keyword]);
 
-        $medicines = $query->all();
-        $count_medicines = count($medicines);
+        // $medicines = $query->all();
+        // $count_medicines = count($medicines);
 
-        $query->from('hospitals')
-            ->Where(['REGEX', 'name', $keyword])
-            ->andWhere(['type' => '1'])
-            ->orWhere(['REGEX', 'description', $keyword])
-            ->andWhere(['type' => '1'])
-            ->orWhere(['REGEX', 'address', $keyword])
-            ->andWhere(['type' => '1'])
-            ->orWhere(['REGEX', 'branch', $keyword])
-            ->andWhere(['type' => '1']);
+        // $query->from('hospitals')
+        //     ->Where(['REGEX', 'name', $keyword])
+        //     ->andWhere(['type' => '1'])
+        //     ->orWhere(['REGEX', 'description', $keyword])
+        //     ->andWhere(['type' => '1'])
+        //     ->orWhere(['REGEX', 'address', $keyword])
+        //     ->andWhere(['type' => '1'])
+        //     ->orWhere(['REGEX', 'branch', $keyword])
+        //     ->andWhere(['type' => '1']);
 
-        $hospitals = $query->all();
-        $count_hospitals = count($hospitals);
+        // $hospitals = $query->all();
+        // $count_hospitals = count($hospitals);
 
-        $query->from('sicks')
-        ->Where(['REGEX', 'name', $keyword])
-        ->andWhere(['type' => '1'])
-        ->orWhere(['REGEX', 'content', $keyword])
-        ->andWhere(['type' => '1']);
+        // $query->from('sicks')
+        // ->Where(['REGEX', 'name', $keyword])
+        // ->andWhere(['type' => '1'])
+        // ->orWhere(['REGEX', 'content', $keyword])
+        // ->andWhere(['type' => '1']);
 
-        $sicks = $query->all();
-        $count_sicks = count($sicks);
+        // $sicks = $query->all();
+        // $count_sicks = count($sicks);
 
+        $count_medicines = 0;
+        $count_news = 0;
+        $count_hospitals = 0;
+        $count_sicks = 0;
         $model = $query->from('news')
         ->orWhere(['REGEX', 'content', $keyword])
         ->orWhere(['REGEX', 'title', $keyword]);
