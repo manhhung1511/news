@@ -203,8 +203,6 @@ class SiteController extends MainController
     public function actionSearch()
     {
         $keyword = Yii::$app->request->get('s');
-        $query = new Query();
-
         // $query->from('medicines')
         //     ->orWhere(['REGEX', 'name', $keyword])
         //     ->orWhere(['REGEX', 'subscribe', $keyword])
@@ -239,13 +237,13 @@ class SiteController extends MainController
         $count_news = 0;
         $count_hospitals = 0;
         $count_sicks = 0;
-        $model = $query->from('news')
+        $model = News::find()
         ->orWhere(['REGEX', 'content', $keyword])
         ->orWhere(['REGEX', 'title', $keyword]);
     
         $pages = new Pagination(['totalCount' => $model->count(),'pageSize' => '20']);
-        $results = $query->all();
-        $limits = $query->offset($pages->offset)->limit($pages->limit)->all();
+        $results = $model->all();
+        $limits = $model->offset($pages->offset)->limit($pages->limit)->all();
         $count_news = count($results);
 
         return $this->render('search', [
