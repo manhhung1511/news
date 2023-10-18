@@ -64,6 +64,9 @@ $currentUrl = Url::current([], true);
   </script>
   <!-- End Google Tag Manager -->
 
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5786066701372863" crossorigin="anonymous">
+  </script>
+
 </head>
 
 <?= $this->render('header'); ?>
