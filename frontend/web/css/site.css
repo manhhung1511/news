@@ -31106,7 +31106,15 @@ ul.shop_table {
 .enable_footer_columns_dark .widget .widget-title h2 {
     color: #121212;
 }
-
+.footer_privacy {
+    margin-top: 20px;
+}
+.privacy-item {
+    list-style: none;
+}
+.privacy-link {
+    color: #999 !important;
+}
 .enable_footer_columns_dark .social-icons-list-widget li a {
     color: #fff;
     width: 40px;

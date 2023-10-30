@@ -69,7 +69,12 @@ return [
                 'duoc-lieu/tat-ca' => 'crawl/full-drug',
                 'duoc-lieu/<slug:[\w\-]+>' => 'crawl/drug-detail',
                 'hoat-chat/tat-ca' => 'crawl/full-active',
-                'hoat-chat/<slug:[\w\-]+>' => 'crawl/active-detail'
+                'hoat-chat/<slug:[\w\-]+>' => 'crawl/active-detail',
+                //footer
+                'thong-tin/chinh-sach-bao-mat' => 'footer/privacy',
+                'thong-tin/chinh-sach-va-dieu-khoan' => 'footer/rules',
+                'thong-tin/gioi-thieu' => 'footer/introduce'
+
             ], 
         ],
     

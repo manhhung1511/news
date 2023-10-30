@@ -222,6 +222,17 @@ $currentUrl = Url::current([], true);
                       <a href="#" class="twitter" target="_blank"><i class="jli-twitter"></i></a>
                     </li>
                   </ul>
+                  <ul class="footer_privacy">
+                    <li class="privacy-item">
+                      <a class="privacy-link" href="<?= Yii::$app->urlManager->createAbsoluteUrl(['footer/privacy']) ?>">Chính sách bảo mật</a>
+                    </li>
+                    <li class="privacy-item">
+                      <a class="privacy-link" href="<?= Yii::$app->urlManager->createAbsoluteUrl(['footer/rules']) ?>"> Chính sách và điều khoản</a>
+                    </li>
+                    <li class="privacy-item">
+                      <a class="privacy-link" href="<?= Yii::$app->urlManager->createAbsoluteUrl(['footer/introduce']) ?>"> Giới thiệu</a>
+                    </li>
+                  </ul>
                 </div>
               </div>
             </div>

@@ -20,7 +20,6 @@ use common\models\Hospital;
 use common\models\Sick;
 use yii\web\Response;
 use frontend\controllers\MainController;
-use yii\mongodb\Query;
 use yii\data\Pagination;
 /**
  * Site controller
